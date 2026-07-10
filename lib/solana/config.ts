@@ -2,6 +2,8 @@
 // This file contains deployment-specific addresses and settings
 
 const UNCONFIGURED_PROGRAM_ID = '11111111111111111111111111111111';
+const DEFAULT_PUBLIC_CLUSTER: SoleonConfig['cluster'] = 'mainnet-beta';
+const DEFAULT_PUBLIC_RPC_ENDPOINT = 'https://api.mainnet-beta.solana.com';
 
 export type WebPhase = 
   | 'pre_launch'      // Before initial launch
@@ -98,10 +100,7 @@ function optionalEnv(name: string): string | null {
 function readCluster(): SoleonConfig['cluster'] {
   const value = optionalEnv('NEXT_PUBLIC_SOLANA_CLUSTER');
   if (value === null) {
-    if (process.env.NODE_ENV === 'production') {
-      throw new Error('NEXT_PUBLIC_SOLANA_CLUSTER is required in production');
-    }
-    return 'devnet';
+    return DEFAULT_PUBLIC_CLUSTER;
   }
   if (value === 'devnet' || value === 'mainnet-beta') return value;
   throw new Error('NEXT_PUBLIC_SOLANA_CLUSTER must be devnet or mainnet-beta');
@@ -130,7 +129,7 @@ const configuredCommitmentClaimProgramId = optionalEnv('NEXT_PUBLIC_COMMITMENT_C
 // website cannot imply readiness before addresses and phases are published.
 export const SOLEON_CONFIG: SoleonConfig = {
   cluster: readCluster(),
-  rpcEndpoint: optionalEnv('NEXT_PUBLIC_SOLANA_RPC_ENDPOINT'),
+  rpcEndpoint: optionalEnv('NEXT_PUBLIC_SOLANA_RPC_ENDPOINT') ?? DEFAULT_PUBLIC_RPC_ENDPOINT,
   
   // Program ID must come from env for protocol reads. The placeholder is
   // only used so PDA helpers can stay pure while Step 0 has no program yet.
