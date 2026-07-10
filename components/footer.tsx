@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useTranslations, useLocale } from 'next-intl';
-import { Twitter, Github } from 'lucide-react';
+import { MessageCircle, Twitter, Github } from 'lucide-react';
 
 export function Footer() {
   const t = useTranslations('footer');
@@ -25,7 +25,8 @@ export function Footer() {
   ];
 
   const socialLinks = [
-    { href: null, icon: Twitter, label: 'X', pending: true },
+    { href: 'https://x.com/SoleonProtocol', icon: Twitter, label: 'X', pending: false },
+    { href: 'https://www.reddit.com/user/SoleonProtocol/', icon: MessageCircle, label: 'Reddit', pending: false },
     { href: 'https://github.com/soleon-protocol/soleon-interface', icon: Github, label: 'GitHub', pending: false },
   ];
 
