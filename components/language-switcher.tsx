@@ -9,7 +9,7 @@ import {
   DropdownMenuItem,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Globe } from 'lucide-react';
+import { Check, Globe } from 'lucide-react';
 import { locales, localeNames, type Locale } from '@/i18n/config';
 
 export function LanguageSwitcher() {
@@ -30,22 +30,31 @@ export function LanguageSwitcher() {
     router.push(newPath);
   };
 
+  const currentLocaleLabel = locale.toUpperCase();
+
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" size="icon" className="text-foreground/70 hover:text-foreground">
+        <Button
+          variant="ghost"
+          className="h-9 gap-1.5 px-2.5 text-xs font-semibold uppercase tracking-normal text-foreground/70 hover:text-foreground"
+          aria-label={t('changeLanguage')}
+          title={t('changeLanguage')}
+        >
           <Globe className="h-5 w-5" />
+          <span aria-hidden="true">{currentLocaleLabel}</span>
           <span className="sr-only">{t('changeLanguage')}</span>
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent align="end">
+      <DropdownMenuContent align="end" className="min-w-36">
         {locales.map((loc) => (
           <DropdownMenuItem
             key={loc}
             onClick={() => handleLocaleChange(loc)}
-            className={locale === loc ? 'bg-primary/10 text-primary' : ''}
+            className={`justify-between ${locale === loc ? 'bg-primary/10 text-primary' : ''}`}
           >
-            {localeNames[loc]}
+            <span>{localeNames[loc]}</span>
+            {locale === loc && <Check className="h-4 w-4" />}
           </DropdownMenuItem>
         ))}
       </DropdownMenuContent>
