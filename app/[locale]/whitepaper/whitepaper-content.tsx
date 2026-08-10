@@ -1,9 +1,9 @@
 'use client';
 
 import { useState } from 'react';
-import Image from 'next/image';
-import { motion } from 'framer-motion';
 import { useLocale, useTranslations } from 'next-intl';
+import { motion } from 'framer-motion';
+import Image from 'next/image';
 import {
   AlertTriangle,
   BookOpen,
@@ -25,28 +25,28 @@ import { cn } from '@/lib/utils';
 
 const sectionsEs = [
   { id: 'introduction', label: 'Introducción', icon: BookOpen },
-  { id: 'problem', label: 'El problema', icon: AlertTriangle },
-  { id: 'solution', label: 'La solución', icon: Lightbulb },
-  { id: 'distribution', label: 'Distribución Genesis', icon: Gift },
+  { id: 'problem', label: 'El Problema', icon: AlertTriangle },
+  { id: 'solution', label: 'La Solución', icon: Lightbulb },
+  { id: 'distribution', label: 'Distribución Inicial', icon: Gift },
   { id: 'tokenomics', label: 'Tokenomics', icon: Coins },
   { id: 'staking', label: 'Staking', icon: Lock },
-  { id: 'markets', label: 'Mercado y liquidez', icon: Landmark },
+  { id: 'markets', label: 'Mercados DEX-first', icon: Landmark },
   { id: 'technical', label: 'Especificaciones', icon: Code },
-  { id: 'security', label: 'Seguridad y control', icon: Shield },
+  { id: 'security', label: 'Seguridad', icon: Shield },
   { id: 'timeline', label: 'Timeline', icon: Clock },
   { id: 'conclusion', label: 'Conclusión', icon: CheckCircle },
 ] as const;
 
 const sectionsEn = [
   { id: 'introduction', label: 'Introduction', icon: BookOpen },
-  { id: 'problem', label: 'The problem', icon: AlertTriangle },
-  { id: 'solution', label: 'The solution', icon: Lightbulb },
-  { id: 'distribution', label: 'Genesis distribution', icon: Gift },
+  { id: 'problem', label: 'The Problem', icon: AlertTriangle },
+  { id: 'solution', label: 'The Solution', icon: Lightbulb },
+  { id: 'distribution', label: 'Initial Distribution', icon: Gift },
   { id: 'tokenomics', label: 'Tokenomics', icon: Coins },
   { id: 'staking', label: 'Staking', icon: Lock },
-  { id: 'markets', label: 'Market and liquidity', icon: Landmark },
+  { id: 'markets', label: 'DEX-first Markets', icon: Landmark },
   { id: 'technical', label: 'Specifications', icon: Code },
-  { id: 'security', label: 'Security and control', icon: Shield },
+  { id: 'security', label: 'Security', icon: Shield },
   { id: 'timeline', label: 'Timeline', icon: Clock },
   { id: 'conclusion', label: 'Conclusion', icon: CheckCircle },
 ] as const;
@@ -54,375 +54,808 @@ const sectionsEn = [
 const whitepaperContentEs = {
   introduction: {
     title: 'Introducción',
-    content: `Soleon es un protocolo Token-2022 de supply fijo en Solana con una distribución Genesis transparente y verificable y staking on-chain.
+    content: `Soleon representa un modelo de lanzamiento de token en Solana basado en transparencia, distribución pública y reglas on-chain verificables. Su objetivo no es prometer retornos, sino construir una estructura donde cualquier persona pueda revisar cómo nace el token, dónde están los fondos, qué puede cambiarse y qué debe quedar inmutable.
 
-El objetivo no es prometer precio, rentabilidad o liquidez, sino publicar reglas, direcciones y límites que puedan verificarse de forma independiente. Soleon separa el control temporal necesario para lanzar y monitorizar el sistema de las reglas del protocolo que deben quedar inmutables al finalizar el proceso.
+El mercado de criptomonedas ha visto demasiados lanzamientos con preventas privadas, wallets ocultas, pools falsos, liquidez controlada por pocos y promesas imposibles de verificar. Soleon nace de la necesidad de un modelo distinto: pequeño al principio, público desde el primer día y diseñado para reducir la dependencia de decisiones privadas.
 
-No existe preventa, ICO, ronda privada, pretoken ni reserva oculta de revisión. La web es una interfaz mantenida por Soleon Maintainer; no debe confundirse con la autoridad final del protocolo.`,
+El calendario operativo actualizado separa el mint, la distribución y la apertura del staking. El mint SEON Token-2022 está previsto para el **24 de agosto de 2026**, después del rehearsal completo. El staking y la primera ola de la distribución Genesis están previstos para el **31 de agosto de 2026**. Las diez olas semanales terminan el **2 de noviembre de 2026**, siempre que las comprobaciones técnicas de cada fase sean correctas.
+
+El diseño actual evita tres dependencias habituales:
+• No hay preventa, ICO ni pretoken temporal.
+• No hay pool AMM inicial controlado por el creador.
+• No hay promesa de listing en CEX ni precio oficial.
+
+Soleon nace con una filosofía clara:
+• La transparencia es fundamental: los fondos relevantes deben ser públicos y verificables.
+• La distribución inicial no se compra: se envía directamente a 400 wallets independientes seleccionadas mediante reglas públicas, snapshot y aleatoriedad verificable.
+• La descentralización es un objetivo técnico progresivo, no un eslogan ni una afirmación de descentralización total mientras existan autoridades temporales y tareas operativas.
+• La web ayuda a usar el protocolo, pero no debe ser la autoridad del protocolo.
+• Los mercados deben formarse de manera DEX-first, pública y verificable.
+• La revisión pública es parte del lanzamiento, no un adorno posterior.
+
+SEON se distribuye primero mediante un Genesis Airdrop directo: 4,000,000 SEON repartidos en diez olas semanales de 40 wallets, con 10,000 SEON por wallet. No hay claim, firma de elegibilidad, conexión obligatoria a la web ni fee de distribución. Después del ensayo final se abre staking con lock fijo de 7 días, rewards proporcionales y mantenimiento permissionless. La autoridad de actualización del programa se conserva únicamente durante las diez olas para corregir errores confirmados y documentados públicamente; después de la verificación final, el objetivo es revocarla y dejar el staking inmutable.`,
   },
   problem: {
-    title: 'El problema',
-    content: `Muchos lanzamientos de tokens dependen de ventas privadas, asignaciones opacas, volumen artificial, liquidez retirable y contratos que conservan poderes administrativos indefinidos.
+    title: 'El Problema',
+    content: `Muchos lanzamientos de tokens fallan por problemas repetidos:
 
-Un claim también presupone descubrimiento previo: el usuario debe conocer el proyecto, visitar una web desconocida, conectar su wallet y firmar. Para un protocolo sin marketing pagado, ese modelo puede no distribuir nada y puede parecerse a los patrones utilizados por airdrops fraudulentos.
+**Preventas Injustas**
+Las preventas tradicionales crean una ventaja injusta para los early investors que pueden comprar a precios significativamente más bajos, dejando a los inversores posteriores en desventaja.
 
-Distribuir tokens no crea automáticamente compradores, precio ni comunidad. Del mismo modo, un mercado técnicamente creado no tiene liquidez hasta que compradores y vendedores independientes aceptan órdenes reales.`,
+**Falta de transparencia**
+Muchos proyectos no muestran con claridad qué wallets reciben tokens, qué fondos se reservan, quién puede moverlos o qué autoridades siguen activas. Las ventas no anunciadas, dev wallets ocultas y cambios de reglas destruyen confianza.
+
+**Liquidez centralizada**
+Un pool inicial controlado por una sola wallet puede dar apariencia de mercado, pero esa liquidez puede retirarse o usarse para crear presión artificial.
+
+**Pools falsos y rutas inseguras**
+En Solana cualquiera puede crear un pool con un nombre parecido. Si el mint no coincide, si la liquidez es mínima o si el LP puede retirarla sin aviso, el usuario puede acabar operando en un mercado falso o extremadamente manipulable.
+
+**Código difícil de revisar**
+Si las reglas no están documentadas, el usuario depende de promesas. Un contrato puede tener funciones admin, upgrade authority o rutas de salida que no se entienden desde la interfaz.
+
+**Emisión poco clara**
+Muchos sistemas prometen APR sin explicar de dónde salen los tokens, cuánto puede emitirse por año o qué ocurre cuando el fondo de recompensas se reduce.
+
+**Tokenomics Insostenibles**
+Muchos tokens tienen modelos de emisión que benefician a corto plazo pero crean presión de venta insostenible a largo plazo.
+
+**Rug Pulls y Abandono**
+La facilidad para crear tokens ha llevado a un aumento de proyectos fraudulentos que desaparecen después de recaudar fondos.
+
+**Mantenimiento de la web confundido con control del protocolo**
+Una interfaz puede ayudar al usuario, pero no debería ser la autoridad final. Las reglas importantes deben poder verificarse y ejecutarse on-chain incluso si la web oficial no está disponible.`,
   },
   solution: {
-    title: 'La solución Soleon',
-    content: `Soleon utiliza un lanzamiento gradual y reproducible:
+    title: 'La Solución Soleon',
+    content: `Soleon responde con un lanzamiento más pequeño, verificable y gradual. La idea central es que la confianza no dependa de una historia bonita, sino de direcciones públicas, reglas comprobables y límites claros a lo que puede hacer el mantenedor.
 
-• Supply fijo y metadata oficial publicados antes de la distribución.
-• Cuatro asignaciones exactas y direcciones separadas.
-• Airdrop directo: el receptor no conecta, firma, reclama ni paga.
-• Selección determinista basada en snapshot, reglas y seed pública futura.
-• Diez olas semanales con informes y verificación acumulada.
-• Staking on-chain abierto tras rehearsal y comprobaciones de mainnet.
-• Reserva temporal de mercado identificada, con órdenes reales y prohibición de autooperaciones.
-• Auditoría final y revocación de autoridades críticas tras la décima ola.
+**Distribución inicial gratuita y directa**
+El primer reparto no se compra ni se reclama. Los 4,000,000 SEON de Genesis se envían directamente a 400 wallets independientes en diez olas semanales. Cada wallet recibe 10,000 SEON sin conectar su wallet a la web, firmar un mensaje, pagar una fee de protocolo ni confiar en un servidor de elegibilidad.
 
-La confianza se apoya en datos verificables, no en la identidad real del mantenedor. La figura pública operativa es Soleon Maintainer.`,
+**Selección pública y reproducible**
+Las wallets candidatas proceden de actividad verificable en protocolos conocidos del ecosistema Solana. Antes de la primera ola se publican las reglas, el slot del snapshot, las exclusiones, los hashes de los datos y el método de aleatoriedad. La lista final queda cerrada antes de Wave 1 y cada ola publica wallets, ATAs, transacciones, errores y reintentos.
+
+**Transparencia de fondos y funciones**
+La asignación inicial separa claramente el fondo de recompensas, la Genesis Distribution Wallet, la Market / Liquidity Wallet temporal y la asignación del desarrollador. También se publica la Maintenance Wallet. Cada dirección, balance y función debe poder seguirse en exploradores cuando exista.
+
+**Revisión pública antes y durante el lanzamiento**
+El código de la web, del staking y de los scripts de distribución se abre a revisión. No existe reserva de revisión ni pago prometido por reportes. Esto no garantiza ausencia total de errores, pero evita vender una falsa sensación de seguridad y obliga a publicar reglas, direcciones y riesgos.
+
+**Mercado DEX-first con liquidez inicial limitada y visible**
+El primer mercado previsto es un order book SEON/USDC verificable en Manifest. La Market / Liquidity Wallet puede aportar órdenes reales con hasta 400,000 SEON y 200 USDC. Sus órdenes, inventario y reglas se hacen públicos; no se usa para fabricar volumen, demanda o precio.
+
+**Defensa frente a fakes**
+La web no debe enlazar cualquier mercado que aparezca. Debe diferenciar entre mercados verificados, comunitarios, alto riesgo y fake. Un pool no es oficial solo por existir, y un enlace no debe activarse hasta que la dirección sea verificable.
+
+**Descentralización programática y progresiva**
+• Mint authority revocada después de crear y asignar el supply completo.
+• Freeze authority nula.
+• Configuración de transfer fee controlada por las reglas del programa y su PDA.
+• Programa de staking inmutable después de las diez olas, la verificación final y las correcciones públicas necesarias.
+• Distribución de fees fijada por código: 20% quema, 1 SEON al ejecutor y resto a recompensas.
+
+**Staking con presupuesto anual verificable**
+El staking no promete APR fijo. Cada año libera un porcentaje máximo del fondo de recompensas no comprometido. Los usuarios comparten ese presupuesto proporcionalmente al principal activo.
+
+**Inmutabilidad sin ocultar la operación humana**
+Soleon distingue el protocolo de sus capas operativas. El staking puede quedar inmutable y las acciones críticas pueden ser permissionless, mientras que la web, la documentación, la Maintenance Wallet y la Market / Liquidity Wallet temporal requieren mantenimiento humano identificable públicamente como Soleon Maintainer. Por ello, durante esta fase se habla de descentralización progresiva y verificable, no de descentralización total.`,
   },
   distribution: {
-    title: 'Distribución Genesis',
+    title: 'Distribución Inicial',
     content: `**Supply total: 444,444,444 SEON**
 
-Asignación exacta:
-• 440,000,000 SEON → reward vault finita de staking.
+El supply completo se crea una sola vez y se separa en cuatro asignaciones públicas:
+• 440,000,000 SEON → fondo de recompensas de staking.
 • 4,000,000 SEON → Genesis Distribution Wallet.
 • 400,000 SEON → Market / Liquidity Wallet temporal.
 • 44,444 SEON → Developer Wallet.
 
-**Airdrop Genesis**
-Se seleccionan 400 wallets independientes antes de iniciar la distribución. Cada wallet recibe directamente 10,000 SEON. La distribución se divide en diez olas de 40 wallets, una por semana, por un total de 400,000 SEON por ola.
+**Genesis Airdrop**
+Los 4,000,000 SEON de Genesis se reparten entre 400 wallets independientes:
+• 10,000 SEON por wallet.
+• 40 wallets por ola.
+• 400,000 SEON por ola.
+• Diez olas semanales desde el 31 de agosto hasta el 2 de noviembre de 2026.
 
-No existe contrato adicional de distribución, servidor de firmas, botón de claim ni fee Genesis. Soleon nunca pedirá conectar una wallet o aprobar una transacción para recibir la asignación.
+No existe contrato Genesis, claim, firma server-side, conexión obligatoria a la web ni fee de distribución. La Genesis Distribution Wallet crea el ATA Token-2022 del destinatario cuando sea necesario y realiza una transferencia directa comprobable on-chain.
 
-**Selección reproducible**
-Las fuentes de candidatos, el slot del snapshot, las reglas de actividad, la allowlist de programas, las exclusiones y su hash se publican antes de seleccionar. Las wallets deben mostrar historial real, actividad reciente en el ecosistema y entre 0.05 y 500 SOL en el snapshot. Se excluyen exchanges, programas, bots evidentes, duplicados y direcciones controladas por Soleon.
+**Selección verificable**
+Antes de Wave 1 se construye un conjunto de 10,000 candidatos procedentes de actividad reciente en Jupiter, Raydium, Orca, Meteora, Kamino, Marinade/Jito y Drift. Las reglas exigen historial Solana real, actividad en diferentes días y meses, interacción reciente con protocolos conocidos y un balance de snapshot entre 0.05 y 500 SOL. Se excluyen programas, PDAs, exchanges, bots evidentes, wallets controladas por Soleon, duplicados y direcciones de infraestructura identificables.
 
-Una seed derivada de un dato futuro público selecciona los 400 receptores de forma determinista. La lista queda fijada antes de la primera ola. Cada informe publica receptores, cuentas Token-2022 creadas, firmas, errores y reintentos. El proceso es idempotente: un reintento no duplica una asignación.`,
+El slot del snapshot, la allowlist definitiva de programas, los hashes de entrada, la semilla pública derivada de un bloque futuro y el algoritmo de selección se publican para que la elección de las 400 wallets pueda reproducirse. La lista completa se fija antes de la primera ola y se divide determinísticamente en diez grupos de 40. Cada informe semanal muestra el resultado de cada transferencia y permite reintentos idempotentes sin duplicar pagos.
+
+**Wallets operativas iniciales**
+La Developer Wallet recibe 44,444 SEON como asignación personal pública del desarrollador. Puede mantenerlos, transferirlos, venderlos o ponerlos en staking como tokens propios.
+
+La Market / Liquidity Wallet recibe 400,000 SEON y puede recibir hasta 200 USDC aportados por el mantenedor para formar un libro inicial pequeño y transparente. Es una wallet temporal, separada de Genesis y excluida de la selección de destinatarios. Su uso se limita a liquidez real y a una posible transición posterior hacia un pool SEON/USDC si la actividad independiente demuestra que es viable.`,
   },
   tokenomics: {
     title: 'Tokenomics',
-    content: `**Token**
-• Red: Solana mainnet.
-• Estándar: Token-2022.
-• Nombre: Soleon.
-• Símbolo: SEON.
+    content: `**Modelo de token**
+• Red: Solana.
+• Estándar: Token-2022 con TransferFee extension.
 • Decimales: 9.
 • Supply fijo: 444,444,444 SEON.
-• Mint authority: revocada tras crear y asignar el supply.
+• Mint authority: revocada después de crear y asignar el supply completo.
 • Freeze authority: nula.
-• Transfer fee inicial: 0%.
 
-**Calendario de transfer fee**
-Cuando staking_open sea true, una acción permissionless puede activar 0.02%. Cada año completo de staking añade 0.02 puntos porcentuales, hasta un máximo de 0.4%. La fee máxima por transferencia es 400 SEON.
+**Transfer fee**
+El mint empieza con 0% para no bloquear el arranque del mercado. Cuando staking_open sea true, cualquiera podrá ejecutar la actualización permissionless:
+• Antes de staking: 0%.
+• Al abrir staking: 0.02%.
+• Cada año de staking completo: +0.02%.
+• Máximo: 0.4%.
+• Cap por transferencia: 400 SEON.
 
-**Distribución de transfer fees**
-Cuando se alcanza el mínimo publicado, una acción pública recolecta y distribuye:
+**Distribución de fees Token-2022**
+Las fees retenidas se recolectan mediante una acción pública:
 • 20% → quema permanente.
-• Hasta 1 SEON → incentivo fijo al ejecutor.
-• Resto → reward vault.
+• 1 SEON → incentivo fijo al ejecutor si se alcanza el mínimo.
+• Resto → fondo de recompensas de staking.
 
-No existe emisión adicional: los rewards proceden de la reward vault finita y las fees redistribuidas.`,
+La acción requiere al menos 200 SEON acumulados para distribuir. Hay cooldown global y por wallet para evitar ejecución excesiva.
+
+**Fee de mantenimiento de interfaz**
+Además de la transfer fee del token:
+• La distribución Genesis directa no cobra fee de protocolo al destinatario.
+• Algunas acciones de staking cobran 0.0005 SOL:
+• claim_rewards de staking.
+• unstake_expired de staking.
+
+Esta fee va a una Maintenance Wallet pública y separada de la Developer Wallet y de la Market / Liquidity Wallet. Puede cubrir dominio, RPC, web, informes y otros costes operativos verificables. No cambia supply, no cambia APR, no concede control sobre el protocolo y no se cobra en renovación.`,
   },
   staking: {
-    title: 'Sistema de staking',
-    content: `El staking se abre en mainnet solo después del rehearsal y las comprobaciones finales. La fecha prevista es el 31 de agosto de 2026, junto con la ola 1.
+    title: 'Sistema de Staking',
+    content: `Staking se despliega y abre el **31 de agosto de 2026**, junto con Wave 1, siempre que el rehearsal final sea correcto. La upgrade authority se conserva durante las diez olas únicamente para corregir bugs confirmados, reproducibles y documentados públicamente. Después de Wave 10, de la verificación acumulada y de cualquier corrección necesaria, el objetivo es revocarla y dejar el programa inmutable.
 
-**Reglas base**
-• Lock único: 7 días.
+**Regla base**
+• Lock único obligatorio: 7 días.
 • Periodo de gracia: 3 días.
-• Rewards proporcionales al principal activo.
-• Claim de rewards disponible hasta terminar la gracia.
-• Renew puntual consolida principal + rewards.
-• Unstake devuelve siempre el principal al propietario.
-• Cleanup permissionless de posiciones expiradas tras la gracia.
+• Durante el lock: se puede hacer claim de rewards positivos.
+• Durante la gracia: se puede reclamar, renovar o retirar.
+• Después de la gracia: no se puede hacer claim separado; se puede renovar o retirar.
 
 **Presupuesto anual**
-El primer año puede comprometer hasta el 1% de la reward vault no comprometida. El porcentaje aumenta 0.5 puntos por año de staking hasta un máximo de 100%. No es un APR económico garantizado: el resultado por posición depende del total staked, el tiempo activo y el presupuesto disponible.
+El contrato libera un presupuesto máximo por año desde el fondo de recompensas no comprometido. Ese porcentaje se aplica sobre lo que va quedando cada año en el fondo de recompensas, no sobre el supply total ni sobre una cantidad fija. Empieza en 1.0%, sube 0.5 puntos porcentuales por año y puede llegar al 100% en el largo plazo.
 
-**Redistribución de rewards**
-Las posiciones nuevas empiezan con 10% de redistribución sobre rewards reclamados o retirados. Cada renew puntual reduce 0.5 puntos hasta llegar a 0% tras 20 renovaciones. La redistribución nunca se aplica al principal.
+Tabla orientativa:
+Año | Presupuesto máximo anual sobre fondo de recompensas no comprometido
+1   | 1.0%
+2   | 1.5%
+3   | 2.0%
+5   | 3.0%
+10  | 5.5%
+20  | 10.5%
+50  | 25.5%
+100 | 50.5%
+199 | 100.0%
 
-Las acciones de claim_rewards y unstake_expired pueden incluir la fee de mantenimiento publicada de 0.0005 SOL. Renew no la cobra. La wallet receptora es pública y la fee no concede control sobre las reglas.`,
+Esto no es un APR garantizado. El reward efectivo depende de cuántos SEON estén en staking, cuánto tiempo permanezcan activos y cuánto presupuesto anual quede disponible.
+
+**Cálculo proporcional**
+Las posiciones comparten rewards según principal activo. Conceptualmente:
+reward_usuario = presupuesto_acumulado × principal_usuario / total_staked
+
+El contrato usa acumuladores globales para que cada posición pueda calcular lo que le corresponde sin recorrer todas las wallets.
+
+**Renovación y consolidación**
+Si el usuario renueva puntualmente, se crea una nueva posición con principal + rewards. No se aplica redistribución sobre esos rewards porque siguen dentro del staking.
+
+Cada renovación puntual reduce la redistribución futura de claims:
+• Inicial: 10%.
+• Cada renovación puntual: -0.5 puntos.
+• Después de 20 renovaciones puntuales: 0%.
+
+Si el usuario hace claim, se aplica el porcentaje vigente a los rewards reclamados y esa parte vuelve al fondo de recompensas. Si retira, el principal vuelve al usuario y la redistribución se aplica solo sobre rewards, nunca sobre principal.
+
+**Después de la gracia**
+Si una posición supera 7 días + 3 días de gracia:
+• El propietario puede renovar o retirar.
+• Cualquiera puede cerrar posiciones fuera de gracia mediante limpieza pública.
+• Si hay renovación tardía, se aplica 10% sobre rewards y se reinicia la consolidación.
+• El principal y los rewards netos siempre vuelven al propietario.`,
   },
   markets: {
-    title: 'Mercado y liquidez',
-    content: `Soleon es DEX-first: no hay preventa, listing CEX prometido, precio oficial ni valoración inicial impuesta.
+    title: 'Mercados DEX-first y Liquidez Comunitaria',
+    content: `Soleon no nace con una preventa ni con capital recaudado para sostener una gran liquidez inicial. El mercado debe descubrir el precio mediante intercambios reales. Para facilitar ese arranque sin fingir adopción, existe una Market / Liquidity Wallet temporal, pública y separada del fondo Genesis, de la Developer Wallet y de la Maintenance Wallet.
 
-**Market / Liquidity Wallet**
-La reserva temporal recibe 400,000 SEON y puede ser fondeada por Soleon Maintainer con hasta 200 USDC. Su dirección, balances y órdenes son públicos. Puede colocar bids y asks genuinos en un mercado SEON/USDC, aceptando operaciones reales de terceros.
+**Order book como primer mercado**
+El primer objetivo es un mercado SEON/USDC tipo order book en Manifest, si su dirección y configuración quedan publicadas y verificadas. Un order book funciona de forma parecida a un exchange tradicional: compradores y vendedores colocan órdenes con precio y cantidad. La ejecución es DEX, on-chain y sin custodia de Soleon sobre los fondos de terceros.
 
-Reglas obligatorias:
-• Nunca operar contra otra wallet controlada por Soleon.
-• Nunca fabricar volumen, demanda o precio.
-• Si no hay operaciones independientes, el volumen real es cero.
-• No perseguir el precio operación por operación.
-• Ajustar quotes solo mediante reglas publicadas de inventario, spread, profundidad y frecuencia.
-• Etiquetar claramente la liquidez controlada por Soleon.
+**Inventario inicial limitado**
+La Market / Liquidity Wallet recibe 400,000 SEON y puede recibir hasta 200 USDC aportados por el mantenedor. Estos activos no representan demanda comunitaria. Solo sirven para publicar pequeñas órdenes reales a ambos lados del libro y aceptar el riesgo económico de que terceros independientes las ejecuten.
 
-**Posible pool posterior**
-Tras dos o tres meses se evalúan actividad independiente, profundidad y precio observado. Los activos restantes pueden iniciar un pool solo si esas condiciones lo justifican. El ratio debe derivarse del mercado real y el LP debe quemarse o bloquearse permanentemente. Si no existe actividad suficiente, no se fuerza un pool.
+**Reglas públicas de actuación**
+• Todas las órdenes deben ser reales y ejecutables por cualquier tercero.
+• Nunca se cruzan órdenes entre wallets controladas por Soleon.
+• No se fabrica volumen, demanda, profundidad, actividad ni precio.
+• Si no existe contraparte independiente, el volumen real es cero.
+• No se anuncia un precio oficial ni una capitalización derivada de operaciones mínimas.
+• Los balances, órdenes y operaciones de la wallet pueden revisarse públicamente.
+• Los cambios de cotización siguen reglas publicadas de inventario, spread, profundidad, frecuencia y exposición máxima; no persiguen sostener un precio concreto.
 
-No se garantiza que aparezcan compradores, liquidez, volumen o valor.`,
+Si nadie compra o vende, las órdenes pueden mantenerse sin cambios o retirarse conforme a esas reglas públicas. Si aparecen operaciones independientes y el precio se mueve, la wallet puede recolocar órdenes alrededor del mercado observado dentro de sus límites, sin intentar revertir la dirección elegida por los participantes.
+
+**Por qué DEX-first**
+• No requiere que un CEX acepte listar SEON.
+• No obliga al protocolo a custodiar fondos de usuarios.
+• Permite que el precio se forme por órdenes visibles.
+• Distingue claramente la liquidez aportada por el mantenedor de la actividad orgánica.
+• Encaja mejor con un token que busca reglas públicas e inmutabilidad.
+
+**Evaluación de un pool futuro**
+Después de aproximadamente 2–3 meses se evalúa si existe actividad independiente, un precio suficientemente observado y condiciones razonables para crear un pool SEON/USDC. El pool no está garantizado ni se crea solo para aparentar liquidez. Si resulta viable, puede usar los SEON y USDC restantes de la Market / Liquidity Wallet en una proporción basada en el mercado real, no en una valoración decidida unilateralmente.
+
+El diseño previsto exige que la posición LP quede quemada o bloqueada permanentemente para que la liquidez aportada no pueda retirarse discrecionalmente. Si el DEX genera fees que no pueden renunciarse técnicamente, su destino debe publicarse de antemano y limitarse a mantenimiento verificable; nunca se presentan como rentabilidad garantizada.
+
+**Pools comunitarios y mercados falsos**
+La comunidad puede crear otros pools en Raydium, Orca, Meteora u otros DEX compatibles. No serán oficiales por defecto. La web podrá mostrarlos si se revisa:
+• que usan el mint SEON correcto,
+• que el DEX y el par son claros,
+• que la liquidez es visible,
+• que se indica si el LP está bloqueado, quemado, en multisig o libremente retirable,
+• que no hay señales de mint falso, ruta sospechosa o liquidez engañosa.
+
+**Rol de la web**
+La web no opera como exchange, no fija precio y no custodia fondos de usuarios. Su función es publicar direcciones, explicar riesgos, enlazar mercados verificados y ayudar a distinguir entre liquidez útil, liquidez débil y pools fake.`,
   },
   technical: {
-    title: 'Especificaciones técnicas',
-    content: `**Programas y cuentas**
-• Token-2022 mint SEON.
-• Programa Anchor de staking.
-• Reward vault controlada por PDA.
-• Staking vault controlada por PDA.
-• Fee vault Token-2022 controlada por el programa.
-• Genesis Distribution Wallet y token account.
-• Market / Liquidity Wallet y token account.
-• Developer Wallet.
-• Maintenance Wallet.
+    title: 'Especificaciones Técnicas',
+    content: `**Programas**
+• staking_program: staking, rewards, renovación, retirada, fee collection y cleanup.
+• Distribución Genesis: scripts auditables que usan System Program, Associated Token Program y Token-2022; no requiere un programa Soleon adicional.
 
-La distribución Genesis se ejecuta mediante scripts que usan System Program, Associated Token Program y Token-2022 Program; no necesita un programa Soleon adicional.
+**Cuentas principales**
+• reward_vault: reserva finita para staking.
+• staking_vault: mantiene principal bloqueado.
+• soleon_fee_vault: cuenta técnica para distribución de fees.
+• genesis_distribution_wallet: mantiene los 4,000,000 SEON hasta completar las diez olas.
+• market_liquidity_wallet: inventario temporal de 400,000 SEON y hasta 200 USDC para mercado real.
+• developer_wallet: asignación personal pública de 44,444 SEON.
+• maintenance_fee_receiver: Maintenance Wallet pública que recibe fees SOL de mantenimiento.
 
-**Metadata oficial**
-Nombre Soleon, símbolo SEON, logo oficial, descripción, web y enlaces públicos se sirven desde soleonprotocol.com. La metadata no incluye mensajes de claim ni instrucciones para firmar.
+**Instrucciones principales del staking**
+• initialize: crea configuración, vaults y parámetros base.
+• open_staking: abre staking y permite activar la primera transfer fee.
+• stake: crea posición con lock de 7 días.
+• claim_rewards: reclama rewards positivos y cobra 0.0005 SOL.
+• renew_expired_position: compone principal + rewards en nueva posición.
+• unstake_expired: cierra posición y devuelve principal + rewards netos.
+• update_transfer_fee: actualización permissionless anual.
+• withdraw_and_distribute_from_mint: recolecta y distribuye fees Token-2022.
+• cleanup_expired_positions: cierra por lotes posiciones fuera de gracia.
 
-Los scripts de mint y oleadas son reanudables. El estado privado local evita preparar accidentalmente un segundo mint y los memos de distribución permiten distinguir una transferencia Genesis de un balance adquirido por otra vía.`,
+**Mercados**
+• Objetivo inicial: Manifest order book SEON/USDC.
+• Market / Liquidity Wallet temporal: órdenes reales bajo reglas públicas y sin self-trading.
+• Pool futuro: opcional después de 2–3 meses, solo si la actividad y el precio observado lo hacen viable.
+• Otros pools AMM: comunitarios, no oficiales por defecto.
+• La web solo enlaza mercados/pools después de revisar que usan el mint SEON correcto.
+• No hay custodia: cada usuario firma desde su wallet en interfaces DEX externas.
+
+**Mantenimiento**
+La web oficial es una capa de conveniencia. Soleon Maintainer mantiene dominios, RPC, documentación, informes de las olas, enlaces DEX, wallet adapters y releases, pero no puede cambiar las reglas on-chain cuando el protocolo quede inmutable. Esta función operativa se documenta como una dependencia humana explícita y no se confunde con autoridad sobre fondos de staking de usuarios.`,
   },
   security: {
-    title: 'Seguridad, autoridad y descentralización',
-    content: `La descentralización se describe por capas:
+    title: 'Seguridad, Autoridades e Inmutabilidad',
+    content: `**Principios**
+• No hay ruta admin para retirar principal de usuarios.
+• No hay mint adicional después de revocar mint authority.
+• No hay freeze authority.
+• Las reglas de fees y rewards viven en el programa.
+• Las acciones críticas de mantenimiento son permissionless.
 
-**Token**
-Mint y freeze authorities se revocan tras la creación y asignación. El supply no puede ampliarse.
+**Revisión pública**
+Durante agosto, septiembre y octubre de 2026 se mantiene abierta la revisión pública del código de la web, del staking y de los scripts de distribución. Los reportes deben incluir:
+• pasos para reproducir,
+• impacto,
+• wallet,
+• evidencias,
+• explicación clara del riesgo.
 
-**Staking**
-La upgrade authority se conserva temporalmente durante las diez olas para corregir fallos confirmados. Cualquier corrección debe publicar motivo, diff, pruebas y nueva dirección verificable. Tras la ola 10, la verificación acumulada y la auditoría final, las autoridades críticas se revocan y el programa queda inmutable.
+No existe reserva de revisión ni programa de pagos prometido por reportes. La revisión pública reduce riesgo, pero no garantiza ausencia total de errores.
 
-**Operaciones**
-Soleon Maintainer sigue manteniendo web, documentación, informes y Maintenance Wallet. Estas tareas no equivalen a control sobre un protocolo inmutable. La Developer Wallet contiene propiedad personal declarada. La Market / Liquidity Wallet es temporal y su actividad está etiquetada.
+**Autoridades temporales**
+La upgrade authority del staking se conserva durante las diez olas para corregir únicamente problemas confirmados, reproducibles y documentados públicamente. No permite retirar principal de usuarios ni crear supply. Después de Wave 10, la verificación acumulada y las correcciones necesarias, debe revocarse para dejar el programa inmutable.
 
-No se afirma descentralización total mientras existan autoridades temporales o wallets operativas. El objetivo verificable es la inmutabilidad de las reglas on-chain, no la desaparición de toda persona que mantenga información o infraestructura.
+La mint authority existe solo durante la creación y asignación inicial del supply completo; después se revoca. La freeze authority es nula. La autoridad de configuración de la transfer fee y la autoridad sobre fees retenidas quedan vinculadas a la PDA y a las reglas del programa según el diseño publicado.
 
-El código público y las pruebas reducen riesgo, pero no sustituyen una auditoría independiente ni garantizan ausencia de errores.`,
+**Estado final buscado**
+• Mint authority: null.
+• Freeze authority: null.
+• Program upgrade authority: revocada.
+• Transfer fee config authority: controlada solo por reglas del programa o revocada según diseño final.
+• Withdraw withheld authority: PDA del programa para distribución fija.
+
+En el estado final, el usuario debe poder verificar mint, program IDs, vaults, autoridades y reglas desde exploradores y código público.
+
+**Alcance real de la descentralización**
+La inmutabilidad del mint y del staking no convierte automáticamente en descentralizadas todas las capas del proyecto. La web, la documentación, la Maintenance Wallet y la Market / Liquidity Wallet temporal siguen teniendo responsables operativos. Soleon publica estas dependencias, limita sus funciones y evita describir el sistema como totalmente descentralizado mientras existan. La meta es reducir el control discrecional sobre las reglas y los fondos del protocolo, no ocultar la existencia de mantenimiento humano.`,
   },
   timeline: {
     title: 'Timeline',
-    content: `**10-23 de agosto de 2026**
-Rehearsal completo en devnet, cierre de scripts, reglas, metadata, informes y documentación.
+    content: `**10–23 de agosto de 2026: preparación y rehearsal**
+• Cerrar scripts de mint, metadata, selección, distribución y verificación.
+• Ejecutar el proceso completo en devnet y con dry-run.
+• Publicar código de la web, del staking y de los scripts de Genesis.
+• Recibir reportes reproducibles.
+• Clasificar hallazgos.
+• Corregir problemas confirmados.
+• Confirmar wallets oficiales y exclusiones.
+• Preparar el rehearsal final.
 
-**24 de agosto de 2026**
-Mint previsto en mainnet, cuatro asignaciones, revocación de mint/freeze authorities y publicación de direcciones.
+**24 de agosto de 2026: mint y asignación inicial**
+• Crear el mint SEON Token-2022 y su metadata oficial.
+• Crear y publicar las wallets y cuentas principales.
+• Financiar reward_vault con 440,000,000 SEON.
+• Financiar Genesis Distribution Wallet con 4,000,000 SEON.
+• Financiar Market / Liquidity Wallet con 400,000 SEON.
+• Transferir 44,444 SEON a Developer Wallet.
+• Revocar mint authority después de verificar el supply completo y las asignaciones.
+• Confirmar freeze authority nula.
 
-**31 de agosto de 2026**
-Despliegue y apertura previstos del staking, activación permissionless de transfer fee y ola Genesis 1.
+**31 de agosto de 2026: staking, mercado y Wave 1**
+• Desplegar y abrir staking si el rehearsal final es correcto.
+• Abrir staking_open y activar la primera transfer fee de 0.02% mediante acción permissionless.
+• Permitir stake, claim, renovación, unstake y cleanup.
+• Publicar el mercado Manifest SEON/USDC y la política de la Market / Liquidity Wallet.
+• Distribuir 10,000 SEON a cada una de las primeras 40 wallets.
 
-**7 de septiembre - 2 de noviembre de 2026**
-Olas 2-10, una por semana. Monitorización del staking, informes acumulados y mercado DEX real bajo reglas públicas.
+**Olas semanales 2–10**
+• Wave 2: 7 de septiembre de 2026.
+• Wave 3: 14 de septiembre de 2026.
+• Wave 4: 21 de septiembre de 2026.
+• Wave 5: 28 de septiembre de 2026.
+• Wave 6: 5 de octubre de 2026.
+• Wave 7: 12 de octubre de 2026.
+• Wave 8: 19 de octubre de 2026.
+• Wave 9: 26 de octubre de 2026.
+• Wave 10: 2 de noviembre de 2026.
+• Cada ola distribuye 400,000 SEON entre 40 wallets y publica su informe verificable.
 
-**Noviembre de 2026**
-Verificación final, auditoría, revocación de autoridades críticas y publicación del estado inmutable.
+**Después de Wave 10**
+• Publicar la verificación acumulada de las 400 distribuciones.
+• Cerrar las correcciones técnicas confirmadas durante la ventana de lanzamiento.
+• Revocar la program upgrade authority y dejar staking inmutable.
+• Evaluar después de 2–3 meses si existe actividad real suficiente para un pool SEON/USDC permanente.
 
-**Tras 2-3 meses de actividad real**
-Evaluación opcional de pool con activos restantes y LP permanentemente quemado o bloqueado. Las fechas son objetivos operativos y pueden aplazarse si una comprobación técnica falla.`,
+**Operación continuada**
+• Mantener documentación y enlaces.
+• Seguir recolectando fees Token-2022 hacia fondo de recompensas y burn.
+• Publicar balances y movimientos de las wallets operativas.
+• No prometer liquidez, precio, volumen ni fecha de pool si las condiciones no son suficientes.`,
   },
   conclusion: {
     title: 'Conclusión',
-    content: `Soleon propone un lanzamiento pequeño, público y comprobable. La distribución directa resuelve el primer contacto sin pedir confianza en una firma o fee de claim; las diez olas limitan el coste y permiten publicar resultados verificables.
+    content: `Soleon no intenta empezar con una gran venta ni con volumen artificial controlado por el creador. Empieza pequeño: un token fijo, una distribución directa y verificable, revisión pública, staking con presupuesto finito y un mercado DEX-first con inventario inicial limitado y visible.
 
-El protocolo no promete precio, liquidez, adopción, rentabilidad, APR económico ni listing. Un airdrop crea holders, no demanda. La reserva temporal puede aportar órdenes reales, no actividad ficticia.
+**Lo que Soleon sí intenta hacer**
+• Poner reglas claras on-chain.
+• Hacer reproducible y visible la distribución inicial por olas.
+• Separar interfaz web de autoridad del protocolo.
+• Usar transfer fees para quemar parte del supply y rellenar rewards.
+• Revocar la autoridad de actualización del staking cuando termine la ventana pública de lanzamiento.
+• Identificar de forma clara las funciones temporales de Soleon Maintainer y de las wallets operativas.
 
-El criterio de éxito es que supply, asignaciones, selección, transferencias, staking, fees y autoridades puedan auditarse on-chain y que, tras la ventana declarada de corrección, las reglas críticas de staking dejen de depender del mantenedor.`,
+**Lo que Soleon no promete**
+• No promete precio.
+• No promete liquidez inmediata.
+• No promete APR económico garantizado.
+• No promete listing en CEX.
+• No promete que la revisión pública encuentre todos los errores.
+
+SEON puede no tener mercado o puede valer cero. La Market / Liquidity Wallet puede facilitar órdenes reales, pero no puede crear demanda orgánica ni garantizar que exista una contraparte. Un pool futuro solo se considerará si la actividad independiente y el precio observado lo hacen viable.
+
+El proyecto solo puede ofrecer reglas públicas, documentación, código revisable y una estructura que reduzca dependencias centralizadas. La existencia de una web mantenida, una Maintenance Wallet y una wallet temporal de mercado impide afirmar una descentralización total durante el lanzamiento. La decisión económica final la toman el mercado y la comunidad; la meta técnica es que las reglas centrales del token y del staking dejen de depender del mantenedor.`,
   },
 };
 
 const whitepaperContentEn = {
   introduction: {
     title: 'Introduction',
-    content: `Soleon is a fixed-supply Token-2022 protocol on Solana with a transparent, verifiable Genesis distribution and on-chain staking.
+    content: `Soleon represents a Solana token launch model based on transparency, public distribution and verifiable on-chain rules. Its goal is not to promise returns, but to build a structure where anyone can review how the token starts, where the funds are, what can change and what should become immutable.
 
-The objective is not to promise price, returns or liquidity, but to publish independently verifiable rules, addresses and limits. Soleon separates the temporary control required to launch and monitor the system from the protocol rules that must become immutable when the process is complete.
+Crypto markets have seen too many launches with private presales, hidden wallets, fake pools, liquidity controlled by a few actors and promises that cannot be verified. Soleon starts from the need for a different model: small at first, public from day one and designed to reduce dependence on private decisions.
 
-There is no presale, ICO, private round, temporary pretoken or hidden review reserve. The website is an interface maintained by Soleon Maintainer; it must not be confused with the protocol's final authority.`,
+The updated operating schedule separates mint creation, distribution and staking opening. The Token-2022 SEON mint is planned for **August 24, 2026**, after the full rehearsal. Staking and the first Genesis distribution wave are planned for **August 31, 2026**. The ten weekly waves end on **November 2, 2026**, provided each phase passes its technical checks.
+
+The current design avoids three common dependencies:
+• No presale, ICO or temporary pretoken.
+• No creator-controlled initial AMM pool.
+• No promise of a CEX listing or official price.
+
+Soleon starts with a clear philosophy:
+• Transparency is fundamental: relevant funds should be public and verifiable.
+• Initial distribution is not bought: it is sent directly to 400 independent wallets selected through public rules, a snapshot and verifiable randomness.
+• Decentralization is a progressive technical target, not a slogan or a claim of total decentralization while temporary authorities and operational duties remain.
+• The website helps use the protocol, but should not be the protocol authority.
+• Markets should form in a DEX-first, public and verifiable way.
+• Public review is part of launch, not a later decoration.
+
+SEON is first distributed through a direct Genesis Airdrop: 4,000,000 SEON allocated in ten weekly waves of 40 wallets, with 10,000 SEON per wallet. There is no claim, eligibility signature, mandatory website connection or distribution fee. After the final rehearsal, staking opens with a fixed 7-day lock, proportional rewards and permissionless maintenance. Program upgrade authority remains only during the ten waves so confirmed and publicly documented bugs can be fixed; after final verification, the target is to revoke it and make staking immutable.`,
   },
   problem: {
-    title: 'The problem',
-    content: `Many token launches depend on private sales, opaque allocations, fabricated volume, removable liquidity and contracts that retain administrative power indefinitely.
+    title: 'The Problem',
+    content: `Many token launches fail because of repeated problems:
 
-A claim also assumes prior discovery: a user must know the project, visit an unknown website, connect a wallet and sign. For a protocol without paid marketing, this model may distribute nothing and may resemble patterns used by fraudulent airdrops.
+**Unfair Presales**
+Traditional presales create an unfair advantage for early investors who can buy at significantly lower prices, leaving later investors at a disadvantage.
 
-Distributing tokens does not automatically create buyers, price or community. Likewise, a technically created market has no liquidity until independent buyers and sellers accept genuine orders.`,
+**Lack of transparency**
+Many projects do not clearly show which wallets receive tokens, which funds are reserved, who can move them or which authorities remain active. Unannounced sales, hidden dev wallets and rule changes destroy trust.
+
+**Centralized liquidity**
+An initial pool controlled by one wallet can look like a market, but that liquidity can be removed or used to create artificial pressure.
+
+**Fake pools and unsafe routes**
+On Solana, anyone can create a pool with a similar name. If the mint does not match, liquidity is tiny or LP can be removed without warning, users may trade in a fake or extremely manipulable market.
+
+**Code that is hard to review**
+If rules are not documented, users depend on promises. A contract may include admin functions, upgrade authority or exit paths that are not clear from the interface.
+
+**Unclear emission**
+Many systems promise APR without explaining where tokens come from, how much can be emitted each year or what happens when the reward fund decreases.
+
+**Unsustainable Tokenomics**
+Many tokens have emission models that benefit the short term but create unsustainable sell pressure over the long term.
+
+**Rug Pulls and Abandonment**
+The ease of creating tokens has led to an increase in fraudulent projects that disappear after raising funds.
+
+**Website maintenance confused with protocol control**
+An interface can help users, but it should not be the final authority. Important rules should remain verifiable and callable on-chain even if the official website is unavailable.`,
   },
   solution: {
-    title: 'The Soleon solution',
-    content: `Soleon uses a gradual and reproducible launch:
+    title: 'The Soleon Solution',
+    content: `Soleon answers with a smaller, verifiable and gradual launch. The core idea is that trust should not depend on a good story, but on public addresses, checkable rules and clear limits on what the maintainer can do.
 
-• Fixed supply and official metadata published before distribution.
-• Four exact allocations and separate addresses.
-• Direct airdrop: recipients do not connect, sign, claim or pay.
-• Deterministic selection based on a snapshot, public rules and a future public seed.
-• Ten weekly waves with reports and cumulative verification.
-• On-chain staking opened after rehearsal and mainnet checks.
-• An identified temporary market reserve with genuine orders and no self-trading.
-• Final audit and revocation of critical authorities after wave ten.
+**Free direct initial distribution**
+The first allocation is neither purchased nor claimed. The 4,000,000 Genesis SEON are sent directly to 400 independent wallets in ten weekly waves. Each wallet receives 10,000 SEON without connecting to the website, signing a message, paying a protocol fee or trusting an eligibility server.
 
-Trust is based on verifiable data rather than the maintainer's real-world identity. The public operational role is Soleon Maintainer.`,
+**Public and reproducible selection**
+Candidate wallets come from verifiable activity in known Solana ecosystem protocols. Before the first wave, the rules, snapshot slot, exclusions, data hashes and randomness method are published. The final list is closed before Wave 1, and every wave reports wallets, ATAs, transactions, errors and retries.
+
+**Transparent funds and roles**
+The initial allocation clearly separates the reward fund, Genesis Distribution Wallet, temporary Market / Liquidity Wallet and developer allocation. The Maintenance Wallet is also published. Every address, balance and role should be trackable through explorers once it exists.
+
+**Public review before and during launch**
+The website, staking and distribution scripts are opened for review. There is no review reserve and no promised payout for reports. This does not guarantee that every issue is absent, but it avoids selling a false sense of security and requires rules, addresses and risks to be published.
+
+**DEX-first market with limited visible initial liquidity**
+The first market target is a verifiable SEON/USDC order book on Manifest. The Market / Liquidity Wallet may place real orders with up to 400,000 SEON and 200 USDC. Its orders, inventory and rules are public; it is not used to fabricate volume, demand or price.
+
+**Defense against fakes**
+The website should not link every market that appears. It should distinguish verified, community, high-risk and fake markets. A pool is not official just because it exists, and a link should not activate until the address is verifiable.
+
+**Programmatic and progressive decentralization**
+• Mint authority revoked after the full supply is created and allocated.
+• No freeze authority.
+• Transfer-fee configuration controlled by the program PDA and published rules.
+• Immutable staking program after the ten waves, final verification and any required public fixes.
+• Fee distribution fixed by code: 20% burn, 1 SEON to the caller and the rest to rewards.
+
+**Staking with a verifiable annual budget**
+Staking does not promise a fixed APR. Each year releases a maximum percentage of the uncommitted reward fund. Users share that budget proportionally to active principal.
+
+**Immutability without hiding human operations**
+Soleon distinguishes the protocol from its operational layers. Staking can become immutable and critical actions can be permissionless, while the website, documentation, Maintenance Wallet and temporary Market / Liquidity Wallet require human maintenance publicly identified as Soleon Maintainer. During this phase, Soleon therefore describes decentralization as progressive and verifiable, not total.`,
   },
   distribution: {
-    title: 'Genesis distribution',
+    title: 'Initial Distribution',
     content: `**Total supply: 444,444,444 SEON**
 
-Exact allocation:
-• 440,000,000 SEON → finite staking reward vault.
+The complete supply is created once and split across four public allocations:
+• 440,000,000 SEON → staking reward vault.
 • 4,000,000 SEON → Genesis Distribution Wallet.
 • 400,000 SEON → temporary Market / Liquidity Wallet.
 • 44,444 SEON → Developer Wallet.
 
 **Genesis Airdrop**
-Four hundred independent wallets are selected before distribution begins. Each wallet receives 10,000 SEON directly. Distribution is split into ten waves of 40 wallets, one per week, for 400,000 SEON per wave.
+The 4,000,000 Genesis SEON are distributed to 400 independent wallets:
+• 10,000 SEON per wallet.
+• 40 wallets per wave.
+• 400,000 SEON per wave.
+• Ten weekly waves from August 31 through November 2, 2026.
 
-There is no additional distribution contract, signing server, claim button or Genesis fee. Soleon will never ask a recipient to connect a wallet or approve a transaction to receive the allocation.
+There is no Genesis contract, claim, server-side signature, mandatory website connection or distribution fee. The Genesis Distribution Wallet creates the recipient's Token-2022 ATA when required and executes a direct, on-chain verifiable transfer.
 
-**Reproducible selection**
-Candidate sources, snapshot slot, activity rules, program allowlist, exclusions and their hash are published before selection. Wallets must show real history, recent ecosystem activity and a snapshot balance between 0.05 and 500 SOL. Exchanges, programs, obvious bots, duplicates and Soleon-controlled addresses are excluded.
+**Verifiable selection**
+Before Wave 1, a set of 10,000 candidates is built from recent activity on Jupiter, Raydium, Orca, Meteora, Kamino, Marinade/Jito and Drift. Rules require real Solana history, activity across different days and months, recent interaction with known protocols and a snapshot balance between 0.05 and 500 SOL. Programs, PDAs, exchanges, obvious bots, Soleon-controlled wallets, duplicates and identifiable infrastructure addresses are excluded.
 
-A seed derived from future public data selects all 400 recipients deterministically. The list is fixed before wave one. Every report publishes recipients, created Token-2022 accounts, signatures, errors and retries. Execution is idempotent: a retry cannot duplicate an allocation.`,
+The snapshot slot, final program allowlist, input hashes, public seed derived from a future block and selection algorithm are published so selection of the 400 wallets can be reproduced. The full list is fixed before the first wave and deterministically split into ten groups of 40. Each weekly report shows every transfer result and supports idempotent retries without duplicate payments.
+
+**Initial operational wallets**
+The Developer Wallet receives 44,444 SEON as the developer's public personal allocation. These tokens may be held, transferred, sold or staked as personally owned tokens.
+
+The Market / Liquidity Wallet receives 400,000 SEON and may receive up to 200 USDC contributed by the maintainer to form a small, transparent initial order book. It is temporary, separate from Genesis and excluded from recipient selection. Its role is limited to real liquidity and a possible later transition to an SEON/USDC pool if independent activity demonstrates viability.`,
   },
   tokenomics: {
     title: 'Tokenomics',
-    content: `**Token**
-• Network: Solana mainnet.
-• Standard: Token-2022.
-• Name: Soleon.
-• Symbol: SEON.
+    content: `**Token model**
+• Network: Solana.
+• Standard: Token-2022 with TransferFee extension.
 • Decimals: 9.
 • Fixed supply: 444,444,444 SEON.
-• Mint authority: revoked after supply creation and allocation.
-• Freeze authority: none.
-• Initial transfer fee: 0%.
+• Mint authority: revoked after the complete supply is created and allocated.
+• Freeze authority: null.
 
-**Transfer-fee schedule**
-When staking_open is true, a permissionless action may activate 0.02%. Each completed staking year adds 0.02 percentage points up to 0.4%. The maximum fee per transfer is 400 SEON.
+**Transfer fee**
+The mint starts at 0% to avoid blocking early market formation. When staking_open is true, anyone may execute the permissionless update:
+• Before staking: 0%.
+• At staking opening: 0.02%.
+• Each completed staking year: +0.02%.
+• Maximum: 0.4%.
+• Cap per transfer: 400 SEON.
 
-**Transfer-fee distribution**
-Once the published minimum is reached, a public action collects and distributes:
+**Token-2022 fee distribution**
+Withheld fees are collected through a public action:
 • 20% → permanent burn.
-• Up to 1 SEON → fixed caller incentive.
-• Remainder → reward vault.
+• 1 SEON → fixed caller incentive if the threshold is reached.
+• Rest → staking reward vault.
 
-There is no additional issuance: rewards come from the finite reward vault and redistributed fees.`,
+The action requires at least 200 SEON accumulated to distribute. Global and per-wallet cooldowns prevent excessive execution.
+
+**Interface maintenance fee**
+Separate from the token transfer fee:
+• Direct Genesis distribution charges no protocol fee to recipients.
+• Some staking actions charge 0.0005 SOL:
+• staking claim_rewards.
+• staking unstake_expired.
+
+This fee goes to a public Maintenance Wallet separate from the Developer Wallet and Market / Liquidity Wallet. It may cover domain, RPC, website, reporting and other verifiable operating costs. It does not change supply, does not change APR, does not grant protocol control and is not charged on renew.`,
   },
   staking: {
-    title: 'Staking system',
-    content: `Staking opens on mainnet only after the rehearsal and final checks. The planned date is August 31, 2026, together with wave 1.
+    title: 'Staking System',
+    content: `Staking is deployed and opened on **August 31, 2026**, together with Wave 1, provided the final rehearsal passes. Upgrade authority remains during the ten waves only to fix confirmed, reproducible and publicly documented bugs. After Wave 10, cumulative verification and any required fixes, the target is to revoke it and make the program immutable.
 
-**Base rules**
-• Single lock: 7 days.
+**Base rule**
+• Single mandatory lock: 7 days.
 • Grace period: 3 days.
-• Rewards proportional to active principal.
-• Reward claim available until grace ends.
-• On-time renew consolidates principal + rewards.
-• Unstake always returns principal to its owner.
-• Permissionless cleanup of expired positions after grace.
+• During lock: positive rewards can be claimed.
+• During grace: claim, renew or unstake are available.
+• After grace: separate claim is disabled; renew or unstake remain available.
 
 **Annual budget**
-Year one may commit up to 1% of the uncommitted reward vault. The percentage increases by 0.5 points per staking year up to 100%. This is not guaranteed economic APR: a position's result depends on total staked, active time and available budget.
+The contract releases a maximum annual budget from the uncommitted reward fund. That percentage applies to what remains in the reward fund each year, not to total supply and not to a fixed amount. It starts at 1.0%, rises by 0.5 percentage points per year and may reach 100% in the long term.
 
-**Reward redistribution**
-New positions start with 10% redistribution on rewards claimed or withdrawn. Each on-time renew reduces this by 0.5 points until it reaches 0% after 20 renewals. Redistribution never applies to principal.
+Indicative table:
+Year | Maximum annual budget over uncommitted reward fund
+1    | 1.0%
+2    | 1.5%
+3    | 2.0%
+5    | 3.0%
+10   | 5.5%
+20   | 10.5%
+50   | 25.5%
+100  | 50.5%
+199  | 100.0%
 
-The claim_rewards and unstake_expired actions may include the published 0.0005 SOL maintenance fee. Renew does not charge it. The receiving wallet is public and the fee grants no control over protocol rules.`,
+This is not a guaranteed APR. Effective rewards depend on how many SEON are staked, how long they remain active and how much annual budget remains available.
+
+**Proportional calculation**
+Positions share rewards by active principal. Conceptually:
+user_reward = accrued_budget × user_principal / total_staked
+
+The contract uses global accumulators so each position can calculate its share without iterating over all wallets.
+
+**Renew and consolidation**
+If the user renews on time, a new position is created with principal + rewards. No redistribution is applied to those rewards because they stay in staking.
+
+Each on-time renew reduces future claim redistribution:
+• Initial: 10%.
+• Each on-time renew: -0.5 percentage points.
+• After 20 on-time renews: 0%.
+
+If the user claims, the current percentage is applied to claimed rewards and that part returns to the reward vault. If the user unstakes, principal returns to the user and redistribution applies only to rewards, never principal.
+
+**After grace**
+If a position passes 7 days + 3 days grace:
+• The owner can renew or unstake.
+• Anyone can close post-grace positions through public cleanup.
+• A late renew applies 10% on rewards and resets consolidation.
+• Principal and net rewards always return to the owner.`,
   },
   markets: {
-    title: 'Market and liquidity',
-    content: `Soleon is DEX-first: there is no presale, promised CEX listing, official price or imposed initial valuation.
+    title: 'DEX-first Markets and Community Liquidity',
+    content: `Soleon does not start with a presale or raised capital to sustain large initial liquidity. The market must discover price through real trades. To facilitate that start without pretending adoption, Soleon uses a temporary and public Market / Liquidity Wallet, separate from the Genesis fund, Developer Wallet and Maintenance Wallet.
 
-**Market / Liquidity Wallet**
-The temporary reserve receives 400,000 SEON and may be funded by Soleon Maintainer with up to 200 USDC. Its address, balances and orders are public. It may place genuine bids and asks in a SEON/USDC market and accept real third-party trades.
+**Order book as the first market**
+The first target is an SEON/USDC order-book market on Manifest, provided its address and configuration are published and verified. An order book works similarly to a traditional exchange: buyers and sellers place orders with price and amount. Execution is DEX, on-chain and does not give Soleon custody over third-party funds.
 
-Mandatory rules:
-• Never trade against another Soleon-controlled wallet.
-• Never fabricate volume, demand or price.
-• If no independent trade occurs, real volume is zero.
-• Do not chase the price trade by trade.
-• Adjust quotes only under published inventory, spread, depth and frequency rules.
-• Clearly label Soleon-controlled liquidity.
+**Limited initial inventory**
+The Market / Liquidity Wallet receives 400,000 SEON and may receive up to 200 USDC contributed by the maintainer. These assets do not represent community demand. They only support small, real orders on both sides of the book while accepting the economic risk that independent third parties execute them.
 
-**Possible later pool**
-After two to three months, independent activity, depth and observed prices are assessed. Remaining assets may seed a pool only if those conditions justify it. Its ratio must derive from real trading and its LP must be permanently burned or locked. If activity is insufficient, no pool is forced.
+**Public operating rules**
+• Every order must be real and executable by any third party.
+• Orders are never crossed between Soleon-controlled wallets.
+• Volume, demand, depth, activity and price are never fabricated.
+• Without an independent counterparty, real volume is zero.
+• No official price or market capitalization is announced from minimal trades.
+• Wallet balances, orders and trades remain publicly reviewable.
+• Quote changes follow published inventory, spread, depth, frequency and maximum-exposure rules; they do not attempt to defend a specific price.
 
-Buyers, liquidity, volume and value are not guaranteed.`,
+If nobody buys or sells, orders may remain unchanged or be withdrawn according to those public rules. If independent trades appear and price moves, the wallet may reposition orders around the observed market within its limits, without trying to reverse the direction chosen by participants.
+
+**Why DEX-first**
+• It does not require a CEX to agree to list SEON.
+• It does not require the protocol to custody user funds.
+• It lets price form from visible orders.
+• It clearly distinguishes maintainer-provided liquidity from organic activity.
+• It better fits a token that seeks public rules and immutability.
+
+**Future pool evaluation**
+After approximately 2–3 months, Soleon evaluates whether independent activity, a sufficiently observed price and reasonable conditions exist for an SEON/USDC pool. The pool is not guaranteed and is not created merely to imply liquidity. If viable, it may use remaining SEON and USDC from the Market / Liquidity Wallet in a ratio based on the real market rather than a unilateral valuation.
+
+The intended design requires the LP position to be burned or permanently locked so contributed liquidity cannot be withdrawn at discretion. If the DEX generates fees that cannot technically be waived, their destination must be published in advance and limited to verifiable maintenance; they are never presented as guaranteed returns.
+
+**Community pools and fake markets**
+The community may create other pools on Raydium, Orca, Meteora or compatible DEXs. Those pools are not official by default. The website may display them if it reviews:
+• they use the correct SEON mint,
+• the DEX and pair are clear,
+• liquidity is visible,
+• it states whether LP is locked, burned, multisig-controlled or freely removable,
+• there are no signs of a fake mint, suspicious route or misleading liquidity.
+
+**Role of the website**
+The website does not operate as an exchange, set price or custody user funds. Its role is to publish addresses, explain risks, link verified markets and help distinguish useful liquidity, weak liquidity and fake pools.`,
   },
   technical: {
-    title: 'Technical specifications',
-    content: `**Programs and accounts**
-• Token-2022 SEON mint.
-• Anchor staking program.
-• PDA-controlled reward vault.
-• PDA-controlled staking vault.
-• Program-controlled Token-2022 fee vault.
-• Genesis Distribution Wallet and token account.
-• Market / Liquidity Wallet and token account.
-• Developer Wallet.
-• Maintenance Wallet.
+    title: 'Technical Specifications',
+    content: `**Programs**
+• staking_program: staking, rewards, renew, unstake, fee collection and cleanup.
+• Genesis distribution: auditable scripts using the System Program, Associated Token Program and Token-2022; no additional Soleon program is required.
 
-Genesis distribution is executed by scripts using the System Program, Associated Token Program and Token-2022 Program; it needs no additional Soleon program.
+**Main accounts**
+• reward_vault: finite staking reserve.
+• staking_vault: holds locked principal.
+• soleon_fee_vault: technical account for fee distribution.
+• genesis_distribution_wallet: holds 4,000,000 SEON until all ten waves are complete.
+• market_liquidity_wallet: temporary 400,000 SEON inventory and up to 200 USDC for real market activity.
+• developer_wallet: public personal allocation of 44,444 SEON.
+• maintenance_fee_receiver: public Maintenance Wallet receiving SOL maintenance fees.
 
-**Official metadata**
-Soleon name, SEON symbol, official logo, description, website and public links are served from soleonprotocol.com. Metadata contains no claim message or signing instruction.
+**Main staking instructions**
+• initialize: creates config, vaults and base parameters.
+• open_staking: opens staking and enables the first transfer-fee update.
+• stake: creates a 7-day lock position.
+• claim_rewards: claims positive rewards and charges 0.0005 SOL.
+• renew_expired_position: compounds principal + rewards into a new position.
+• unstake_expired: closes position and returns principal + net rewards.
+• update_transfer_fee: annual permissionless update.
+• withdraw_and_distribute_from_mint: collects and distributes Token-2022 fees.
+• cleanup_expired_positions: batch-closes post-grace positions.
 
-Mint and wave scripts are resumable. Private local state prevents accidental preparation of a second mint, and distribution memos distinguish a Genesis transfer from a balance acquired through another route.`,
+**Markets**
+• Initial target: Manifest SEON/USDC order book.
+• Temporary Market / Liquidity Wallet: real orders under public rules and no self-trading.
+• Future pool: optional after 2–3 months, only if activity and observed price make it viable.
+• Other AMM pools: community-created, not official by default.
+• The website only links markets/pools after checking they use the correct SEON mint.
+• No custody: each user signs from their own wallet using external DEX interfaces.
+
+**Maintenance**
+The official website is a convenience layer. Soleon Maintainer maintains domains, RPC, documentation, wave reports, DEX links, wallet adapters and releases, but cannot change on-chain rules once the protocol is immutable. This operational role is documented as an explicit human dependency and is not confused with authority over user staking principal.`,
   },
   security: {
-    title: 'Security, authority and decentralization',
-    content: `Decentralization is described in layers:
+    title: 'Security, Authorities and Immutability',
+    content: `**Principles**
+• No admin path to withdraw user principal.
+• No additional mint after mint authority revocation.
+• No freeze authority.
+• Fee and reward rules live in the program.
+• Critical maintenance actions are permissionless.
 
-**Token**
-Mint and freeze authorities are revoked after creation and allocation. Supply cannot be expanded.
+**Public review**
+During August, September and October 2026, the website, staking and distribution scripts remain open for public review. Reports must include:
+• reproduction steps,
+• impact,
+• wallet,
+• evidence,
+• clear explanation of risk.
 
-**Staking**
-The upgrade authority is temporarily retained during ten waves to correct confirmed failures. Every correction must publish its reason, diff, tests and new verifiable address. After wave 10, cumulative verification and the final audit, critical authorities are revoked and the program becomes immutable.
+There is no review reserve and no promised payout program for reports. Public review reduces risk, but it does not guarantee every issue is absent.
 
-**Operations**
-Soleon Maintainer continues to maintain the website, documentation, reports and Maintenance Wallet. These tasks do not equal control over immutable protocol rules. The Developer Wallet contains disclosed personal property. The Market / Liquidity Wallet is temporary and its activity is labelled.
+**Temporary authorities**
+Staking upgrade authority remains during the ten waves only to fix confirmed, reproducible and publicly documented issues. It cannot withdraw user principal or create supply. After Wave 10, cumulative verification and any required fixes, it must be revoked so the program becomes immutable.
 
-Soleon does not claim total decentralization while temporary authorities or operational wallets remain. The verifiable objective is immutability of on-chain rules, not the disappearance of every person maintaining information or infrastructure.
+Mint authority exists only while the complete supply is created and allocated, then it is revoked. Freeze authority is null. Transfer-fee configuration and withheld-fee authority are bound to the PDA and program rules according to the published design.
 
-Public code and tests reduce risk but do not replace an independent audit or guarantee absence of defects.`,
+**Target final state**
+• Mint authority: null.
+• Freeze authority: null.
+• Program upgrade authority: revoked.
+• Transfer fee config authority: controlled only by program rules or revoked according to final design.
+• Withdraw withheld authority: program PDA for fixed distribution.
+
+In the final state, users should be able to verify mint, program IDs, vaults, authorities and rules from explorers and public code.
+
+**Actual scope of decentralization**
+Mint and staking immutability do not automatically decentralize every project layer. The website, documentation, Maintenance Wallet and temporary Market / Liquidity Wallet still have operational maintainers. Soleon publishes these dependencies, limits their roles and avoids describing the system as fully decentralized while they remain. The target is to reduce discretionary control over protocol rules and funds, not to hide the existence of human maintenance.`,
   },
   timeline: {
     title: 'Timeline',
-    content: `**August 10-23, 2026**
-Complete devnet rehearsal; finalize scripts, rules, metadata, reports and documentation.
+    content: `**August 10–23, 2026: preparation and rehearsal**
+• Finalize mint, metadata, selection, distribution and verification scripts.
+• Execute the complete process on devnet and with dry-run.
+• Publish website, staking and Genesis script source code.
+• Receive reproducible reports.
+• Classify findings.
+• Fix confirmed issues.
+• Confirm official wallets and exclusions.
+• Prepare the final rehearsal.
 
-**August 24, 2026**
-Planned mainnet mint, four allocations, revocation of mint/freeze authorities and publication of addresses.
+**August 24, 2026: mint and initial allocation**
+• Create the Token-2022 SEON mint and official metadata.
+• Create and publish main wallets and accounts.
+• Fund reward_vault with 440,000,000 SEON.
+• Fund Genesis Distribution Wallet with 4,000,000 SEON.
+• Fund Market / Liquidity Wallet with 400,000 SEON.
+• Transfer 44,444 SEON to Developer Wallet.
+• Revoke mint authority after verifying complete supply and allocations.
+• Confirm null freeze authority.
 
-**August 31, 2026**
-Planned staking deployment and opening, permissionless transfer-fee activation and Genesis wave 1.
+**August 31, 2026: staking, market and Wave 1**
+• Deploy and open staking if the final rehearsal passes.
+• Open staking_open and activate the first 0.02% transfer fee through a permissionless action.
+• Enable stake, claim, renew, unstake and cleanup.
+• Publish the Manifest SEON/USDC market and Market / Liquidity Wallet policy.
+• Distribute 10,000 SEON to each of the first 40 wallets.
 
-**September 7 - November 2, 2026**
-Waves 2-10, one per week. Staking monitoring, cumulative reports and real DEX market activity under public rules.
+**Weekly Waves 2–10**
+• Wave 2: September 7, 2026.
+• Wave 3: September 14, 2026.
+• Wave 4: September 21, 2026.
+• Wave 5: September 28, 2026.
+• Wave 6: October 5, 2026.
+• Wave 7: October 12, 2026.
+• Wave 8: October 19, 2026.
+• Wave 9: October 26, 2026.
+• Wave 10: November 2, 2026.
+• Each wave distributes 400,000 SEON across 40 wallets and publishes its verifiable report.
 
-**November 2026**
-Final verification, audit, revocation of critical authorities and publication of immutable state.
+**After Wave 10**
+• Publish cumulative verification of all 400 distributions.
+• Close confirmed technical fixes from the launch window.
+• Revoke program upgrade authority and make staking immutable.
+• After 2–3 months, evaluate whether enough real activity exists for a permanent SEON/USDC pool.
 
-**After 2-3 months of real activity**
-Optional assessment of a pool using remaining assets and permanently burned or locked LP. Dates are operational targets and may be delayed if a technical check fails.`,
+**Continued operation**
+• Maintain documentation and links.
+• Continue collecting Token-2022 fees toward reward vault and burn.
+• Publish balances and movements of operational wallets.
+• Do not promise liquidity, price, volume or a pool date if conditions are insufficient.`,
   },
   conclusion: {
     title: 'Conclusion',
-    content: `Soleon proposes a small, public and reviewable launch. Direct distribution solves first contact without asking recipients to trust a claim signature or fee; ten waves limit cost and allow verifiable results to be published.
+    content: `Soleon does not try to start with a large sale or artificial volume controlled by the creator. It starts small: a fixed token, a direct and verifiable initial distribution, public review, staking with a finite budget and a DEX-first market with limited, visible initial inventory.
 
-The protocol does not promise price, liquidity, adoption, returns, economic APR or listing. An airdrop creates holders, not demand. The temporary reserve may provide genuine orders, never fictitious activity.
+**What Soleon tries to do**
+• Put clear rules on-chain.
+• Make the wave-based initial distribution reproducible and visible.
+• Separate website interface from protocol authority.
+• Use transfer fees to burn part of supply and refill rewards.
+• Revoke staking upgrade authority when the public launch window ends.
+• Clearly identify the temporary roles of Soleon Maintainer and operational wallets.
 
-Success means supply, allocations, selection, transfers, staking, fees and authorities can be audited on-chain and that, after the disclosed correction window, critical staking rules no longer depend on the maintainer.`,
+**What Soleon does not promise**
+• It does not promise price.
+• It does not promise immediate liquidity.
+• It does not promise guaranteed economic APR.
+• It does not promise CEX listing.
+• It does not promise public review will find every issue.
+
+SEON may have no market or may be worth zero. The Market / Liquidity Wallet may facilitate real orders, but it cannot create organic demand or guarantee a counterparty. A future pool is only considered if independent activity and observed price make it viable.
+
+The project can only offer public rules, documentation, reviewable code and a structure that reduces centralized dependencies. A maintained website, Maintenance Wallet and temporary market wallet mean total decentralization cannot be claimed during launch. The final economic decision belongs to the market and community; the technical target is for the core token and staking rules to stop depending on the maintainer.`,
   },
 };
 
 export function WhitepaperContent() {
   const [activeSection, setActiveSection] = useState<string>('introduction');
   const t = useTranslations('whitepaper');
-  const isEn = useLocale() === 'en';
+  const locale = useLocale();
+  const isEn = locale === 'en';
   const sections = isEn ? sectionsEn : sectionsEs;
   const whitepaperContent = isEn ? whitepaperContentEn : whitepaperContentEs;
   const activeContent = whitepaperContent[activeSection as keyof typeof whitepaperContent];
@@ -445,9 +878,6 @@ export function WhitepaperContent() {
             {t('title')}
           </h1>
           <p className="mt-4 text-lg text-muted-foreground">{t('subtitle')}</p>
-          <p className="mt-3 text-sm text-muted-foreground">
-            {isEn ? 'Version 1.1 - Genesis Airdrop revision - August 10, 2026' : 'Versión 1.1 - revisión Airdrop Genesis - 10 de agosto de 2026'}
-          </p>
         </motion.div>
 
         <motion.div
@@ -472,7 +902,9 @@ export function WhitepaperContent() {
                   >
                     <section.icon className="h-4 w-4" />
                     {section.label}
-                    {activeSection === section.id && <ChevronRight className="ml-auto h-4 w-4" />}
+                    {activeSection === section.id && (
+                      <ChevronRight className="ml-auto h-4 w-4" />
+                    )}
                   </button>
                 ))}
               </nav>
@@ -491,23 +923,29 @@ export function WhitepaperContent() {
                     className="h-12 w-12"
                   />
                   <div>
-                    <h2 className="text-2xl font-bold text-foreground">{activeContent.title}</h2>
-                    <p className="text-sm text-muted-foreground">Soleon Whitepaper v1.1 - Token-2022</p>
+                    <h2 className="text-2xl font-bold text-foreground">
+                      {activeContent.title}
+                    </h2>
+                    <p className="text-sm text-muted-foreground">
+                      Soleon Whitepaper v1.1 - Token-2022
+                    </p>
                   </div>
                 </div>
 
                 <div className="prose prose-invert max-w-none">
-                  {activeContent.content.split('\n\n').map((paragraph, index) => (
-                    <p
-                      key={index}
-                      className="mb-4 whitespace-pre-line text-foreground/80"
-                      dangerouslySetInnerHTML={{
-                        __html: paragraph
-                          .replace(/\*\*(.*?)\*\*/g, '<strong class="text-primary">$1</strong>')
-                          .replace(/^• /gm, '<span class="text-primary mr-2">•</span>'),
-                      }}
-                    />
-                  ))}
+                  {activeContent.content
+                    .split('\n\n')
+                    .map((paragraph, index) => (
+                      <p
+                        key={index}
+                        className="mb-4 whitespace-pre-line text-foreground/80"
+                        dangerouslySetInnerHTML={{
+                          __html: paragraph
+                            .replace(/\*\*(.*?)\*\*/g, '<strong class="text-primary">$1</strong>')
+                            .replace(/^• /gm, '<span class="text-primary mr-2">•</span>'),
+                        }}
+                      />
+                    ))}
                 </div>
               </ScrollArea>
             </CardContent>
