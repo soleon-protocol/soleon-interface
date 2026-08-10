@@ -6,10 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint .",
-    "test:genesis-challenge": "node scripts/test-genesis-challenge.mjs",
-    "test:eligibility": "node --import tsx --test tests/eligibility.test.ts",
-    "test:claim-transaction": "node --import tsx --test tests/claim-transaction.test.ts"
+    "lint": "eslint ."
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",

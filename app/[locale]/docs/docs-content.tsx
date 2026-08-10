@@ -21,8 +21,8 @@ import { SOLEON_CONFIG } from '@/lib/solana/config';
 const INTERFACE_REPOSITORY_URL = 'https://github.com/soleon-protocol/soleon-interface';
 
 function getSolscanAccountUrl(address: string): string {
-  const cluster = SOLEON_CONFIG.cluster === 'devnet' ? 'devnet' : 'mainnet';
-  return `https://solscan.io/account/${address}?cluster=${cluster}`;
+  const suffix = SOLEON_CONFIG.cluster === 'devnet' ? '?cluster=devnet' : '';
+  return `https://solscan.io/account/${address}${suffix}`;
 }
 
 export function DocsContent() {
@@ -74,13 +74,19 @@ export function DocsContent() {
       href: SOLEON_CONFIG.stakingRepositoryUrl,
     },
     {
-      key: 'commitmentClaimProgram',
-      value: SOLEON_CONFIG.commitmentClaimProgramIdConfigured
-        ? SOLEON_CONFIG.commitmentClaimProgramId
-        : t('notAvailable'),
-      href: SOLEON_CONFIG.commitmentClaimProgramIdConfigured
-        ? getSolscanAccountUrl(SOLEON_CONFIG.commitmentClaimProgramId)
-        : null,
+      key: 'genesisSelectionRules',
+      value: SOLEON_CONFIG.genesisSelectionRulesUrl ? t('publicDocument') : t('notAvailable'),
+      href: SOLEON_CONFIG.genesisSelectionRulesUrl,
+    },
+    {
+      key: 'genesisWaveReports',
+      value: SOLEON_CONFIG.genesisReportsUrl ? t('publicDocument') : t('notAvailable'),
+      href: SOLEON_CONFIG.genesisReportsUrl,
+    },
+    {
+      key: 'soleonMint',
+      value: SOLEON_CONFIG.soleonMint ?? t('notAvailable'),
+      href: SOLEON_CONFIG.soleonMint ? getSolscanAccountUrl(SOLEON_CONFIG.soleonMint) : null,
     },
     {
       key: 'stakingProgram',

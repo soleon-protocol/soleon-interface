@@ -99,6 +99,7 @@ const MARKET_REFRESH_MS = 2 * 60 * 1000;
 export function MarketsContent() {
   const t = useTranslations('markets');
   const locale = useLocale();
+  const isEn = locale === 'en';
   const [copiedValue, setCopiedValue] = useState<string | null>(null);
   const [marketData, setMarketData] = useState<MarketCacheResponse | null>(null);
   const [marketLoading, setMarketLoading] = useState(true);
@@ -187,6 +188,64 @@ export function MarketsContent() {
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10 text-center">
           <h1 className="font-serif text-4xl font-bold text-gradient-gold md:text-5xl">{t('title')}</h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-muted-foreground">{t('subtitle')}</p>
+        </motion.div>
+
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">
+          <Card className="border-secondary/25 bg-card/50">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Landmark className="h-5 w-5 text-secondary" />
+                {isEn ? 'Temporary Market / Liquidity Wallet' : 'Wallet temporal de Mercado / Liquidez'}
+              </CardTitle>
+              <CardDescription>
+                {isEn
+                  ? 'Public reserve: 400,000 SEON and up to 200 USDC. Its orders are genuine but are always identified as Soleon-controlled liquidity.'
+                  : 'Reserva pública: 400,000 SEON y hasta 200 USDC. Sus órdenes son reales, pero siempre se identifican como liquidez controlada por Soleon.'}
+              </CardDescription>
+            </CardHeader>
+            <CardContent>
+              {SOLEON_CONFIG.marketLiquidityWallet ? (
+                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
+                  <p className="min-w-0 flex-1 break-all font-mono text-sm">
+                    {SOLEON_CONFIG.marketLiquidityWallet}
+                  </p>
+                  <div className="flex gap-2">
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      onClick={() => handleCopy(SOLEON_CONFIG.marketLiquidityWallet!)}
+                    >
+                      {copiedValue === SOLEON_CONFIG.marketLiquidityWallet
+                        ? <Check className="h-4 w-4 text-green-500" />
+                        : <Copy className="h-4 w-4" />}
+                      <span className="ml-2">
+                        {copiedValue === SOLEON_CONFIG.marketLiquidityWallet ? t('copied') : t('copy')}
+                      </span>
+                    </Button>
+                    <Button variant="outline" size="sm" asChild>
+                      <a
+                        href={getSolscanAccountUrl(SOLEON_CONFIG.marketLiquidityWallet)}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <ExternalLink className="mr-2 h-4 w-4" />
+                        Solscan
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              ) : (
+                <p className="text-sm font-semibold text-amber-500">
+                  {isEn ? 'Published after mainnet creation' : 'Se publicará tras su creación en mainnet'}
+                </p>
+              )}
+              <div className="mt-4 border-t border-border/50 pt-4 text-sm leading-6 text-muted-foreground">
+                {isEn
+                  ? 'No self-trading, no fabricated volume and no promised price. If no independent counterparty trades, reported volume is zero. Quote changes follow published inventory and spread rules.'
+                  : 'Sin autooperaciones, volumen fabricado ni precio prometido. Si no opera ninguna contraparte independiente, el volumen publicado es cero. Los cambios de quotes siguen reglas públicas de inventario y spread.'}
+              </div>
+            </CardContent>
+          </Card>
         </motion.div>
 
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-6">

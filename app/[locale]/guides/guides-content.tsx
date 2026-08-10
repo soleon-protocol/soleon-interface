@@ -1,10 +1,9 @@
 'use client';
 
-import { useTranslations } from 'next-intl';
+import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
 import {
   Wallet,
-  ShoppingCart,
   Lock,
   Gift,
   Flame,
@@ -32,9 +31,9 @@ const guides = [
   },
   {
     key: 'guide2',
-    icon: ShoppingCart,
-    available: false,
-    href: null,
+    icon: Gift,
+    available: true,
+    href: '/genesis',
     statusKey: 'guide2Status',
     gradient: 'from-purple-500/20 to-pink-500/20',
   },
@@ -82,6 +81,7 @@ const guides = [
 
 export function GuidesContent() {
   const t = useTranslations('guides');
+  const locale = useLocale();
 
   return (
     <div className="relative min-h-screen py-20">
@@ -148,7 +148,13 @@ export function GuidesContent() {
                       size="sm"
                       className="bg-gradient-gold text-primary-foreground hover:opacity-90"
                     >
-                      <a href={guide.href}>
+                      <a
+                        href={
+                          guide.href.startsWith('/')
+                            ? `/${locale}${guide.href}`
+                            : guide.href
+                        }
+                      >
                         {t('readGuide')}
                         <ArrowRight className="ml-2 h-4 w-4" />
                       </a>

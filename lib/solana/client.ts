@@ -15,14 +15,10 @@ import {
 } from '@solana/spl-token';
 import {
   SOLEON_CONFIG,
-  MAINTENANCE_FEE_LAMPORTS,
-  MAINTENANCE_FEE_SOL,
-  SEON_GENESIS_CLAIM_AMOUNT,
   SEEDS,
   isShortBurnDeployment,
 } from './config';
 import stakingProgramIdl from './idl/staking_program.json';
-import commitmentClaimProgramIdl from './idl/commitment_claim.json';
 
 // Connection singleton
 let connection: Connection | null = null;
@@ -37,13 +33,6 @@ export function getConnection(): Connection {
 
 // Program ID
 export const PROGRAM_ID = new PublicKey(SOLEON_CONFIG.programId);
-export const COMMITMENT_CLAIM_PROGRAM_ID = new PublicKey(SOLEON_CONFIG.commitmentClaimProgramId);
-export const COMMITMENT_CLAIM_AMOUNTS = [
-  BigInt(SEON_GENESIS_CLAIM_AMOUNT) * BigInt(1_000_000_000),
-] as const;
-export const COMMITMENT_CLAIM_INTERVAL_SECONDS = 0;
-export const COMMITMENT_MAINTENANCE_FEE_LAMPORTS = MAINTENANCE_FEE_LAMPORTS;
-export const COMMITMENT_MAINTENANCE_FEE_SOL = MAINTENANCE_FEE_SOL;
 
 // Derive PDAs
 export function deriveConfigPda(programId: PublicKey = PROGRAM_ID): [PublicKey, number] {
@@ -96,36 +85,6 @@ export function deriveFeeDistributionCallerPda(
     programId
   );
 }
-
-export function deriveCommitmentDistributionConfigPda(
-  programId: PublicKey = COMMITMENT_CLAIM_PROGRAM_ID
-): [PublicKey, number] {
-  return PublicKey.findProgramAddressSync(
-    [Buffer.from(SEEDS.COMMITMENT_DISTRIBUTION_CONFIG)],
-    programId
-  );
-}
-
-export function deriveCommitmentDistributionVaultPda(
-  programId: PublicKey = COMMITMENT_CLAIM_PROGRAM_ID
-): [PublicKey, number] {
-  return PublicKey.findProgramAddressSync(
-    [Buffer.from(SEEDS.COMMITMENT_DISTRIBUTION_VAULT)],
-    programId
-  );
-}
-
-export function deriveCommitmentClaimReceiptPda(
-  owner: PublicKey,
-  programId: PublicKey = COMMITMENT_CLAIM_PROGRAM_ID
-): [PublicKey, number] {
-  return PublicKey.findProgramAddressSync(
-    [Buffer.from(SEEDS.COMMITMENT_CLAIM_RECEIPT), owner.toBuffer()],
-    programId
-  );
-}
-
-export const deriveCommitmentClaimStatePda = deriveCommitmentClaimReceiptPda;
 
 // Config account structure (matching Anchor IDL)
 export interface ConfigAccount {
@@ -194,12 +153,9 @@ type SoleonIdl = {
 };
 
 const STAKING_IDL = stakingProgramIdl as SoleonIdl;
-const COMMITMENT_CLAIM_IDL = commitmentClaimProgramIdl as SoleonIdl;
 
 const CONFIG_ACCOUNT_NAME = 'Config';
 const STAKE_POSITION_ACCOUNT_NAME = 'StakePosition';
-const DISTRIBUTION_CONFIG_ACCOUNT_NAME = 'DistributionConfig';
-const CLAIM_RECEIPT_ACCOUNT_NAME = 'ClaimReceipt';
 
 function getIdlType(name: string, idl: SoleonIdl = STAKING_IDL): IdlTypeDef {
   const typeDef = idl.types.find((type) => type.name === name);
@@ -404,99 +360,6 @@ export async function fetchConfigAccount(): Promise<ConfigAccount | null> {
     };
   } catch (error) {
     console.error('[v0] Error fetching config:', error);
-    return null;
-  }
-}
-
-export interface CommitmentDistributionConfigAccount {
-  soleonMint: PublicKey;
-  distributionVault: PublicKey;
-  authority: PublicKey;
-  eligibilityAuthority: PublicKey;
-  maintenanceFeeReceiver: PublicKey;
-  closeRecipient: PublicKey;
-  totalClaimed: bigint;
-  successfulWallets: bigint;
-  openClaimReceipts: bigint;
-  currentUtcDay: bigint;
-  claimsToday: number;
-  closed: boolean;
-  configBump: number;
-  distributionVaultBump: number;
-}
-
-export interface CommitmentClaimStateAccount {
-  owner: PublicKey;
-  registeredAt: bigint;
-  lastClaimAt: bigint;
-  totalClaimed: bigint;
-  claimCount: number;
-  bump: number;
-}
-
-export function decodeCommitmentDistributionConfigAccount(data: Buffer): CommitmentDistributionConfigAccount {
-  assertDiscriminator(data, DISTRIBUTION_CONFIG_ACCOUNT_NAME, COMMITMENT_CLAIM_IDL);
-  const decoded = decodeIdlStruct(data, DISTRIBUTION_CONFIG_ACCOUNT_NAME, COMMITMENT_CLAIM_IDL);
-
-  return {
-    soleonMint: decoded.soleon_mint as PublicKey,
-    distributionVault: decoded.distribution_vault as PublicKey,
-    authority: decoded.authority as PublicKey,
-    eligibilityAuthority: decoded.eligibility_authority as PublicKey,
-    maintenanceFeeReceiver: decoded.maintenance_fee_receiver as PublicKey,
-    closeRecipient: decoded.close_recipient as PublicKey,
-    totalClaimed: decoded.total_claimed as bigint,
-    successfulWallets: decoded.successful_wallets as bigint,
-    openClaimReceipts: decoded.open_claim_receipts as bigint,
-    currentUtcDay: decoded.current_utc_day as bigint,
-    claimsToday: decoded.claims_today as number,
-    closed: decoded.closed as boolean,
-    configBump: decoded.config_bump as number,
-    distributionVaultBump: decoded.distribution_vault_bump as number,
-  };
-}
-
-export function decodeCommitmentClaimStateAccount(data: Buffer): CommitmentClaimStateAccount {
-  assertDiscriminator(data, CLAIM_RECEIPT_ACCOUNT_NAME, COMMITMENT_CLAIM_IDL);
-  return {
-    owner: PublicKey.default,
-    registeredAt: BigInt(0),
-    lastClaimAt: BigInt(0),
-    totalClaimed: COMMITMENT_CLAIM_AMOUNTS[0],
-    claimCount: 1,
-    bump: 0,
-  };
-}
-
-export async function fetchCommitmentDistributionConfig(
-  programId: PublicKey = COMMITMENT_CLAIM_PROGRAM_ID
-): Promise<CommitmentDistributionConfigAccount | null> {
-  const connection = getConnection();
-  const [configPda] = deriveCommitmentDistributionConfigPda(programId);
-
-  try {
-    const accountInfo = await connection.getAccountInfo(configPda);
-    if (!accountInfo) return null;
-    return decodeCommitmentDistributionConfigAccount(accountInfo.data);
-  } catch (error) {
-    console.error('[v0] Error fetching commitment distribution config:', error);
-    return null;
-  }
-}
-
-export async function fetchCommitmentClaimState(
-  owner: PublicKey,
-  programId: PublicKey = COMMITMENT_CLAIM_PROGRAM_ID
-): Promise<CommitmentClaimStateAccount | null> {
-  const connection = getConnection();
-  const [claimStatePda] = deriveCommitmentClaimStatePda(owner, programId);
-
-  try {
-    const accountInfo = await connection.getAccountInfo(claimStatePda);
-    if (!accountInfo) return null;
-    return decodeCommitmentClaimStateAccount(accountInfo.data);
-  } catch (error) {
-    console.error('[v0] Error fetching commitment claim state:', error);
     return null;
   }
 }
@@ -875,42 +738,6 @@ export function createUnstakeExpiredTransaction(params: {
         { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
       ],
       data: getInstructionDiscriminator('unstake_expired'),
-    })
-  );
-}
-
-export function createCommitmentClaimTransaction(params: {
-  owner: PublicKey;
-  eligibilityAuthority: PublicKey;
-  distributionConfig: CommitmentDistributionConfigAccount;
-  programId?: PublicKey;
-}): Transaction {
-  const programId = params.programId ?? COMMITMENT_CLAIM_PROGRAM_ID;
-  const [distributionConfigPda] = deriveCommitmentDistributionConfigPda(programId);
-  const [claimReceiptPda] = deriveCommitmentClaimReceiptPda(params.owner, programId);
-  const ownerTokenAccount = getAssociatedTokenAddressSync(
-    params.distributionConfig.soleonMint,
-    params.owner,
-    false,
-    TOKEN_2022_PROGRAM_ID
-  );
-
-  return createAtaSetupTransaction(params.owner, params.owner, params.distributionConfig.soleonMint).add(
-    new TransactionInstruction({
-      programId,
-      keys: [
-        { pubkey: params.owner, isSigner: true, isWritable: true },
-        { pubkey: params.eligibilityAuthority, isSigner: true, isWritable: false },
-        { pubkey: distributionConfigPda, isSigner: false, isWritable: true },
-        { pubkey: params.distributionConfig.maintenanceFeeReceiver, isSigner: false, isWritable: true },
-        { pubkey: claimReceiptPda, isSigner: false, isWritable: true },
-        { pubkey: params.distributionConfig.soleonMint, isSigner: false, isWritable: false },
-        { pubkey: params.distributionConfig.distributionVault, isSigner: false, isWritable: true },
-        { pubkey: ownerTokenAccount, isSigner: false, isWritable: true },
-        { pubkey: TOKEN_2022_PROGRAM_ID, isSigner: false, isWritable: false },
-        { pubkey: SystemProgram.programId, isSigner: false, isWritable: false },
-      ],
-      data: getInstructionDiscriminator('claim_once', COMMITMENT_CLAIM_IDL),
     })
   );
 }

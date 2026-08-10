@@ -11,7 +11,8 @@ export function TokenomicsContent() {
   const isEn = useLocale() === 'en';
   const allocations = [
     ['440,000,000 SEON', isEn ? 'Finite staking reward vault' : 'Reward vault finita de staking', '99.000%'],
-    ['4,400,000 SEON', isEn ? 'Genesis Claim contract vault' : 'Vault del contrato Genesis Claim', '0.990%'],
+    ['4,000,000 SEON', isEn ? 'Genesis Airdrop: 400 wallets x 10,000 SEON' : 'Airdrop Genesis: 400 wallets x 10,000 SEON', '0.900%'],
+    ['400,000 SEON', isEn ? 'Temporary market and liquidity reserve' : 'Reserva temporal de mercado y liquidez', '0.090%'],
     ['44,444 SEON', isEn ? 'Initial developer allocation' : 'Asignación inicial del desarrollador', '0.010%'],
   ];
   const feeRules = isEn
@@ -44,9 +45,23 @@ export function TokenomicsContent() {
 
         <section className="mt-14">
           <h2 className="text-2xl font-semibold">{isEn ? 'Initial allocation' : 'Asignación inicial'}</h2>
+          <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
+            {isEn
+              ? 'The four public allocations sum exactly to the fixed supply. There is no presale, private round or discretionary review reserve.'
+              : 'Las cuatro asignaciones públicas suman exactamente el supply fijo. No existe preventa, ronda privada ni reserva discrecional de revisión.'}
+          </p>
           <div className="mt-5 divide-y divide-border/50 border-y border-border/50">
             {allocations.map(([amount, label, percent]) => <div key={amount} className="grid gap-2 py-4 sm:grid-cols-[180px_1fr_90px]"><strong>{amount}</strong><span className="text-muted-foreground">{label}</span><span className="text-right text-primary">{percent}</span></div>)}
           </div>
+        </section>
+
+        <section className="mt-14 border-t border-border/50 pt-7">
+          <h2 className="text-2xl font-semibold">{isEn ? 'Launch reserve rules' : 'Reglas de la reserva de lanzamiento'}</h2>
+          <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
+            {isEn
+              ? 'The Genesis allocation is transferred directly in ten public weekly waves. The separate 400,000 SEON reserve may provide genuine SEON/USDC bids and asks under published rules, never self-trades, and cannot be presented as organic demand. After two to three months, any pool decision depends on observed third-party activity and requires permanently locked or burned LP.'
+              : 'La asignación Genesis se transfiere directamente en diez olas semanales públicas. La reserva separada de 400,000 SEON puede aportar bids y asks reales de SEON/USDC bajo reglas publicadas, nunca realiza autooperaciones ni puede presentarse como demanda orgánica. Tras dos o tres meses, cualquier decisión sobre un pool depende de la actividad real de terceros y exige LP bloqueado o quemado permanentemente.'}
+          </p>
         </section>
 
         <div className="mt-14 grid gap-7 lg:grid-cols-2">

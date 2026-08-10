@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Code2, Gift, Lock, RefreshCw, ShieldCheck, Wallet } from 'lucide-react';
+import { Coins, Gift, Landmark, Lock, RefreshCw, ShieldCheck, Wallet } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -13,16 +13,18 @@ export function HowItWorksContent() {
   const isEn = useLocale() === 'en';
   const steps: Step[] = isEn
     ? [
-        ['1', 'Genesis Claim', 'SEON starts with a free on-chain distribution: one 2,000 SEON claim per eligible wallet, verified by public Solana reputation rules and a server-side eligibility signature.', Gift],
-        ['2', 'Public review', 'The staking source code and website are published for review while the staking program remains undeployed. There is no review reserve or promised payout program.', Code2],
-        ['3', 'Staking opening', 'Staking opens only after Genesis Claim is complete or September 1, 2026, whichever comes later, and only if the rehearsal is correct.', Lock],
-        ['4', 'Immutable protocol', 'After final verification, critical authorities are revoked or transferred to protocol-controlled rules so the published on-chain behavior cannot be changed by an administrator.', ShieldCheck],
+        ['1', 'Mint and public allocations', 'After the devnet rehearsal, the fixed SEON supply is created. Mint and freeze authorities are revoked, and the reward, Genesis, market and developer allocations are transferred to published addresses.', Coins],
+        ['2', 'Reproducible Genesis Airdrop', 'A public snapshot, ruleset and future seed select 400 independent Solana wallets. Ten weekly waves transfer 10,000 SEON directly to 40 wallets each. Recipients never connect, sign or pay.', Gift],
+        ['3', 'Monitored staking opening', 'Staking opens with wave 1 after the mainnet checks pass. Its upgrade authority remains only during the ten-wave correction window, with every deployed change disclosed.', Lock],
+        ['4', 'Real DEX price discovery', 'A separate public reserve may place genuine SEON/USDC bids and asks under fixed rules. It never self-trades or fabricates volume; third-party orders determine whether a market develops.', Landmark],
+        ['5', 'Final immutability', 'After wave 10 and the final audit, critical staking authorities are revoked. Any later liquidity pool requires real activity and permanently locked or burned LP.', ShieldCheck],
       ]
     : [
-        ['1', 'Genesis Claim', 'SEON comienza con una distribución on-chain gratuita: un claim de 2,000 SEON por wallet elegible, verificado con reglas públicas de reputación Solana y una firma server-side de elegibilidad.', Gift],
-        ['2', 'Revisión pública', 'El código de staking y la web se publican para revisión mientras el programa de staking permanece sin desplegar. No existe reserva de revisión ni programa de pagos prometido.', Code2],
-        ['3', 'Apertura del staking', 'El staking se abre solo cuando Genesis Claim haya terminado o el 1 de septiembre de 2026, lo que ocurra más tarde, y siempre que el rehearsal sea correcto.', Lock],
-        ['4', 'Protocolo inmutable', 'Tras la verificación final, las autoridades críticas se revocan o pasan a reglas controladas por el protocolo para que un administrador no pueda cambiar el comportamiento on-chain publicado.', ShieldCheck],
+        ['1', 'Mint y asignaciones públicas', 'Tras el rehearsal en devnet se crea el supply fijo de SEON. Se revocan mint y freeze authority, y las asignaciones de rewards, Genesis, mercado y desarrollador se transfieren a direcciones publicadas.', Coins],
+        ['2', 'Airdrop Genesis reproducible', 'Un snapshot, reglas públicas y una seed futura seleccionan 400 wallets independientes de Solana. Diez olas semanales transfieren 10,000 SEON directamente a 40 wallets cada una. Los receptores nunca conectan, firman ni pagan.', Gift],
+        ['3', 'Apertura monitorizada del staking', 'El staking se abre con la ola 1 tras superar las comprobaciones de mainnet. Su upgrade authority se mantiene solo durante la ventana de corrección de diez olas y cada cambio desplegado se publica.', Lock],
+        ['4', 'Descubrimiento real de precio DEX', 'Una reserva pública separada puede colocar bids y asks reales de SEON/USDC bajo reglas fijas. Nunca realiza autooperaciones ni fabrica volumen; las órdenes de terceros determinan si el mercado se desarrolla.', Landmark],
+        ['5', 'Inmutabilidad final', 'Tras la ola 10 y la auditoría final se revocan las autoridades críticas del staking. Cualquier pool posterior exige actividad real y LP bloqueado o quemado permanentemente.', ShieldCheck],
       ];
   const stakingRules = isEn
     ? [

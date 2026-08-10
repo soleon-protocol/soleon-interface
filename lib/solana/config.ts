@@ -21,11 +21,6 @@ export interface SoleonConfig {
   programId: string;
   programIdConfigured: boolean;
 
-  // Initial distribution claim program
-  commitmentClaimProgramId: string;
-  commitmentClaimProgramIdConfigured: boolean;
-  commitmentClaimConfigPda: string | null;
-  commitmentClaimVault: string | null;
   maintenanceFeeReceiver: string | null;
   
   // Token (SEON) - null until created
@@ -39,8 +34,12 @@ export interface SoleonConfig {
   
   // Fund wallets (public, verifiable)
   creatorAllocationWallet: string | null;
-  initialDistributionFundTokenAccount: string | null;
-  participantDistributionFundTokenAccount: string | null;
+  genesisDistributionWallet: string | null;
+  genesisDistributionTokenAccount: string | null;
+  marketLiquidityWallet: string | null;
+  marketLiquidityTokenAccount: string | null;
+  genesisSelectionRulesUrl: string | null;
+  genesisReportsUrl: string | null;
   securityReportUrl: string | null;
   stakingRepositoryUrl: string | null;
   
@@ -71,9 +70,6 @@ const PUBLIC_ENV: Record<string, string | undefined> = {
   NEXT_PUBLIC_SOLANA_CLUSTER: process.env.NEXT_PUBLIC_SOLANA_CLUSTER,
   NEXT_PUBLIC_SOLANA_RPC_ENDPOINT: process.env.NEXT_PUBLIC_SOLANA_RPC_ENDPOINT,
   NEXT_PUBLIC_SOLEON_PROGRAM_ID: process.env.NEXT_PUBLIC_SOLEON_PROGRAM_ID,
-  NEXT_PUBLIC_COMMITMENT_CLAIM_PROGRAM_ID: process.env.NEXT_PUBLIC_COMMITMENT_CLAIM_PROGRAM_ID,
-  NEXT_PUBLIC_COMMITMENT_CLAIM_CONFIG_PDA: process.env.NEXT_PUBLIC_COMMITMENT_CLAIM_CONFIG_PDA,
-  NEXT_PUBLIC_COMMITMENT_CLAIM_VAULT: process.env.NEXT_PUBLIC_COMMITMENT_CLAIM_VAULT,
   NEXT_PUBLIC_MAINTENANCE_FEE_RECEIVER: process.env.NEXT_PUBLIC_MAINTENANCE_FEE_RECEIVER,
   NEXT_PUBLIC_SOLEON_MINT: process.env.NEXT_PUBLIC_SOLEON_MINT,
   NEXT_PUBLIC_SOLEON_CONFIG_PDA: process.env.NEXT_PUBLIC_SOLEON_CONFIG_PDA,
@@ -81,6 +77,12 @@ const PUBLIC_ENV: Record<string, string | undefined> = {
   NEXT_PUBLIC_SOLEON_REWARD_VAULT: process.env.NEXT_PUBLIC_SOLEON_REWARD_VAULT,
   NEXT_PUBLIC_SOLEON_FEE_VAULT: process.env.NEXT_PUBLIC_SOLEON_FEE_VAULT,
   NEXT_PUBLIC_CREATOR_ALLOCATION_WALLET: process.env.NEXT_PUBLIC_CREATOR_ALLOCATION_WALLET,
+  NEXT_PUBLIC_GENESIS_DISTRIBUTION_WALLET: process.env.NEXT_PUBLIC_GENESIS_DISTRIBUTION_WALLET,
+  NEXT_PUBLIC_GENESIS_DISTRIBUTION_TOKEN_ACCOUNT: process.env.NEXT_PUBLIC_GENESIS_DISTRIBUTION_TOKEN_ACCOUNT,
+  NEXT_PUBLIC_MARKET_LIQUIDITY_WALLET: process.env.NEXT_PUBLIC_MARKET_LIQUIDITY_WALLET,
+  NEXT_PUBLIC_MARKET_LIQUIDITY_TOKEN_ACCOUNT: process.env.NEXT_PUBLIC_MARKET_LIQUIDITY_TOKEN_ACCOUNT,
+  NEXT_PUBLIC_GENESIS_SELECTION_RULES_URL: process.env.NEXT_PUBLIC_GENESIS_SELECTION_RULES_URL,
+  NEXT_PUBLIC_GENESIS_REPORTS_URL: process.env.NEXT_PUBLIC_GENESIS_REPORTS_URL,
   NEXT_PUBLIC_STAKING_REPOSITORY_URL: process.env.NEXT_PUBLIC_STAKING_REPOSITORY_URL,
   NEXT_PUBLIC_SOLEON_PHASE: process.env.NEXT_PUBLIC_SOLEON_PHASE,
   NEXT_PUBLIC_JUPITER_ENABLED: process.env.NEXT_PUBLIC_JUPITER_ENABLED,
@@ -122,7 +124,6 @@ function readBoolean(name: string, fallback: boolean): boolean {
 }
 
 const configuredProgramId = optionalEnv('NEXT_PUBLIC_SOLEON_PROGRAM_ID');
-const configuredCommitmentClaimProgramId = optionalEnv('NEXT_PUBLIC_COMMITMENT_CLAIM_PROGRAM_ID');
 
 // Current configuration. Public NEXT_PUBLIC_* env vars override these defaults.
 // Defaults intentionally point to an unconfigured/pre-launch state so the
@@ -136,10 +137,6 @@ export const SOLEON_CONFIG: SoleonConfig = {
   programId: configuredProgramId ?? UNCONFIGURED_PROGRAM_ID,
   programIdConfigured: configuredProgramId !== null,
 
-  commitmentClaimProgramId: configuredCommitmentClaimProgramId ?? UNCONFIGURED_PROGRAM_ID,
-  commitmentClaimProgramIdConfigured: configuredCommitmentClaimProgramId !== null,
-  commitmentClaimConfigPda: optionalEnv('NEXT_PUBLIC_COMMITMENT_CLAIM_CONFIG_PDA'),
-  commitmentClaimVault: optionalEnv('NEXT_PUBLIC_COMMITMENT_CLAIM_VAULT'),
   maintenanceFeeReceiver: optionalEnv('NEXT_PUBLIC_MAINTENANCE_FEE_RECEIVER'),
   
   // SEON Token - null until created/published
@@ -153,10 +150,12 @@ export const SOLEON_CONFIG: SoleonConfig = {
   
   // Fund wallets - will be public addresses
   creatorAllocationWallet: optionalEnv('NEXT_PUBLIC_CREATOR_ALLOCATION_WALLET'),
-  // Removed deployment inputs kept null until the old presentation routes are
-  // deleted during the Genesis UI migration.
-  initialDistributionFundTokenAccount: null,
-  participantDistributionFundTokenAccount: null,
+  genesisDistributionWallet: optionalEnv('NEXT_PUBLIC_GENESIS_DISTRIBUTION_WALLET'),
+  genesisDistributionTokenAccount: optionalEnv('NEXT_PUBLIC_GENESIS_DISTRIBUTION_TOKEN_ACCOUNT'),
+  marketLiquidityWallet: optionalEnv('NEXT_PUBLIC_MARKET_LIQUIDITY_WALLET'),
+  marketLiquidityTokenAccount: optionalEnv('NEXT_PUBLIC_MARKET_LIQUIDITY_TOKEN_ACCOUNT'),
+  genesisSelectionRulesUrl: optionalEnv('NEXT_PUBLIC_GENESIS_SELECTION_RULES_URL'),
+  genesisReportsUrl: optionalEnv('NEXT_PUBLIC_GENESIS_REPORTS_URL'),
   securityReportUrl: null,
   stakingRepositoryUrl: optionalEnv('NEXT_PUBLIC_STAKING_REPOSITORY_URL'),
   
@@ -171,7 +170,7 @@ export const SOLEON_CONFIG: SoleonConfig = {
   testShortBurn: readBoolean('NEXT_PUBLIC_TEST_SHORT_BURN', false),
   
   // Dates
-  genesisLaunchDate: optionalEnv('NEXT_PUBLIC_GENESIS_LAUNCH_DATE') ?? '2026-08-01T12:00:00Z',
+  genesisLaunchDate: optionalEnv('NEXT_PUBLIC_GENESIS_LAUNCH_DATE') ?? '2026-08-31T12:00:00Z',
   estimatedMainnetLaunch: optionalEnv('NEXT_PUBLIC_ESTIMATED_MAINNET_LAUNCH'),
 };
 
@@ -189,12 +188,13 @@ export function isShortBurnDeployment(programId: string = SOLEON_CONFIG.programI
 export const SEON_DECIMALS = 9;
 export const SEON_TOTAL_SUPPLY = 444_444_444; // Exactly 444,444,444 SEON
 export const SEON_REWARD_VAULT_INITIAL = 440_000_000; // 440M to reward vault
-export const SEON_INITIAL_DISTRIBUTION = 4_444_444; // 1% bootstrap distribution
 export const SEON_CREATOR_ALLOCATION = 44_444; // 44,444 transparent initial developer allocation
-export const SEON_COMMITMENT_CLAIM_ALLOCATION = 4_400_000;
-export const SEON_REVIEW_RESERVE_ALLOCATION = 0;
-export const SEON_GENESIS_CLAIM_AMOUNT = 2_000;
-export const MAX_DAILY_GENESIS_CLAIMS = 100;
+export const SEON_GENESIS_AIRDROP_ALLOCATION = 4_000_000;
+export const SEON_MARKET_LIQUIDITY_ALLOCATION = 400_000;
+export const SEON_GENESIS_WALLET_AMOUNT = 10_000;
+export const GENESIS_WAVE_COUNT = 10;
+export const GENESIS_WALLETS_PER_WAVE = 40;
+export const GENESIS_RECIPIENT_COUNT = GENESIS_WAVE_COUNT * GENESIS_WALLETS_PER_WAVE;
 
 // Dynamic Transfer Fee constants
 // Mint starts at 0%. Once staking opens, a permissionless update activates
@@ -232,10 +232,4 @@ export const SEEDS = {
   SOLEON_FEE_VAULT: 'soleon-fee-vault',
   STAKE_POSITION: 'stake-position',
   FEE_DISTRIBUTION_CALLER: 'fee-distribution-caller',
-  COMMITMENT_DISTRIBUTION_CONFIG: 'commitment-distribution-config',
-  COMMITMENT_DISTRIBUTION_VAULT: 'commitment-vault',
-  COMMITMENT_CLAIM_RECEIPT: 'claim-receipt',
 } as const;
-
-export const MAINTENANCE_FEE_LAMPORTS = 5_000_000;
-export const MAINTENANCE_FEE_SOL = 0.005;

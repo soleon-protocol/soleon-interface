@@ -9,7 +9,7 @@
     "staking": "Staking",
     "markets": "Mercados y Liquidez",
     "maintenance": "Mantenimiento del Protocolo",
-    "genesis": "Distribución Inicial",
+    "genesis": "Airdrop Genesis",
     "docs": "Docs",
     "connectWallet": "Conectar Wallet",
     "disconnect": "Desconectar",
@@ -20,12 +20,12 @@
     "viewExplorer": "Ver en explorador"
   },
   "hero": {
-    "tagline": "Token con extensión 2022 en Solana",
-    "subtitle": "Un token con extensión 2022 en Solana diseñado para volverse descentralizado e inmutable tras la fase final. Sin administrador del protocolo tras la inmutabilidad. La interfaz oficial puede ser mantenida, pero no controla las reglas on-chain. Creado por un desarrollador inicial con una idea: construir algo diferente.",
+    "tagline": "Protocolo Token-2022 de supply fijo en Solana",
+    "subtitle": "Soleon es un protocolo Token-2022 de supply fijo en Solana con una distribución Genesis transparente y verificable y staking on-chain.",
     "cta": "Explorar Proyecto",
     "ctaSecondary": "Ver Whitepaper",
-    "countdownTitle": "Lanzamiento inicial previsto en",
-    "countdownDesc": "1 de agosto de 2026 a las 12:00 UTC - inicio previsto del token SEON y Genesis Claim"
+    "countdownTitle": "Airdrop Genesis y staking previstos en",
+    "countdownDesc": "31 de agosto de 2026 a las 12:00 UTC - apertura prevista del staking y ola Genesis 1 tras las comprobaciones de mainnet"
   },
   "countdown": {
     "days": "Días",
@@ -35,14 +35,14 @@
   },
   "about": {
     "title": "¿Qué es Soleon?",
-    "subtitle": "Diseñado para volverse descentralizado e inmutable tras la fase final",
-    "description": "Soleon es un token con extensión 2022 en Solana diseñado para ser completamente autónomo tras el lanzamiento. No hay un equipo detrás - solo un desarrollador inicial con la idea de crear algo nuevo. Una vez inmutable, nadie puede modificar el contrato ni las reglas. Sin administrador del protocolo tras la inmutabilidad.",
-    "feature1Title": "Distribución Sin Preventa",
-    "feature1Desc": "Soleon no se repartirá mediante una venta inicial. La primera distribución será gratuita y por participación: un único Genesis Claim definido por contrato para wallets elegibles por reputación Solana.",
+    "subtitle": "Lanzamiento transparente, operaciones verificables e inmutabilidad final del protocolo",
+    "description": "Soleon separa las reglas del protocolo de las operaciones de lanzamiento. Soleon Maintainer publica la web, los informes y las wallets temporales, mientras las reglas on-chain del staking están diseñadas para quedar inmutables tras la ventana de monitorización de diez olas y la auditoría final.",
+    "feature1Title": "Airdrop Genesis directo",
+    "feature1Desc": "4,000,000 SEON se transfieren directamente a 400 wallets independientes de Solana en diez olas semanales. Los receptores no conectan, firman, reclaman ni pagan.",
     "feature2Title": "Verificable",
-    "feature2Desc": "El contrato y la interfaz estarán publicados en GitHub. Las reglas, direcciones finales, vaults y estado de autoridades podrán comprobarse on-chain tras el lanzamiento. La revisión pública será el mecanismo principal de validación técnica antes de abrir staking.",
-    "feature3Title": "Inmutabilidad Total",
-    "feature3Desc": "Tras la revisión pública, las correcciones y el despliegue final, se revocarán las autoridades críticas del protocolo. Desde ese momento no debería haber mint, freeze ni upgrades: las reglas quedarán fijadas on-chain de forma permanente."
+    "feature2Desc": "El código, las reglas de selección, el snapshot, la seed, los informes de las olas, las direcciones, los balances y el estado de las autoridades se publican para verificación independiente.",
+    "feature3Title": "Inmutabilidad final del protocolo",
+    "feature3Desc": "La upgrade authority del staking se conserva solo durante la ventana declarada de corrección de diez olas. Tras la auditoría final se revocan las autoridades críticas y las reglas on-chain quedan fijadas."
   },
   "tokenomics": {
     "title": "Tokenomics",
@@ -68,34 +68,32 @@
   "phases": {
     "title": "Fases del Lanzamiento",
     "subtitle": "Un proceso transparente y verificable",
-    "phase1Title": "Lanzamiento y Revisión Pública",
-    "phase1Duration": "Inicio",
-    "phase1Desc": "Soleon empieza con el mint SEON, commitment_claim y la revisión pública del código de staking y de la web. El programa de staking todavía no se despliega. Los usuarios pueden reclamar, documentar errores y revisar el código sin tener que comprar acceso.",
+    "phase1Title": "Rehearsal y mint en mainnet",
+    "phase1Duration": "10-24 agosto",
+    "phase1Desc": "El lanzamiento completo se ensaya en devnet antes de crear en mainnet el supply fijo de SEON, la metadata oficial y las cuatro asignaciones públicas.",
     "phase1Points": [
-      "Claims iniciales para wallets elegibles según contrato",
-      "Reglas públicas de reputación Solana para comprobar elegibilidad",
-      "Sin reserva de revisión ni programa de pagos prometido",
-      "Código del contrato y de la web publicado para revisión",
-      "La participación empieza probando, revisando y reportando, no comprando acceso"
+      "Proceso reanudable de mint y asignación",
+      "Reglas e informes públicos de selección Genesis",
+      "Mint y freeze authorities revocadas tras la creación",
+      "Direcciones y balances de mainnet publicados"
     ],
-    "phase2Title": "Revisión, Correcciones y Staking",
-    "phase2Duration": "Primeros 2 meses",
-    "phase2Desc": "Durante aproximadamente dos meses, el programa de staking permanece sin desplegar mientras se revisan reportes, se corrigen problemas confirmados y se prepara su despliegue final.",
+    "phase2Title": "Staking y diez olas Genesis",
+    "phase2Duration": "31 agosto - 2 noviembre",
+    "phase2Desc": "El staking se abre con la ola 1. Cada semana, 40 wallets seleccionadas reciben 10,000 SEON mientras se publican informes acumulados y cualquier corrección verificada.",
     "phase2Points": [
-      "Clasificación pública de bugs relevantes",
-      "Corrección de hallazgos reproducibles",
-      "Preparación de la apertura del staking",
-      "Publicación de parámetros finales y estado de revisión"
+      "400 receptores seleccionados de forma determinista antes de distribuir",
+      "Sin conexión, firma ni fee Genesis",
+      "Solo órdenes SEON/USDC reales; sin autooperaciones",
+      "Ventana temporal de corrección del staking declarada"
     ],
-    "phase3Title": "Staking e Inmutabilidad",
-    "phase3Duration": "Después",
-    "phase3Desc": "Tras la revisión y las posibles correcciones, se despliega el programa de staking, se abre el staking y queda disponible la actualización permissionless de la fee a 0.02%. La liquidez inicial, si aparece, será comunitaria y verificable.",
+    "phase3Title": "Auditoría e inmutabilidad",
+    "phase3Duration": "Tras la ola 10",
+    "phase3Desc": "Tras la verificación acumulada y la auditoría final se revocan las autoridades críticas del staking. Un pool posterior es opcional y exige actividad observada y LP bloqueado o quemado permanentemente.",
     "phase3Points": [
-      "Mint oficial y cuentas principales ya publicadas",
-      "Staking con lock fijo de 7 días y rewards proporcionales",
-      "Pools comunitarios verificados si la comunidad decide crearlos",
-      "Revocación de todas las autoridades (mint, freeze, upgrade)",
-      "Protocolo inmutable - sin administrador capaz de modificar las reglas"
+      "Verificación final de supply, vaults y autoridades",
+      "Reglas inmutables del programa de staking",
+      "Web y mantenimiento siguen operativos, no como autoridad del protocolo",
+      "No se fuerza un pool sin actividad real de mercado"
     ]
   },
   "ecosystem": {
@@ -139,9 +137,9 @@
   "quickIntro": {
     "title": "Soleon en 60 Segundos",
     "point1": "Soleon es un token en Solana con extensión 2022.",
-    "point2": "Primero hay token SEON, Genesis Claim, código público y revisión abierta sin programa de recompensas prometido.",
-    "point3": "Staking es la utilidad principal de SEON y el mecanismo central de recompensas después de la fase bootstrap.",
-    "point4": "Después de hacerlo inmutable, nadie puede cambiar las reglas.",
+    "point2": "Genesis transfiere 10,000 SEON directamente a cada una de 400 wallets seleccionadas de forma independiente en diez olas semanales.",
+    "point3": "El staking es la utilidad central; una reserva pública temporal puede apoyar el descubrimiento real de precio DEX sin volumen fabricado.",
+    "point4": "Tras la ola 10 y la auditoría final se revocan las autoridades críticas del staking.",
     "point5": "La web ayuda a usar el protocolo, pero no controla el protocolo."
   },
   "whatIsNot": {
@@ -334,193 +332,26 @@
     "connectToDistribute": "Conecta tu wallet para distribuir fees"
   },
   "genesis": {
-    "eyebrow": "Bootstrap del protocolo",
-    "title": "Distribución Inicial",
-    "subtitle": "La distribución inicial asigna 4,400,000 SEON a 2,200 wallets elegibles y 44,444 SEON de forma transparente al desarrollador inicial.",
-    "status": {
-      "totalSupply": "Supply total",
-      "participation": "Distribución por participación",
-      "sale": "Venta inicial",
-      "noSale": "No"
-    },
-    "claim": {
-      "title": "Claim de distribución inicial",
-      "description": "El botón se activará cuando el mint SEON final, el programa de distribución inicial y la vault de distribución estén publicados e inicializados.",
-      "amount": "Cantidad fija",
-      "dailyClaims": "Claims realizados hoy",
-      "fee": "Fee por claim",
-      "vaultRemaining": "Saldo de la vault",
-      "pendingValue": "Pendiente",
-      "statusLabel": "Estado",
-      "statusProgramPending": "No disponible todavía: falta publicar el programa de distribución inicial.",
-      "statusMintPending": "No disponible: falta publicar el mint oficial de SEON.",
-      "statusDistributionPending": "No disponible: el programa existe, pero la configuración/vault de distribución aún no está inicializada on-chain.",
-      "statusComplete": "Esta wallet ya realizó su único claim.",
-      "statusClosed": "La distribución inicial está cerrada.",
-      "statusVaultEmpty": "La vault se ha agotado y no quedan más claims disponibles.",
-      "statusDailyLimit": "Se alcanzaron los 100 claims de hoy. El contador se restablece a las 00:00 UTC.",
-      "statusWalletVerification": "Verifica primero que controlas la wallet conectada.",
-      "statusIneligible": "La wallet no cumple todas las reglas de reputación.",
-      "statusEligibilityUnavailable": "No se pudo demostrar la elegibilidad. Inténtalo más tarde.",
-      "statusReady": "Disponible para reclamar con la wallet conectada.",
-      "schedule": [
-        "Cada wallet elegible puede realizar un único claim de 2,000 SEON.",
-        "El contrato admite un máximo de 100 claims exitosos por día UTC hasta agotar la vault.",
-        "El coste de protocolo es 0.005 SOL. La comisión de red de Solana es adicional y se muestra en la wallet antes de firmar."
-      ],
-      "feePurpose": "La fee de protocolo financia el despliegue de staking y la infraestructura básica sin conceder control sobre las reglas del protocolo.",
-      "button": "Claim",
-      "claiming": "Reclamando...",
-      "error": "No se pudo completar el claim.",
-      "viewTransaction": "Ver transacción en Solscan",
-      "verification": {
-        "title": "Verificación de wallet",
-        "description": "Firma un mensaje gratuito para continuar.",
-        "button": "Verificar wallet",
-        "signing": "Esperando firma...",
-        "verified": "Wallet verificada.",
-        "evaluating": "Wallet verificada. Evaluando reputación on-chain...",
-        "eligible": "Wallet elegible para Genesis Claim.",
-        "ineligible": "La wallet no cumple todas las reglas de reputación.",
-        "unsupported": "Esta wallet no permite firmar mensajes.",
-        "expired": "La solicitud ha caducado. Inténtalo de nuevo.",
-        "rateLimited": "Demasiados intentos. Espera unos minutos.",
-        "dailyLimit": "Se ha alcanzado el límite diario de evaluaciones. Inténtalo mañana.",
-        "inProgress": "Ya hay una evaluación en curso para esta wallet.",
-        "unavailable": "El servicio de verificación no está disponible temporalmente.",
-        "error": "No se pudo verificar la wallet.",
-        "transactions": "Transacciones",
-        "activeDays": "Días activos",
-        "activeMonths": "Meses activos",
-        "history": "Antigüedad (días)",
-        "recent": "Actividad reciente",
-        "yes": "Sí",
-        "no": "No"
-      }
-    },
-    "whatIs": {
-      "title": "Qué es esta distribución",
-      "description": "No es una venta ni una promesa de valor. Es una distribución abierta para wallets con actividad demostrable en Solana, limitada a un claim por wallet."
-    },
-    "supply": {
-      "ofTotal": "del supply total",
-      "rewardVault": {
-        "label": "Reward vault",
-        "description": "Reserva principal para el sistema de staking del protocolo."
-      },
-      "initialDistribution": {
-        "label": "Genesis Claim",
-        "description": "4,400,000 SEON para la vault de Genesis Claim. La asignación del desarrollador, 44,444 SEON, se publica por separado."
-      }
-    },
-    "principles": {
-      "title": "Principios",
-      "items": [
-        "No existe preventa ni compra necesaria para participar.",
-        "Las reglas de reputación y asignación son públicas y verificables.",
-        "Cada wallet elegible recibe la misma cantidad.",
-        "Recibir SEON no garantiza precio, liquidez ni valor económico."
-      ]
-    },
-    "participation": {
-      "title": "Claim por participar",
-      "description": "La vault del contrato contiene 4,400,000 SEON: exactamente 2,200 claims de 2,000 SEON cada uno.",
-      "claimVaultFunding": {
-        "title": "Vault de claims",
-        "addressLabel": "Dirección pública de la vault",
-        "pending": "No disponible",
-        "available": "Balance actual",
-        "description": "Vault del contrato para claims por wallet."
-      },
-      "claimSequence": {
-        "title": "Un claim por wallet",
-        "description": "Una wallet elegible puede reclamar una sola vez. El receipt on-chain impide repetir el claim."
-      },
-      "dailyLimit": {
-        "title": "Límite diario",
-        "description": "El contrato acepta como máximo 100 claims exitosos por día UTC y reinicia el contador al comenzar el día siguiente."
-      }
-    },
-    "networks": {
-      "title": "Lanzamiento y staking",
-      "description": "La distribución inicial comienza el 1 de agosto. El staking se abre cuando se cumplan sus dos condiciones de apertura.",
-      "launch": {
-        "title": "Día de lanzamiento",
-        "description": "El 1 de agosto se crea el token SEON, se inicia Genesis Claim y se publica el código de los programas de distribución y staking."
-      },
-      "staking": {
-        "title": "Staking",
-        "description": "El staking se abre cuando hayan terminado todos los Genesis Claims o el 1 de septiembre, lo que ocurra más tarde."
-      }
-    },
-    "distributionFlow": {
-      "title": "Cómo se distribuirán los SEON",
-      "description": "El reparto público se ejecuta únicamente mediante Genesis Claim on-chain.",
-      "items": [
-        "La wallet firma un mensaje gratuito para demostrar que controla su dirección.",
-        "El servidor comprueba las cinco reglas de reputación usando el historial público de Solana.",
-        "Si es elegible, la wallet puede firmar un único claim de 2,000 SEON y pagar 0.005 SOL de fee de protocolo.",
-        "El contrato limita la distribución a 100 claims exitosos por día UTC.",
-        "Al completar los 2,200 claims, la vault queda vacía y la distribución termina."
-      ]
-    },
-    "maintainer": {
-      "title": "44,444 SEON para el desarrollador inicial",
-      "description": "Asignación personal por diseñar y construir el contrato, la web, la documentación, la tokenomics inicial y el proceso de lanzamiento. Son tokens propios del desarrollador y no conceden control sobre el protocolo.",
-      "creatorWalletLabel": "Wallet pública de esta asignación",
-      "creatorWalletPending": "No disponible todavía",
-      "creatorWalletDescription": "Cuando exista, se publicará aquí con enlace a Solscan para que la asignación pueda verificarse on-chain.",
-      "stats": {
-        "amount": "Cantidad",
-        "totalSupplyShare": "Sobre supply total",
-        "initialDistributionShare": "Sobre distribución inicial"
-      },
-      "notes": [
-        "44,444 SEON equivalen aproximadamente al 0.01% del supply total y al 1% de la distribución inicial.",
-        "La asignación no concede control sobre el protocolo ni derechos sobre fondos de usuarios.",
-        "La asignación se entrega directamente a una wallet pública y el desarrollador puede mantenerla, transferirla, venderla o hacer staking.",
-        "Tras la inmutabilidad, el mantenimiento de la web no permitirá cambiar mint, staking, fees ni reglas on-chain."
-      ]
-    },
-    "steps": {
-      "title": "Cómo funcionará",
-      "description": "Proceso previsto para la distribución inicial y la apertura posterior del staking.",
-      "items": [
-        "El 1 de agosto se crea SEON, se financia la vault y comienza Genesis Claim.",
-        "La wallet demuestra control y la web comprueba su reputación on-chain.",
-        "Las wallets elegibles reclaman una vez hasta completar los 2,200 claims.",
-        "El código de distribución y staking permanece público desde el lanzamiento.",
-        "El staking se abre al terminar Genesis Claim o el 1 de septiembre, lo que ocurra más tarde."
-      ]
-    },
-    "risks": {
-      "title": "Avisos importantes",
-      "items": [
-        "SEON puede no tener mercado o liquidez cuando se distribuya.",
-        "Recibir SEON no garantiza beneficio económico, precio futuro ni posibilidad inmediata de vender.",
-        "Esta distribución está pensada para usuarios que quieran probar y apoyar el protocolo a largo plazo, no para obtener dinero rápido.",
-        "El token puede no tener liquidez hasta que existan pools comunitarios, y esos pools pueden tardar o no aparecer.",
-        "Solo las wallets que cumplan las cinco reglas de reputación podrán reclamar.",
-        "La distribución puede tardar más de un mes si no se completan los 2,200 claims."
-      ]
-    }
+    "eyebrow": "Distribución inicial transparente",
+    "title": "Airdrop Genesis de Soleon",
+    "subtitle": "4,000,000 SEON se transfieren directamente on-chain a 400 wallets de Solana seleccionadas de forma independiente mediante diez olas semanales públicas."
   },
   "howItWorks": {
     "title": "Cómo Funciona",
     "subtitle": "Guía completa del sistema Soleon",
-    "preLaunchTitle": "Lanzamiento Inicial",
-    "preLaunchDesc": "Desde el lanzamiento inicial, los usuarios podrán reclamar SEON mediante el contrato de distribución y participar en la revisión pública.",
-    "step1Title": "Claim Inicial",
-    "step1Desc": "Conecta una wallet y reclama SEON cuando el mint oficial, el programa de distribución inicial y la vault estén publicados e inicializados.",
-    "step2Title": "Revisión Pública",
-    "step2Desc": "Revisa la web y el código abierto del contrato de staking antes de su despliegue. No existe reserva de revisión ni programa de pagos prometido por reportes.",
-    "step3Title": "Preparación del Staking",
-    "step3Desc": "Durante los primeros dos meses el programa de staking sigue sin desplegar mientras se revisan reportes y se corrigen hallazgos confirmados.",
-    "step4Title": "Staking",
-    "step4Desc": "Aproximadamente dos meses después, si el estado técnico lo permite, se desplegará y abrirá staking con lock fijo de 7 días y rewards proporcionales.",
+    "preLaunchTitle": "Lanzamiento en mainnet",
+    "preLaunchDesc": "Tras el rehearsal en devnet, SEON se crea con supply fijo y cuatro asignaciones públicas.",
+    "step1Title": "Airdrop Genesis directo",
+    "step1Desc": "Las wallets seleccionadas reciben 10,000 SEON directamente. No existe página de claim, firmante de elegibilidad ni fee de protocolo.",
+    "step2Title": "Verificación pública",
+    "step2Desc": "Se publican reglas, snapshot, seed, direcciones seleccionadas, transferencias, fallos y resultados acumulados.",
+    "step3Title": "Apertura monitorizada del staking",
+    "step3Desc": "El staking se abre con la ola 1 y conserva una ventana temporal declarada de corrección hasta la ola 10.",
+    "step4Title": "Inmutabilidad final",
+    "step4Desc": "Tras la auditoría final se revocan las autoridades críticas y las reglas del protocolo dejan de depender de un administrador.",
     "feeDistribution": "Fees de Mantenimiento",
-    "creatorFees": "Fee de claim -> mantenimiento de web/RPC",
-    "devReserveSales": "Fee de staking/unstake -> mantenimiento de infraestructura",
+    "creatorFees": "Sin fee Genesis: los receptores reciben SEON directamente",
+    "devReserveSales": "Fees de mantenimiento de staking publicadas -> infraestructura",
     "postLaunchTitle": "Después del Lanzamiento",
     "postLaunchDesc": "Tras la distribución inicial, el staking y la revocación de autoridades, el protocolo se orienta a operar de forma autónoma.",
     "stakingRules": "Reglas de Staking",
@@ -543,7 +374,6 @@
   "whitepaper": {
     "title": "Whitepaper",
     "subtitle": "Documentación técnica completa del proyecto Soleon",
-    "downloadPdf": "Descargar PDF",
     "sections": {
       "introduction": "Introducción",
       "problem": "El Problema",
@@ -560,24 +390,23 @@
   },
   "roadmap": {
     "title": "Roadmap",
-    "subtitle": "Fases hacia la inmutabilidad y autonomía del protocolo",
-    "phase0Title": "Lanzamiento Inicial",
-    "phase1Title": "Distribución y Validación",
-    "phase2Title": "Preparación de Mercados",
-    "phase3Title": "Inicio del Staking",
-    "phase4Title": "Primer Año de Staking",
-    "phase5Title": "Autonomía Total",
-    "footer": "1 de agosto: token y Genesis Claim - staking no antes del 1 de septiembre y solo tras finalizar la distribución"
+    "subtitle": "Del lanzamiento reproducible a la inmutabilidad final del protocolo",
+    "phase0Title": "Rehearsal en Devnet",
+    "phase1Title": "Mint y asignación en Mainnet",
+    "phase2Title": "Staking y ola 1",
+    "phase3Title": "Ventana de monitorización de diez semanas",
+    "phase4Title": "Auditoría final e inmutabilidad",
+    "footer": "24 de agosto: mint previsto - 31 de agosto: staking y ola 1 previstos - noviembre: auditoría final y revocación de autoridades"
   },
   "guides": {
     "title": "Guías",
     "subtitle": "Todo lo que necesitas saber para participar en Soleon",
     "guide1Title": "Cómo Conectar tu Wallet",
     "guide1Desc": "Aprende a conectar Phantom, Solflare u otras wallets de Solana",
-    "guide2Title": "Cómo Reclamar la Distribución Inicial",
-    "guide2Desc": "Guía paso a paso para reclamar SEON desde el contrato de distribución inicial",
-    "guide3Title": "Cómo Reportar Errores",
-    "guide3Desc": "Cómo preparar reportes reproducibles para revisión pública",
+    "guide2Title": "Entender el Airdrop Genesis",
+    "guide2Desc": "Selección, calendario de diez olas, transferencias directas y verificación pública",
+    "guide3Title": "Cómo verificar informes públicos",
+    "guide3Desc": "Comprueba reglas del snapshot, hashes de selección, receptores y firmas de transacción",
     "guide4Title": "Cómo Hacer Staking",
     "guide4Desc": "Guía para el staking de SOLEON una vez lanzado",
     "guide5Title": "Cómo Reclamar y Renovar",
@@ -590,9 +419,9 @@
     "readGuide": "Leer Guía",
     "available": "Disponible",
     "guide1Status": "Disponible ahora: abre la explicación paso a paso en esta misma página.",
-    "guide2Status": "Disponible cuando el mint SEON oficial y el contrato de distribución inicial estén publicados.",
-    "guide3Status": "Disponible con la apertura de la revisión pública del código.",
-    "guide4Status": "Disponible tras la revisión inicial y apertura del staking de SEON.",
+    "guide2Status": "El proceso actual está documentado en la página Airdrop Genesis; los informes se activan al comenzar la distribución.",
+    "guide3Status": "Disponible cuando se publiquen el snapshot final y los artefactos de selección.",
+    "guide4Status": "Disponible después de que el staking se abra en mainnet.",
     "guide5Status": "Disponible cuando el staking esté activo y existan posiciones.",
     "guide6Status": "Disponible cuando el token SEON final, staking y el sistema de fees estén activos.",
     "guide7Status": "Disponible ahora: explica pools, fees de LP, pérdida impermanente y tipos de liquidez.",
@@ -666,9 +495,9 @@
     "whitepaperTitle": "Whitepaper",
     "whitepaperDesc": "Documentación técnica completa de tokenomics, sistema de staking, distribución de fees e inmutabilidad.",
     "guidesTitle": "Guías",
-    "guidesDesc": "Tutoriales paso a paso para conectar wallet, reclamar la distribución inicial, verificar el código, hacer staking y reclamar recompensas.",
+    "guidesDesc": "Guías sobre wallets, verificación Genesis, staking, mantenimiento público y riesgos de mercado.",
     "roadmapTitle": "Roadmap",
-    "roadmapDesc": "Fases desde la distribución inicial gratuita hasta la autonomía total del protocolo.",
+    "roadmapDesc": "Rehearsal en devnet, mint en mainnet, diez olas Genesis, monitorización e inmutabilidad final.",
     "technicalTitle": "Técnico",
     "technicalDesc": "Program ID, IDL, direcciones de cuentas y código para interacción directa on-chain.",
     "viewSection": "Ver",
@@ -681,25 +510,30 @@
     "interfaceRepositoryDesc": "Código público de la web oficial.",
     "stakingRepositoryTitle": "Código del contrato de staking",
     "stakingRepositoryDesc": "Código público del programa de staking antes de su despliegue final.",
-    "commitmentClaimProgramTitle": "Programa de distribución inicial",
-    "commitmentClaimProgramDesc": "Dirección pública de commitment_claim en Solana.",
     "stakingProgramTitle": "Programa de staking",
     "stakingProgramDesc": "Dirección pública del contrato después de su despliegue.",
     "technicalStateTitle": "Estado técnico resumido",
     "localTestsTitle": "Pruebas locales",
     "localTestsDesc": "Flujos principales validados localmente mediante tests y scripts.",
     "webE2eTitle": "Prueba integral desde la web",
-    "webE2eDesc": "Pendiente de completar con wallet conectada durante el rehearsal.",
+    "webE2eDesc": "Pendiente la validación completa en navegador durante el rehearsal final en devnet.",
     "finalRehearsalTitle": "Rehearsal final",
-    "finalRehearsalDesc": "Ensayo completo de despliegue, staking, fees, cleanup y autoridades antes de mainnet.",
+    "finalRehearsalDesc": "Rehearsal completo de mint, asignación, staking, fees, mantenimiento y airdrop antes de mainnet.",
     "completed": "Completado",
     "pending": "Pendiente",
     "dexFirstTitle": "¿Por qué DEX-First?",
-    "dexFirstDesc": "DEX-first significa que el token no necesita pedir permiso a un exchange centralizado para existir, operar o mantener liquidez. Cualquiera puede verificar pools, swaps y liquidez on-chain. Esto reduce la dependencia de terceros y se alinea con la filosofía de descentralización de Soleon."
+    "dexFirstDesc": "DEX-first significa que el precio y el volumen proceden de órdenes on-chain reales, no de una preventa privada ni de operaciones fabricadas. Una reserva temporal declarada puede colocar órdenes genuinas, manteniendo públicas todas las direcciones y condiciones de liquidez.",
+    "publicDocument": "Abrir documento público",
+    "genesisSelectionRulesTitle": "Reglas de selección Genesis",
+    "genesisSelectionRulesDesc": "Reglas versionadas de candidatos, elegibilidad, exclusión y selección determinista.",
+    "genesisWaveReportsTitle": "Informes de olas Genesis",
+    "genesisWaveReportsDesc": "Receptores, firmas de transacción, fallos y verificación acumulada de la distribución.",
+    "soleonMintTitle": "Mint oficial de SEON",
+    "soleonMintDesc": "La dirección del mint Token-2022 tras su creación en mainnet."
   },
   "markets": {
     "title": "Mercados y Liquidez",
-    "subtitle": "SEON nace DEX-first y sin liquidez inicial oficial. El mercado debe formarse de forma comunitaria, transparente y on-chain; esta web verifica información, no custodia fondos ni fija precio.",
+    "subtitle": "SEON comienza DEX-first. Una reserva temporal publicada por separado puede colocar órdenes SEON/USDC reales bajo reglas fijas; nunca realiza autooperaciones, fabrica volumen ni promete liquidez.",
     "mintAddress": "Dirección del Token SEON",
     "mintAddressDesc": "Verifica siempre la dirección del mint antes de hacer swap. Copia y comprueba en Solscan.",
     "mintPending": "Pendiente - disponible cuando se publique el mint SEON",
@@ -708,14 +542,14 @@
     "verifyWarningTitle": "Verifica siempre antes de operar",
     "verifyWarningDesc": "Cualquiera puede crear pools con tokens falsos o liquidez muy baja. Comprueba siempre que el mint del pool coincide con el SEON oficial mostrado arriba.",
     "dexFirstTitle": "Mercados DEX verificables",
-    "dexFirstDesc": "Soleon no depende de un listing en CEX ni de una venta inicial. El objetivo inicial es publicar un mercado order-book SEON/USDC verificable en Manifest. Los pools AMM, si aparecen, serán comunitarios.",
-    "organicMarketTitle": "Mercado orgánico",
-    "organicMarketDesc": "No habrá precio oficial ni liquidez oficial inicial. El precio saldrá de operaciones reales y liquidez aportada voluntariamente por usuarios.",
+    "dexFirstDesc": "Soleon no depende de un listing CEX, venta privada ni precio inicial oficial. El objetivo inicial es un order book SEON/USDC verificable en Manifest, separando claramente la actividad de la reserva pública de la actividad de terceros.",
+    "organicMarketTitle": "Descubrimiento real de precio",
+    "organicMarketDesc": "La reserva puede cotizar bids y asks reales, pero las operaciones solo ocurren contra contrapartes independientes. Si nadie opera, el volumen publicado es cero.",
     "verifiedMarketsTitle": "Verificación pública",
     "verifiedMarketsDesc": "La web solo enlazará mercados y pools después de publicar sus direcciones on-chain y revisar que usan el mint SEON correcto.",
     "noCustodyTitle": "Sin custodia",
     "noCustodyDesc": "La web no recibe fondos ni ejecuta operaciones. Cada usuario firma desde su propia wallet usando interfaces DEX externas.",
-    "noOfficialLiquidityNote": "No existe precio oficial ni pool inicial controlado por el proyecto. Si una persona o grupo crea un pool, no será oficial solo por existir.",
+    "noOfficialLiquidityNote": "No existe precio prometido ni profundidad garantizada. Las órdenes de la reserva se declaran como liquidez controlada por Soleon y nunca se presentan como demanda orgánica.",
     "liquidityGuideCtaTitle": "¿Quieres entender, crear o aportar liquidez?",
     "liquidityGuideCtaDesc": "La guía explica pools AMM, fees para LPs, creación comunitaria, control de liquidez y riesgos antes de firmar.",
     "liquidityGuideCtaButton": "Ver guía de pools",
@@ -792,13 +626,13 @@
     "fakePoolTitle": "Pools fake y baja liquidez",
     "fakePoolDesc": "Un pool con el nombre SEON no es suficiente. Si el mint no coincide, si la liquidez es ridícula o si el LP puede retirarse sin aviso, la web lo marcará como alto riesgo o fake y no lo usará como enlace principal.",
     "manifestTitle": "Mercado order-book SEON/USDC en Manifest",
-    "manifestDesc": "Objetivo inicial de mercado DEX: órdenes limitadas verificables on-chain sin pool AMM oficial ni custodia de Soleon.",
+    "manifestDesc": "Objetivo DEX inicial: un order book on-chain verificable donde la reserva pública y usuarios independientes pueden colocar órdenes limit reales.",
     "manifestWhatTitle": "Qué es Manifest",
     "manifestWhatDesc": "Manifest es un DEX order-book de Solana. Como en un CEX, compradores y vendedores publican órdenes indicando cantidad y precio; una operación ocurre cuando dos órdenes compatibles coinciden.",
     "manifestHowTitle": "Cómo funciona sin custodia",
     "manifestHowDesc": "La lógica del mercado se ejecuta on-chain y cada usuario opera desde su propia wallet. Soleon no recibe depósitos, no guarda fondos y no decide qué orden debe ejecutarse.",
     "manifestWhyTitle": "Por qué encaja con Soleon",
-    "manifestWhyDesc": "Permite que exista un primer mercado SEON/USDC sin preventa, sin pool inicial financiado por el proyecto y sin depender de que un exchange centralizado acepte listar SEON.",
+    "manifestWhyDesc": "Permite descubrimiento transparente de precio sin preventa ni un gran pool AMM financiado por el creador. Los balances y órdenes de la reserva siguen siendo públicamente atribuibles.",
     "manifestAddress": "Dirección pública del mercado Manifest",
     "pair": "Par",
     "bestBid": "Mejor compra",
@@ -808,17 +642,17 @@
     "tradeOnManifest": "Operar en Manifest",
     "manifestOrderBookNote": "Las órdenes no garantizan contraparte ni liquidez. El precio se forma cuando compradores y vendedores aceptan operar.",
     "transferFeeWarning": "SEON usa Token-2022. La transfer fee aplicable sigue el calendario público del protocolo y puede afectar la cantidad neta recibida.",
-    "communityPoolsTitle": "Pools AMM comunitarios",
-    "communityPoolsDesc": "Pools creados voluntariamente por usuarios en DEXs externos. Pueden facilitar swaps y repartir fees de trading entre LPs, pero cada pool tiene sus propios riesgos.",
+    "communityPoolsTitle": "Posible pool AMM posterior",
+    "communityPoolsDesc": "Un pool AMM es opcional y solo se considera cuando la actividad real haya creado condiciones de trading observables. No se promete ningún pool ni valoración inicial.",
     "communityPoolsWhatTitle": "Qué es un pool AMM",
     "communityPoolsWhatDesc": "Un pool reúne dos activos, por ejemplo SEON y USDC. Los swaps se ejecutan contra esa reserva y pagan una fee definida por el pool; según las reglas del DEX, parte de esas fees corresponde a quienes aportan liquidez.",
-    "communityPoolsWhyTitle": "Por qué no existe uno inicial",
-    "communityPoolsWhyDesc": "Soleon nace sin preventa ni financiación recaudada para aportar liquidez. El proyecto no controla un pool inicial: la comunidad puede crear los que considere útiles en Raydium, Orca o Meteora.",
+    "communityPoolsWhyTitle": "Condiciones para un pool posterior",
+    "communityPoolsWhyDesc": "Un pool AMM solo se considera tras dos o tres meses de actividad real. Si se crea con activos restantes de la reserva, su precio debe seguir el trading observado y su LP debe quemarse o bloquearse permanentemente.",
     "communityPoolsHowTitle": "Liquidez comunitaria más sólida",
     "communityPoolsHowDesc": "Es preferible que varias wallets aporten liquidez o que el pool use mecanismos verificables de bloqueo cuando existan. Así se reduce el riesgo de depender de una sola persona capaz de retirar toda su posición.",
     "communityPoolsGuideTitle": "Crear o aportar liquidez desde un DEX",
     "communityPoolsGuideDesc": "La web ayuda a entender el proceso y enlaza documentación oficial. No elige el DEX, el tipo de pool ni la fee por la comunidad.",
-    "communityPoolsPending": "No se ha publicado ningún pool AMM comunitario revisado.",
+    "communityPoolsPending": "No se ha publicado ningún pool AMM revisado. No se forzará un pool sin suficiente actividad real.",
     "liquidityControl": "Control de liquidez",
     "openDex": "Abrir DEX",
     "routesTitle": "Accesos DEX publicados",
@@ -962,7 +796,7 @@
     "maintainerCannotDo5": "Dar privilegios especiales on-chain a usuarios seleccionados",
     "maintenanceWalletTitle": "Wallet pública de mantenimiento",
     "maintenanceWalletLabel": "Dirección receptora de fees",
-    "maintenanceWalletDesc": "Esta wallet recibe las fees transparentes: 0.005 SOL por cada claim de distribución inicial y 0.0005 SOL por las acciones de claim y unstake de staking. Su balance y movimientos pueden comprobarse públicamente en Solscan. No concede autoridad sobre las reglas del protocolo.",
+    "maintenanceWalletDesc": "Esta wallet pública recibe únicamente las fees de mantenimiento publicadas y definidas por las acciones de staking. Los receptores del Airdrop Genesis no pagan ninguna fee. Su balance y movimientos pueden comprobarse en Solscan y no tiene autoridad sobre las reglas inmutables del protocolo.",
     "websiteConvenienceNote": "El sitio web oficial es una capa de conveniencia, no una fuente de autoridad del protocolo. Tras la inmutabilidad, las mismas acciones on-chain siguen siendo llamables a través del Program ID, IDL, dirección del mint y direcciones de cuentas publicadas incluso si el sitio web oficial no está disponible.",
     "estimatedCosts": "Costes de Infraestructura Estimados",
     "lowTraffic": "Tráfico bajo",

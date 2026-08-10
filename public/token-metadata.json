@@ -1,0 +1,22 @@
+{
+  "name": "Soleon",
+  "symbol": "SEON",
+  "description": "Soleon is a fixed-supply Token-2022 protocol on Solana with a transparent, verifiable Genesis distribution and on-chain staking.",
+  "image": "https://soleonprotocol.com/images/logo-token.png",
+  "external_url": "https://soleonprotocol.com",
+  "properties": {
+    "category": "token",
+    "files": [
+      {
+        "uri": "https://soleonprotocol.com/images/logo-token.png",
+        "type": "image/png"
+      }
+    ]
+  },
+  "extensions": {
+    "website": "https://soleonprotocol.com",
+    "twitter": "https://x.com/SoleonProtocol",
+    "reddit": "https://www.reddit.com/user/SoleonProtocol/",
+    "github": "https://github.com/soleon-protocol"
+  }
+}

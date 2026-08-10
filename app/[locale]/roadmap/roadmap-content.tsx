@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 import { motion } from 'framer-motion';
-import { Circle, Code2, Flame, Landmark, Lock, Rocket, ShieldCheck } from 'lucide-react';
+import { Circle, FlaskConical, Landmark, Lock, Rocket, ShieldCheck } from 'lucide-react';
 import { Badge } from '@/components/ui/badge';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
@@ -10,149 +10,121 @@ const phases = [
   {
     key: 'phase_0',
     titleKey: 'phase0Title',
-    days: '1 agosto 2026',
-    daysEn: 'August 1, 2026',
-    icon: Rocket,
+    days: '10-23 agosto 2026',
+    daysEn: 'August 10-23, 2026',
+    icon: FlaskConical,
     color: 'text-blue-500',
     bgColor: 'bg-blue-500/10',
     items: [
-      'Crear y publicar el mint SEON Token-2022 con supply fijo de 444,444,444 SEON.',
-      'Publicar el código de commitment_claim y staking; desplegar commitment_claim y abrir Genesis Claim.',
-      'Financiar 440,000,000 SEON en la reward vault de staking.',
-      'Publicar la distribución inicial de 4,444,444 SEON: 44,444 para el desarrollador inicial y 4,400,000 para 2,200 Genesis Claims.',
-      'Mostrar mint, vaults y direcciones públicas en Solscan cuando existan.',
+      'Cerrar scripts reanudables de mint, metadata, selección, oleadas y verificación acumulada.',
+      'Ejecutar rehearsal completo en devnet: mint, cuatro asignaciones, staking, mantenimiento y airdrop.',
+      'Publicar reglas de selección, allowlist de programas, exclusiones, formato de informes y riesgos.',
+      'Corregir únicamente problemas confirmados antes de crear activos en mainnet.',
     ],
     itemsEn: [
-      'Create and publish the Token-2022 SEON mint with fixed supply of 444,444,444 SEON.',
-      'Publish the commitment_claim and staking source code; deploy commitment_claim and open Genesis Claim.',
-      'Fund 440,000,000 SEON into the staking reward vault.',
-      'Publish the 4,444,444 SEON initial distribution: 44,444 for the initial developer and 4,400,000 for 2,200 Genesis Claims.',
-      'Display mint, vaults and public addresses on Solscan when available.',
+      'Finalize resumable mint, metadata, selection, wave and cumulative verification scripts.',
+      'Run the complete devnet rehearsal: mint, four allocations, staking, maintenance and airdrop.',
+      'Publish selection rules, program allowlist, exclusions, report format and risks.',
+      'Correct only confirmed issues before creating mainnet assets.',
     ],
   },
   {
     key: 'phase_1',
     titleKey: 'phase1Title',
-    days: 'agosto 2026',
-    daysEn: 'August 2026',
-    icon: Code2,
+    days: '24 agosto 2026',
+    daysEn: 'August 24, 2026',
+    icon: Rocket,
     color: 'text-primary',
     bgColor: 'bg-primary/10',
     items: [
-      'Mantener abierta la distribución inicial gratuita mientras existan fondos y se cumplan las reglas de claim.',
-      'Publicar las reglas de reputación, su hash y el estado verificable de Genesis Claim.',
-      'Mantener público el código de la web, commitment_claim y staking.',
-      'Completar las pruebas integradas de elegibilidad, claim, límites diarios y cierre.',
-      'Corregir cualquier problema técnico confirmado antes del despliegue final.',
-      'Preparar ensayo final de staking, fee collection y cleanup de posiciones fuera de gracia.',
+      'Crear el mint Token-2022 con supply fijo de 444,444,444 SEON y metadata oficial.',
+      'Revocar mint authority y freeze authority; mantener transfer fee en 0% hasta abrir staking.',
+      'Asignar 440,000,000 SEON a rewards, 4,000,000 a Genesis, 400,000 a mercado/liquidez y 44,444 al desarrollador.',
+      'Publicar mint, wallets, token accounts, balances y hashes de configuración.',
+      'Fijar el snapshot y preparar la selección determinista de 400 wallets independientes.',
     ],
     itemsEn: [
-      'Keep the free initial distribution open while funds remain and claim rules are satisfied.',
-      'Publish the reputation rules, their hash and the verifiable Genesis Claim state.',
-      'Keep the website, commitment_claim and staking source code public.',
-      'Complete integrated tests for eligibility, claims, daily limits and closure.',
-      'Fix any confirmed technical issue before the final deployment.',
-      'Prepare final rehearsal for staking, fee collection and post-grace cleanup.',
+      'Create the Token-2022 mint with fixed 444,444,444 SEON supply and official metadata.',
+      'Revoke mint and freeze authorities; keep the transfer fee at 0% until staking opens.',
+      'Allocate 440,000,000 SEON to rewards, 4,000,000 to Genesis, 400,000 to market/liquidity and 44,444 to the developer.',
+      'Publish the mint, wallets, token accounts, balances and configuration hashes.',
+      'Fix the snapshot and prepare deterministic selection of 400 independent wallets.',
     ],
   },
   {
     key: 'phase_2',
     titleKey: 'phase2Title',
-    days: 'agosto 2026',
-    daysEn: 'August 2026',
-    icon: Landmark,
-    color: 'text-secondary',
-    bgColor: 'bg-secondary/10',
+    days: '31 agosto 2026',
+    daysEn: 'August 31, 2026',
+    icon: Lock,
+    color: 'text-green-500',
+    bgColor: 'bg-green-500/10',
     items: [
-      'Preparar el mercado order-book SEON/USDC en Manifest como objetivo DEX inicial.',
-      'Mantener claro que no hay pool AMM oficial inicial ni liquidez controlada por Soleon.',
-      'Publicar guía para que la comunidad entienda y cree pools en Raydium, Orca o Meteora.',
-      'Definir criterios de verificación: mint correcto, DEX real, liquidez visible y riesgos públicos.',
-      'No custodiar fondos ni fijar precio desde la web.',
+      'Desplegar e inicializar staking después de superar el rehearsal y las comprobaciones de mainnet.',
+      'Abrir lock único de 7 días, gracia de 3 días y rewards proporcionales sin APR garantizado.',
+      'Ejecutar la ola 1: 40 wallets x 10,000 SEON y publicar su informe verificable.',
+      'Activar de forma permissionless la transfer fee inicial de 0.02%.',
+      'Mantener temporalmente la upgrade authority para correcciones verificadas durante las diez olas.',
     ],
     itemsEn: [
-      'Prepare the SEON/USDC order-book market on Manifest as the initial DEX target.',
-      'Keep clear that there is no initial official AMM pool and no Soleon-controlled liquidity.',
-      'Publish guidance for the community to understand and create pools on Raydium, Orca or Meteora.',
-      'Define verification criteria: correct mint, real DEX, visible liquidity and public risks.',
-      'Do not custody funds or set price from the website.',
+      'Deploy and initialize staking after the rehearsal and mainnet checks pass.',
+      'Open the single 7-day lock, 3-day grace and proportional rewards without guaranteed APR.',
+      'Execute wave 1: 40 wallets x 10,000 SEON and publish its verifiable report.',
+      'Permissionlessly activate the initial 0.02% transfer fee.',
+      'Temporarily retain the upgrade authority for verified corrections during the ten waves.',
     ],
   },
   {
     key: 'phase_3',
     titleKey: 'phase3Title',
-    days: '1 septiembre o fin de Genesis Claim',
-    daysEn: 'September 1 or Genesis completion',
-    icon: Lock,
-    color: 'text-green-500',
-    bgColor: 'bg-green-500/10',
+    days: '31 agosto - 2 noviembre',
+    daysEn: 'August 31 - November 2',
+    icon: Landmark,
+    color: 'text-secondary',
+    bgColor: 'bg-secondary/10',
     items: [
-      'Desplegar y abrir staking en la fecha más tardía entre el 1 de septiembre y el fin de Genesis Claim, si el rehearsal es correcto.',
-      'Activar lock único de 7 días y gracia de 3 días.',
-      'Permitir stake, claim, renew, unstake y cleanup público de posiciones fuera de gracia.',
-      'Habilitar la primera actualización permissionless de transfer fee a 0.02%.',
-      'Iniciar el presupuesto anual: 1% de reward vault no comprometida el primer año.',
+      'Ejecutar una ola semanal de 40 wallets hasta completar 400 receptores y 4,000,000 SEON.',
+      'Publicar por ola receptores, firmas, fallos, reintentos e informe acumulado.',
+      'Permitir órdenes SEON/USDC reales desde la reserva pública bajo reglas fijas; sin autooperaciones ni volumen fabricado.',
+      'Observar staking, actividad de terceros, profundidad y price discovery sin prometer liquidez ni valor.',
+      'Publicar cualquier corrección del staking con motivo, diff, pruebas y nueva dirección verificable.',
     ],
     itemsEn: [
-      'Deploy and open staking on the later of September 1 and Genesis Claim completion, provided the rehearsal passes.',
-      'Activate the single 7-day lock and 3-day grace period.',
-      'Enable stake, claim, renew, unstake and public cleanup of post-grace positions.',
-      'Enable the first permissionless transfer-fee update to 0.02%.',
-      'Start the annual budget: 1% of uncommitted reward vault in year one.',
+      'Execute one weekly wave of 40 wallets until 400 recipients and 4,000,000 SEON are complete.',
+      'Publish recipients, signatures, failures, retries and the cumulative report for every wave.',
+      'Allow genuine SEON/USDC orders from the public reserve under fixed rules; no self-trading or fabricated volume.',
+      'Observe staking, third-party activity, depth and price discovery without promising liquidity or value.',
+      'Publish every staking correction with its reason, diff, tests and new verifiable address.',
     ],
   },
   {
     key: 'phase_4',
     titleKey: 'phase4Title',
-    days: 'septiembre 2026 - septiembre 2027',
-    daysEn: 'September 2026 - September 2027',
-    icon: Flame,
-    color: 'text-orange-500',
-    bgColor: 'bg-orange-500/10',
-    items: [
-      'Rewards proporcionales al principal activo, no APR fijo garantizado.',
-      'Renew puntual compone principal + rewards sin redistribución y reduce futuras redistribuciones de claim del 10% hacia 0%.',
-      'Claim y unstake aplican redistribución solo sobre rewards; el principal no se penaliza.',
-      'Fees Token-2022 recolectadas públicamente: 20% quema, 1 SEON al ejecutor y resto a reward vault.',
-      'La fee de transferencia permanece en 0.02% hasta la siguiente actualización anual.',
-    ],
-    itemsEn: [
-      'Rewards are proportional to active principal, not a guaranteed fixed APR.',
-      'On-time renew compounds principal + rewards without redistribution and reduces future claim redistribution from 10% toward 0%.',
-      'Claim and unstake apply redistribution only to rewards; principal is not penalized.',
-      'Token-2022 fees are collected publicly: 20% burn, 1 SEON caller and rest to reward vault.',
-      'The transfer fee remains 0.02% until the next annual update.',
-    ],
-  },
-  {
-    key: 'phase_5',
-    titleKey: 'phase5Title',
-    days: 'fase final',
-    daysEn: 'Final phase',
+    days: 'noviembre 2026',
+    daysEn: 'November 2026',
     icon: ShieldCheck,
     color: 'text-primary',
     bgColor: 'bg-primary/10',
     items: [
-      'Publicar estado final de mint, program IDs, vaults y autoridades.',
-      'Revocar autoridades críticas cuando las reglas estén cerradas.',
-      'Mantener la web como interfaz y documentación, no como autoridad del protocolo.',
-      'Conservar acciones permissionless: fee update, fee collection y cleanup.',
-      'Avanzar hacia un protocolo verificable, ejecutable on-chain e independiente de decisiones privadas.',
+      'Verificar las diez olas, balances, supply, vaults, transfer fee y estado completo del staking.',
+      'Completar la auditoría final y revocar las autoridades críticas del programa de staking.',
+      'Mantener la web, informes y maintenance wallet como operaciones públicas, no como autoridad sobre las reglas inmutables.',
+      'Evaluar tras 2-3 meses si la actividad real justifica un pool con activos restantes de mercado.',
+      'Crear pool solo con precio observado y LP quemado o bloqueado permanentemente; si no se cumplen las condiciones, no forzarlo.',
     ],
     itemsEn: [
-      'Publish final state of mint, program IDs, vaults and authorities.',
-      'Revoke critical authorities once the rules are closed.',
-      'Keep the website as interface and documentation, not as protocol authority.',
-      'Preserve permissionless actions: fee update, fee collection and cleanup.',
-      'Move toward a verifiable protocol that remains callable on-chain and independent from private decisions.',
+      'Verify all ten waves, balances, supply, vaults, transfer fee and complete staking state.',
+      'Complete the final audit and revoke critical staking program authorities.',
+      'Keep the website, reports and maintenance wallet as public operations, not authority over immutable rules.',
+      'After 2-3 months, assess whether real activity justifies a pool using remaining market assets.',
+      'Create a pool only from observed prices with permanently burned or locked LP; otherwise do not force it.',
     ],
   },
 ] as const;
 
 export function RoadmapContent() {
   const t = useTranslations('roadmap');
-  const locale = useLocale();
-  const isEn = locale === 'en';
+  const isEn = useLocale() === 'en';
 
   return (
     <div className="relative min-h-screen py-20">
@@ -193,11 +165,7 @@ export function RoadmapContent() {
                     </div>
                   </div>
 
-                  <div
-                    className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${
-                      isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'
-                    }`}
-                  >
+                  <div className={`ml-12 md:ml-0 md:w-[calc(50%-2rem)] ${isLeft ? 'md:mr-auto md:pr-8' : 'md:ml-auto md:pl-8'}`}>
                     <Card className="border-border/50 bg-card/50 backdrop-blur-sm transition-all hover:border-primary/30">
                       <CardHeader className="pb-2">
                         <div className="flex items-center justify-between gap-2">
@@ -208,9 +176,7 @@ export function RoadmapContent() {
                             {isEn ? 'Planned' : 'Planificado'}
                           </Badge>
                         </div>
-                        <CardTitle className="mt-2 text-xl">
-                          {t(phase.titleKey)}
-                        </CardTitle>
+                        <CardTitle className="mt-2 text-xl">{t(phase.titleKey)}</CardTitle>
                       </CardHeader>
                       <CardContent>
                         <ul className="space-y-2">
@@ -237,9 +203,7 @@ export function RoadmapContent() {
           className="mt-16 text-center"
         >
           <div className="mx-auto h-px w-32 bg-gradient-to-r from-transparent via-primary/50 to-transparent" />
-          <p className="mt-6 font-serif text-lg italic text-primary/60">
-            {t('footer')}
-          </p>
+          <p className="mt-6 font-serif text-lg italic text-primary/60">{t('footer')}</p>
         </motion.div>
       </div>
     </div>
