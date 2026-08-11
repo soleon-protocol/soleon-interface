@@ -296,6 +296,13 @@ Por ejemplo, 300,000 SEON y 300 USDC implican un precio inicial de 0.001 USDC po
 
 No se depositan automáticamente todos los activos disponibles. Si Manifest muestra un precio de referencia de 0.01 USDC y la Market / Liquidity Wallet tiene 400,000 SEON y 200 USDC, la combinación directa de todo el inventario implicaría 0.0005 USDC por SEON y abriría una diferencia inmediata frente al order book. Sin vender previamente, una combinación alineada con 0.01 sería como máximo 20,000 SEON y 200 USDC, dejando el resto fuera del pool. La propuesta debe mostrar esta limitación con claridad para que los usuarios puedan decidir si la liquidez es demasiado pequeña.
 
+**Umbral mínimo de liquidez**
+Una propuesta de pool oficial solo puede abrir su votación si la aportación confirmada contiene al menos 2,500 USDC netos y una cantidad neta de SEON valorada en al menos otros 2,500 USDC mediante la referencia de mercado publicada. El valor nominal combinado mínimo es, por tanto, 5,000 USDC. Las cantidades netas son las que recibirían realmente los vaults del pool después de transfer fees y otros ajustes aplicables.
+
+Solo cuentan balances on-chain confirmados y comprometidos en la propuesta exacta. Indicaciones no vinculantes, donaciones pendientes, operaciones futuras esperadas o fondos todavía controlados por terceros no permiten cumplir el umbral. Alcanzarlo no garantiza profundidad, estabilidad, volumen ni valor; solo evita crear como pool oficial una posición inicialmente demasiado pequeña.
+
+Soleon no abre campañas de donaciones ni acepta aportaciones de terceros para alcanzar este umbral. Los activos de la aportación oficial deben proceder exclusivamente del inventario inicial publicado de la Market / Liquidity Wallet y de sus operaciones reales bajo las reglas públicas. Después de existir un pool, cualquier usuario puede aportar su propia liquidez directamente mediante el DEX y conservar los derechos asociados a su posición independiente.
+
 **Referencia de mercado y propuesta exacta**
 La propuesta del pool publica antes del voto:
 • slot y hora de referencia,
@@ -305,14 +312,24 @@ La propuesta del pool publica antes del voto:
 • VWAP de 14 días de operaciones reales en Manifest, junto con volumen, spread y profundidad observados,
 • diferencia entre el precio propuesto y el precio de referencia,
 • estimación de slippage y activos que permanecerían fuera del pool,
-• mecanismo de bloqueo de la posición LP y tratamiento exacto de cualquier derecho a fees.
+• destino exacto de los activos que permanecerían fuera del pool,
+• tipo de pool, configuración de fees y confirmación de que cualquier creator fee opcional queda desactivada,
+• mecanismo de bloqueo de la posición LP y tratamiento exacto de cualquier derecho a fees,
+• volumen y profundidad mínimos que deben seguir existiendo al ejecutar la propuesta.
 
 Las autooperaciones y transferencias entre wallets controladas por Soleon no cuentan para formar la referencia. Si no existe suficiente actividad para obtener una referencia defendible, la propuesta debe indicarlo expresamente y no puede presentar un precio aislado como precio de mercado.
 
-**Reequilibrio previo separado**
-Vender SEON antes del pool puede mejorar el equilibrio entre ambos activos, pero la transparencia por sí sola no convierte cualquier venta en una actuación adecuada. No se permite una venta grande, discrecional y ejecutada justo antes de la apertura. Si se considera necesario reequilibrar la wallet, se publica primero una propuesta separada con cantidad máxima, ventana temporal, precios límite, slippage máximo y reglas de ejecución. Solo se usan órdenes reales contra terceros independientes; nunca self-trading ni volumen fabricado.
+**Propuesta fija y wallet congelada**
+Desde que se publica la propuesta final, la Market / Liquidity Wallet cancela sus órdenes abiertas y queda inactiva durante la votación, la comprobación del resultado y la eventual ejecución. No puede comprar, vender, reequilibrar ni transferir inventario durante ese periodo. Los usuarios independientes pueden seguir operando normalmente en Manifest, pero las cantidades sometidas a voto no cambian mientras se votan.
 
-Tras ese proceso se publica su informe y se somete a voto una nueva propuesta final con las cantidades efectivamente disponibles. Como ejemplo matemático, vender 200,000 SEON a un precio medio exacto de 0.01 dejaría 200,000 SEON y 2,200 USDC, lo que implica 0.011, no 0.01. Ignorando fees y slippage, vender 190,000 dejaría 210,000 SEON y 2,100 USDC, pero ese resultado solo sería real si existiera demanda independiente suficiente para ejecutar toda la venta a ese precio.
+Antes de ejecutar una propuesta aprobada se recalcula la referencia mediante el mismo método publicado. Si difiere más de un 10% de la referencia sometida a voto, o dejan de cumplirse el volumen o la profundidad mínimos publicados, la autorización caduca sin ejecutar el pool. El cambio de mercado no permite modificar discretamente las cantidades aprobadas: requiere una propuesta y un snapshot nuevos.
+
+**Reequilibrio previo separado**
+Si una propuesta de pool no se aprueba, la wallet puede reanudar después del periodo de comprobación su market making ordinario bajo las reglas públicas anteriores. Que sus balances evolucionen como consecuencia de operaciones reales iniciadas por terceros no constituye por sí solo un reequilibrio dirigido.
+
+Vender SEON deliberadamente para preparar otra combinación de pool sí es una actuación distinta. No se permite una venta grande, discrecional ni ejecutada durante la votación. Requiere una propuesta de reequilibrio separada y aprobada, antes de ejecutarse, mediante las mismas reglas de snapshot, quorum y mayoría de la votación del pool. Esa propuesta publica cantidad máxima, ventana temporal, precios límite, slippage máximo, ritmo máximo de participación (nunca superior al 10% del volumen independiente observado), condiciones de parada y reglas de ejecución. No puede perseguir, sostener ni fabricar un precio. Solo se usan órdenes reales contra terceros independientes; nunca self-trading, órdenes engañosas ni volumen fabricado.
+
+Tras ese proceso se publica cada ejecución y un informe final; después se somete a voto una nueva propuesta de pool con las cantidades efectivamente disponibles. Por ejemplo, pasar de 300,000 SEON + 1,000 USDC a 200,000 SEON + 2,000 USDC exige vender 100,000 SEON a un precio medio real de 0.01 USDC, ignorando fees y slippage. Ese resultado solo es válido si existe demanda independiente suficiente; no puede imponerse mediante wallets propias ni operaciones ficticias.
 
 **Votación comunitaria del pool**
 • 2 de noviembre de 2026: publicar Wave 10, el informe acumulado y la primera propuesta de pool.
@@ -322,7 +339,7 @@ Tras ese proceso se publica su informe y se somete a voto una nueva propuesta fi
 • Si se aprueba la propuesta final, ejecutar el pool en un máximo de 7 días después de validar el resultado.
 • Si no se aprueba o no alcanza quorum, no se crea el pool. Una propuesta nueva, con datos y snapshot nuevos, no puede abrirse antes de 30 días.
 
-El snapshot usa el primer slot finalizado de Solana igual o posterior a la hora publicada. Cuenta el balance líquido elegible y el principal en staking atribuible a cada wallet; excluye Developer Wallet, Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults y cualquier otra cuenta oficial. El dataset, su hash y las reglas de cálculo se publican para reproducción independiente.
+El snapshot usa el primer slot finalizado de Solana igual o posterior a la hora publicada. Cuenta el balance líquido elegible y el principal en staking atribuible a cada wallet. La Developer Wallet participa como una única wallet con su balance elegible real, pero no cuenta como receptora Genesis ni ayuda a cumplir el mínimo de wallets Genesis distintas. Dividir tokens entre otras wallets controladas por el desarrollador no crea votantes independientes válidos. Se excluyen Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults y cualquier otra cuenta oficial. El dataset, su hash y las reglas de cálculo se publican para reproducción independiente.
 
 El voto se registra con una transacción memo que identifica la propuesta y YES, NO o ABSTAIN. Votar no requiere transferir SEON ni entregar custodia; solo pagar la fee normal de red. Cuenta el último voto válido de cada wallet antes del cierre y 1 SEON elegible equivale a 1 voto. La aprobación requiere simultáneamente:
 • participación mínima de 1,000,000 SEON,
@@ -333,7 +350,9 @@ El voto se registra con una transacción memo que identifica la propuesta y YES,
 ABSTAIN cuenta para quorum, pero no para el porcentaje YES/NO. El votante también puede declarar de forma opcional y no vinculante cuánta liquidez consideraría aportar. Esa declaración no bloquea fondos ni obliga a participar. La web debe explicar que aportar liquidez conlleva slippage, impermanent loss y riesgo de pérdida; no es un requisito para votar ni una promesa de rentabilidad.
 
 **Bloqueo permanente y fees**
-El diseño previsto exige que la posición LP quede quemada o bloqueada permanentemente para que la liquidez aportada no pueda retirarse discrecionalmente. La propuesta debe identificar el mecanismo concreto y explicar si existe una clave o NFT con derecho a reclamar fees. Si esos derechos no pueden eliminarse técnicamente, su control y destino deben votarse y publicarse de antemano; nunca se presentan como rentabilidad garantizada ni como fees inexistentes.
+Si se aprueba, el diseño previsto crea un pool Raydium CPMM estándar con la creator fee opcional desactivada, después de verificar públicamente la configuración vigente. La posición LP se bloquea permanentemente mediante Burn & Earn. Tras comprobar on-chain el bloqueo, la Fee Key NFT se quema para renunciar de forma irreversible a cualquier derecho de Soleon a reclamar las fees de esa posición.
+
+La parte estándar de las fees que corresponde al LP permanece en los vaults del pool y aumenta su liquidez interna. Las partes de protocolo y fondo pertenecen a Raydium conforme a su configuración vigente; Soleon no las controla. Los SEON de la Market / Liquidity Wallet que la propuesta aprobada no utilice se transfieren al reward_vault, publicando cantidad bruta, fee Token-2022 y cantidad neta. Esa aportación no recalcula retroactivamente el presupuesto anual ya abierto, pero aumenta los rewards disponibles para periodos futuros. El destino de cualquier USDC restante debe formar parte de la propuesta y no puede decidirse después de la votación.
 
 **Pools comunitarios y mercados falsos**
 La comunidad puede crear otros pools en Raydium, Orca, Meteora u otros DEX compatibles. No serán oficiales por defecto. La web podrá mostrarlos si se revisa:
@@ -746,6 +765,13 @@ For example, 300,000 SEON and 300 USDC imply an initial price of 0.001 USDC per 
 
 Available assets are not deposited automatically in full. If Manifest shows a 0.01 USDC reference price while the Market / Liquidity Wallet holds 400,000 SEON and 200 USDC, contributing all inventory directly would imply 0.0005 USDC per SEON and create an immediate difference from the order book. Without a prior sale, a combination aligned with 0.01 would be at most 20,000 SEON and 200 USDC, leaving the remainder outside the pool. The proposal must make this limitation clear so users can decide whether the liquidity is too small.
 
+**Minimum liquidity threshold**
+An official pool proposal may open voting only if its confirmed contribution contains at least 2,500 net USDC and a net amount of SEON valued at no less than another 2,500 USDC under the published market reference. The minimum combined nominal value is therefore 5,000 USDC. Net amounts are what the pool vaults would actually receive after transfer fees and other applicable adjustments.
+
+Only confirmed on-chain balances committed by the exact proposal count toward this threshold. Non-binding indications, pending donations, expected future trades or funds still controlled by third parties cannot satisfy it. Meeting the threshold does not guarantee depth, stability, volume or value; it only prevents an initially undersized position from becoming the official pool.
+
+Soleon does not open donation campaigns or accept third-party contributions to reach this threshold. Assets in the official contribution must come exclusively from the published initial inventory of the Market / Liquidity Wallet and its genuine operations under the public rules. After a pool exists, any user may provide personal liquidity directly through the DEX and retain the rights attached to that independent position.
+
 **Market reference and exact proposal**
 Before voting, the pool proposal publishes:
 • reference slot and time,
@@ -755,14 +781,24 @@ Before voting, the pool proposal publishes:
 • 14-day VWAP of genuine Manifest trades, together with observed volume, spread and depth,
 • difference between proposed and reference prices,
 • estimated slippage and assets that would remain outside the pool,
-• LP position lock mechanism and exact treatment of any fee rights.
+• exact destination of assets that would remain outside the pool,
+• pool type, fee configuration and confirmation that any optional creator fee is disabled,
+• LP position lock mechanism and exact treatment of any fee rights,
+• minimum volume and depth that must still exist when the proposal is executed.
 
 Self-trades and transfers between Soleon-controlled wallets do not form part of the reference. If there is not enough activity to obtain a defensible reference, the proposal must say so explicitly and cannot present an isolated trade as a market price.
 
-**Separate pre-pool rebalancing**
-Selling SEON before the pool may improve the balance between both assets, but transparency alone does not make every sale appropriate. A large discretionary sale immediately before pool creation is not allowed. If wallet rebalancing is considered necessary, a separate proposal first publishes the maximum amount, execution window, limit prices, maximum slippage and execution rules. Only genuine orders against independent third parties are used; never self-trading or fabricated volume.
+**Fixed proposal and frozen wallet**
+From publication of the final proposal, the Market / Liquidity Wallet cancels its open orders and remains inactive throughout voting, result verification and any resulting execution. It cannot buy, sell, rebalance or transfer inventory during that period. Independent users may continue trading normally on Manifest, but the amounts under vote do not change while voting is open.
 
-After that process, its report is published and a new final proposal with the assets actually available is submitted to a vote. As a mathematical example, selling 200,000 SEON at an exact average price of 0.01 would leave 200,000 SEON and 2,200 USDC, implying 0.011 rather than 0.01. Ignoring fees and slippage, selling 190,000 would leave 210,000 SEON and 2,100 USDC, but that outcome is real only if enough independent demand exists to execute the entire sale at that price.
+Before executing an approved proposal, the reference is recalculated using the same published method. If it differs by more than 10% from the reference submitted to the vote, or the published minimum volume or depth is no longer met, the authorization expires without creating the pool. A market change does not authorize discretionary changes to approved amounts: a new proposal and snapshot are required.
+
+**Separate pre-pool rebalancing**
+If a pool proposal fails, the wallet may resume ordinary market making under the preceding public rules after the verification period. Balance changes caused by genuine trades initiated by independent parties do not by themselves constitute directed rebalancing.
+
+Deliberately selling SEON to prepare a different pool combination is a separate action. A large discretionary sale is not allowed and no such sale may occur while a pool vote is open. It requires a separate rebalancing proposal approved before execution under the same snapshot, quorum and majority rules as the pool vote. That proposal publishes the maximum amount, execution window, limit prices, maximum slippage, maximum participation rate (never above 10% of observed independent volume), halt conditions and execution rules. It cannot target, defend or fabricate a price. Only genuine orders against independent third parties are used; never self-trading, misleading orders or fabricated volume.
+
+Every execution and a final report are published after that process; a new pool proposal is then submitted with the assets actually available. For example, moving from 300,000 SEON + 1,000 USDC to 200,000 SEON + 2,000 USDC requires selling 100,000 SEON at a genuine average price of 0.01 USDC, ignoring fees and slippage. That outcome is valid only if enough independent demand exists; it cannot be imposed through controlled wallets or fictitious trades.
 
 **Community pool vote**
 • November 2, 2026: publish Wave 10, the cumulative report and the first pool proposal.
@@ -772,7 +808,7 @@ After that process, its report is published and a new final proposal with the as
 • If the final proposal passes, execute the pool within 7 days after validating the result.
 • If it fails or does not reach quorum, no pool is created. A new proposal with new data and snapshot cannot open for at least 30 days.
 
-The snapshot uses the first finalized Solana slot at or after the published time. It counts eligible liquid balance and staked principal attributable to each wallet; it excludes the Developer Wallet, Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults and every other official account. The dataset, its hash and calculation rules are published for independent reproduction.
+The snapshot uses the first finalized Solana slot at or after the published time. It counts eligible liquid balance and staked principal attributable to each wallet. The Developer Wallet participates as one wallet with its actual eligible balance, but it is not a Genesis recipient and does not help satisfy the minimum number of distinct Genesis wallets. Splitting tokens among other developer-controlled wallets does not create valid independent voters. The Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults and every other official account are excluded. The dataset, its hash and calculation rules are published for independent reproduction.
 
 The vote is recorded through a memo transaction identifying the proposal and YES, NO or ABSTAIN. Voting does not require transferring SEON or surrendering custody; only the normal network fee is paid. Each wallet's last valid vote before closing counts, and 1 eligible SEON equals 1 vote. Approval simultaneously requires:
 • at least 1,000,000 participating SEON,
@@ -783,7 +819,9 @@ The vote is recorded through a memo transaction identifying the proposal and YES
 ABSTAIN counts toward quorum but not the YES/NO percentage. A voter may also provide an optional, non-binding indication of how much liquidity they might contribute. This indication does not lock funds or create an obligation. The website must explain that providing liquidity involves slippage, impermanent loss and risk of loss; it is neither required to vote nor a promise of returns.
 
 **Permanent lock and fees**
-The intended design requires the LP position to be burned or permanently locked so contributed liquidity cannot be withdrawn at discretion. The proposal must identify the exact mechanism and explain whether a key or NFT retains fee-claim rights. If those rights cannot technically be eliminated, their control and destination must be voted on and published in advance; they are never presented as guaranteed returns or as nonexistent fees.
+If approved, the intended design creates a standard Raydium CPMM pool with the optional creator fee disabled after publicly verifying the current configuration. The LP position is permanently locked through Burn & Earn. After verifying the lock on-chain, the Fee Key NFT is burned, irreversibly relinquishing every Soleon right to claim fees from that position.
+
+The standard LP share of trading fees remains in the pool vaults and increases its internal liquidity. Protocol and fund shares belong to Raydium under its current configuration; Soleon does not control them. SEON remaining in the Market / Liquidity Wallet after the approved contribution is transferred to the reward_vault, with gross amount, Token-2022 fee and net amount published. This top-up does not retroactively recalculate an annual budget already opened, but increases rewards available to future periods. The destination of any remaining USDC must form part of the proposal and cannot be decided after voting.
 
 **Community pools and fake markets**
 The community may create other pools on Raydium, Orca, Meteora or compatible DEXs. Those pools are not official by default. The website may display them if it reviews:
