@@ -343,13 +343,13 @@ Tras ese proceso se publica cada ejecución y un informe final; después se some
 
 El snapshot usa el primer slot finalizado de Solana igual o posterior a la hora publicada. Cuenta el balance líquido elegible y el principal en staking atribuible a cada wallet. La Developer Wallet participa como una única wallet con su balance elegible real, pero no cuenta como receptora Genesis ni ayuda a cumplir el mínimo de wallets Genesis distintas. Dividir tokens entre otras wallets controladas por el desarrollador no crea votantes independientes válidos. Se excluyen Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults y cualquier otra cuenta oficial. El dataset, su hash y las reglas de cálculo se publican para reproducción independiente.
 
-El voto se registra con una transacción memo que identifica la propuesta y YES, NO o ABSTAIN. Votar no requiere transferir SEON ni entregar custodia; solo pagar la fee normal de red. Cuenta el último voto válido de cada wallet antes del cierre y 1 SEON elegible equivale a 1 voto. La aprobación requiere simultáneamente:
+El voto se registra con una transacción memo que identifica la propuesta y YES o NO. Votar no requiere transferir SEON ni entregar custodia; solo pagar la fee normal de red. Cuenta el último voto válido de cada wallet antes del cierre y 1 SEON elegible equivale a 1 voto. La aprobación requiere simultáneamente:
 • participación mínima de 1,000,000 SEON,
 • al menos 66.67% de YES entre YES + NO,
 • al menos 50 wallets votantes distintas,
 • al menos 25 wallets receptoras originales de Genesis con balance elegible.
 
-ABSTAIN cuenta para quorum, pero no para el porcentaje YES/NO. El votante también puede declarar de forma opcional y no vinculante cuánta liquidez consideraría aportar. Esa declaración no bloquea fondos ni obliga a participar. La web debe explicar que aportar liquidez conlleva slippage, impermanent loss y riesgo de pérdida; no es un requisito para votar ni una promesa de rentabilidad.
+Solo cuentan votos YES o NO. Una wallet que no vota no participa en la decisión ni ayuda a alcanzar el quorum. El votante también puede declarar de forma opcional y no vinculante cuánta liquidez consideraría aportar. Esa declaración no bloquea fondos ni obliga a participar. La web debe explicar que aportar liquidez conlleva slippage, impermanent loss y riesgo de pérdida; no es un requisito para votar ni una promesa de rentabilidad.
 
 **Ejecución de una retirada aprobada**
 La retirada usa exactamente el mismo snapshot, quorum, mayoría y requisitos de diversidad de votantes que la votación del pool. Durante la votación y la comprobación del resultado la wallet permanece congelada. Si la retirada se aprueba, se publica antes de operar un plan final de conversión con saldo inicial, ventana temporal, precios límite, slippage máximo, condiciones de parada y ritmo máximo de participación, nunca superior al 10% del volumen independiente observado.
@@ -821,13 +821,13 @@ Every execution and a final report are published after that process; a new pool 
 
 The snapshot uses the first finalized Solana slot at or after the published time. It counts eligible liquid balance and staked principal attributable to each wallet. The Developer Wallet participates as one wallet with its actual eligible balance, but it is not a Genesis recipient and does not help satisfy the minimum number of distinct Genesis wallets. Splitting tokens among other developer-controlled wallets does not create valid independent voters. The Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults and every other official account are excluded. The dataset, its hash and calculation rules are published for independent reproduction.
 
-The vote is recorded through a memo transaction identifying the proposal and YES, NO or ABSTAIN. Voting does not require transferring SEON or surrendering custody; only the normal network fee is paid. Each wallet's last valid vote before closing counts, and 1 eligible SEON equals 1 vote. Approval simultaneously requires:
+The vote is recorded through a memo transaction identifying the proposal and YES or NO. Voting does not require transferring SEON or surrendering custody; only the normal network fee is paid. Each wallet's last valid vote before closing counts, and 1 eligible SEON equals 1 vote. Approval simultaneously requires:
 • at least 1,000,000 participating SEON,
 • at least 66.67% YES among YES + NO,
 • at least 50 distinct voting wallets,
 • at least 25 original Genesis recipient wallets with eligible balance.
 
-ABSTAIN counts toward quorum but not the YES/NO percentage. A voter may also provide an optional, non-binding indication of how much liquidity they might contribute. This indication does not lock funds or create an obligation. The website must explain that providing liquidity involves slippage, impermanent loss and risk of loss; it is neither required to vote nor a promise of returns.
+Only YES or NO votes count. A wallet that does not vote neither participates in the decision nor helps satisfy quorum. A voter may also provide an optional, non-binding indication of how much liquidity they might contribute. This indication does not lock funds or create an obligation. The website must explain that providing liquidity involves slippage, impermanent loss and risk of loss; it is neither required to vote nor a promise of returns.
 
 **Executing an approved retirement**
 Retirement uses exactly the same snapshot, quorum, majority and voter-diversity requirements as the pool vote. The wallet remains frozen throughout voting and result verification. If retirement passes, a final conversion plan is published before any trade, including starting balances, execution window, limit prices, maximum slippage, halt conditions and a maximum participation rate never above 10% of observed independent volume.
