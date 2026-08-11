@@ -331,13 +331,15 @@ Vender SEON deliberadamente para preparar otra combinación de pool sí es una a
 
 Tras ese proceso se publica cada ejecución y un informe final; después se somete a voto una nueva propuesta de pool con las cantidades efectivamente disponibles. Por ejemplo, pasar de 300,000 SEON + 1,000 USDC a 200,000 SEON + 2,000 USDC exige vender 100,000 SEON a un precio medio real de 0.01 USDC, ignorando fees y slippage. Ese resultado solo es válido si existe demanda independiente suficiente; no puede imponerse mediante wallets propias ni operaciones ficticias.
 
-**Votación comunitaria del pool**
-• 2 de noviembre de 2026: publicar Wave 10, el informe acumulado y la primera propuesta de pool.
+**Revisión comunitaria: pool o retirada de la wallet**
+• 2 de noviembre de 2026: publicar Wave 10, el informe acumulado, los balances de la Market / Liquidity Wallet y la evaluación reproducible del umbral.
+• Si los activos confirmados permiten aportar al menos 2,500 USDC netos y SEON netos valorados en al menos otros 2,500 USDC, se publica una propuesta exacta y se vota si crear el pool.
+• Si no se alcanza ese umbral, no puede abrirse una votación de pool. En su lugar se publica una propuesta para decidir si retirar definitivamente la Market / Liquidity Wallet o mantenerla operativa bajo las reglas públicas.
 • 3 de noviembre de 2026 a las 12:00 UTC: tomar el snapshot y abrir la votación.
 • 17 de noviembre de 2026 a las 12:00 UTC: cerrar la votación después de 14 días.
 • 17–20 de noviembre: publicar el recuento reproducible y admitir comprobaciones o impugnaciones técnicas.
-• Si se aprueba la propuesta final, ejecutar el pool en un máximo de 7 días después de validar el resultado.
-• Si no se aprueba o no alcanza quorum, no se crea el pool. Una propuesta nueva, con datos y snapshot nuevos, no puede abrirse antes de 30 días.
+• Si se aprueba una propuesta de pool, ejecutarlo en un máximo de 7 días después de validar el resultado.
+• Si se rechaza el pool, se rechaza la retirada de la wallet o no se alcanza quorum, la wallet puede reanudar sus operaciones ordinarias. Una nueva revisión, con datos y snapshot nuevos, no puede abrirse antes de 30 días.
 
 El snapshot usa el primer slot finalizado de Solana igual o posterior a la hora publicada. Cuenta el balance líquido elegible y el principal en staking atribuible a cada wallet. La Developer Wallet participa como una única wallet con su balance elegible real, pero no cuenta como receptora Genesis ni ayuda a cumplir el mínimo de wallets Genesis distintas. Dividir tokens entre otras wallets controladas por el desarrollador no crea votantes independientes válidos. Se excluyen Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults y cualquier otra cuenta oficial. El dataset, su hash y las reglas de cálculo se publican para reproducción independiente.
 
@@ -348,6 +350,13 @@ El voto se registra con una transacción memo que identifica la propuesta y YES,
 • al menos 25 wallets receptoras originales de Genesis con balance elegible.
 
 ABSTAIN cuenta para quorum, pero no para el porcentaje YES/NO. El votante también puede declarar de forma opcional y no vinculante cuánta liquidez consideraría aportar. Esa declaración no bloquea fondos ni obliga a participar. La web debe explicar que aportar liquidez conlleva slippage, impermanent loss y riesgo de pérdida; no es un requisito para votar ni una promesa de rentabilidad.
+
+**Ejecución de una retirada aprobada**
+La retirada usa exactamente el mismo snapshot, quorum, mayoría y requisitos de diversidad de votantes que la votación del pool. Durante la votación y la comprobación del resultado la wallet permanece congelada. Si la retirada se aprueba, se publica antes de operar un plan final de conversión con saldo inicial, ventana temporal, precios límite, slippage máximo, condiciones de parada y ritmo máximo de participación, nunca superior al 10% del volumen independiente observado.
+
+El USDC restante solo puede utilizarse para comprar SEON a vendedores independientes mediante órdenes límite reales. Se permiten como máximo dos ciclos de colocación o ajuste de órdenes por día UTC; este límite no promete dos ejecuciones diarias ni autoriza órdenes de mercado. No se cruza ninguna orden con wallets controladas por Soleon, no se persigue el precio y no se fuerza la conversión cuando no existe oferta independiente suficiente.
+
+Cada fill y cada cancelación se publican. Cuando el USDC se haya convertido completamente y no queden órdenes abiertas, todo el SEON de la wallet se transfiere al reward_vault, publicando cantidad bruta, transfer fee y cantidad neta. La dirección queda retirada permanentemente y no vuelve a operar, aunque su historial siga visible on-chain. Si no es posible convertir todo el USDC dentro de la ventana aprobada, el saldo no se oculta ni se transfiere discrecionalmente: se publica el resultado, la wallet queda congelada y cualquier continuación requiere una nueva votación después de al menos 30 días.
 
 **Bloqueo permanente y fees**
 Si se aprueba, el diseño previsto crea un pool Raydium CPMM estándar con la creator fee opcional desactivada, después de verificar públicamente la configuración vigente. La posición LP se bloquea permanentemente mediante Burn & Earn. Tras comprobar on-chain el bloqueo, la Fee Key NFT se quema para renunciar de forma irreversible a cualquier derecho de Soleon a reclamar las fees de esa posición.
@@ -800,13 +809,15 @@ Deliberately selling SEON to prepare a different pool combination is a separate 
 
 Every execution and a final report are published after that process; a new pool proposal is then submitted with the assets actually available. For example, moving from 300,000 SEON + 1,000 USDC to 200,000 SEON + 2,000 USDC requires selling 100,000 SEON at a genuine average price of 0.01 USDC, ignoring fees and slippage. That outcome is valid only if enough independent demand exists; it cannot be imposed through controlled wallets or fictitious trades.
 
-**Community pool vote**
-• November 2, 2026: publish Wave 10, the cumulative report and the first pool proposal.
+**Community review: pool or wallet retirement**
+• November 2, 2026: publish Wave 10, the cumulative report, Market / Liquidity Wallet balances and the reproducible threshold assessment.
+• If confirmed assets can contribute at least 2,500 net USDC and a net amount of SEON valued at no less than another 2,500 USDC, an exact proposal is published and the community votes on creating the pool.
+• If that threshold is not met, no pool vote may open. Instead, a proposal asks whether to retire the Market / Liquidity Wallet permanently or keep it operating under the public rules.
 • November 3, 2026 at 12:00 UTC: take the snapshot and open voting.
 • November 17, 2026 at 12:00 UTC: close voting after 14 days.
 • November 17–20: publish the reproducible count and accept technical checks or challenges.
-• If the final proposal passes, execute the pool within 7 days after validating the result.
-• If it fails or does not reach quorum, no pool is created. A new proposal with new data and snapshot cannot open for at least 30 days.
+• If a pool proposal passes, execute it within 7 days after validating the result.
+• If the pool is rejected, wallet retirement is rejected or quorum is not reached, the wallet may resume ordinary operations. A new review with new data and snapshot cannot open for at least 30 days.
 
 The snapshot uses the first finalized Solana slot at or after the published time. It counts eligible liquid balance and staked principal attributable to each wallet. The Developer Wallet participates as one wallet with its actual eligible balance, but it is not a Genesis recipient and does not help satisfy the minimum number of distinct Genesis wallets. Splitting tokens among other developer-controlled wallets does not create valid independent voters. The Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults and every other official account are excluded. The dataset, its hash and calculation rules are published for independent reproduction.
 
@@ -817,6 +828,13 @@ The vote is recorded through a memo transaction identifying the proposal and YES
 • at least 25 original Genesis recipient wallets with eligible balance.
 
 ABSTAIN counts toward quorum but not the YES/NO percentage. A voter may also provide an optional, non-binding indication of how much liquidity they might contribute. This indication does not lock funds or create an obligation. The website must explain that providing liquidity involves slippage, impermanent loss and risk of loss; it is neither required to vote nor a promise of returns.
+
+**Executing an approved retirement**
+Retirement uses exactly the same snapshot, quorum, majority and voter-diversity requirements as the pool vote. The wallet remains frozen throughout voting and result verification. If retirement passes, a final conversion plan is published before any trade, including starting balances, execution window, limit prices, maximum slippage, halt conditions and a maximum participation rate never above 10% of observed independent volume.
+
+Remaining USDC may only buy SEON from independent sellers through genuine limit orders. At most two order-placement or adjustment cycles are allowed per UTC day; this limit neither promises two daily fills nor authorizes market orders. No order is crossed against a Soleon-controlled wallet, price is not chased and conversion is not forced when sufficient independent supply does not exist.
+
+Every fill and cancellation is published. Once USDC has been fully converted and no open orders remain, all SEON held by the wallet is transferred to the reward_vault, with gross amount, transfer fee and net amount published. The address is permanently retired and never trades again, although its history remains visible on-chain. If all USDC cannot be converted within the approved window, the balance is neither hidden nor transferred discretionarily: the result is published, the wallet remains frozen and any continuation requires a new vote after at least 30 days.
 
 **Permanent lock and fees**
 If approved, the intended design creates a standard Raydium CPMM pool with the optional creator fee disabled after publicly verifying the current configuration. The LP position is permanently locked through Burn & Earn. After verifying the lock on-chain, the Fee Key NFT is burned, irreversibly relinquishing every Soleon right to claim fees from that position.
