@@ -114,7 +114,7 @@ Una interfaz puede ayudar al usuario, pero no debería ser la autoridad final. L
 El primer reparto no se compra ni se reclama. Los 4,000,000 SEON de Genesis se envían directamente a 400 wallets independientes en diez olas semanales. Cada wallet recibe 10,000 SEON sin conectar su wallet a la web, firmar un mensaje, pagar una fee de protocolo ni confiar en un servidor de elegibilidad.
 
 **Selección pública y reproducible**
-Las wallets candidatas proceden de actividad verificable en protocolos conocidos del ecosistema Solana. Antes de la primera ola se publican las reglas, el slot del snapshot, las exclusiones, los hashes de los datos y el método de aleatoriedad. La lista final queda cerrada antes de Wave 1 y cada ola publica wallets, ATAs, transacciones, errores y reintentos.
+Las wallets candidatas proceden de actividad verificable en protocolos conocidos del ecosistema Solana. Antes de la primera ola se publican las reglas, el slot del snapshot, las exclusiones, los hashes de los datos y el método de aleatoriedad. La lista final queda cerrada antes de la Ola 1 y cada ola publica wallets, ATAs, transacciones, errores y reintentos.
 
 **Transparencia de fondos y funciones**
 La asignación inicial separa claramente el fondo de recompensas, la Genesis Distribution Wallet, la Market / Liquidity Wallet temporal y la asignación del desarrollador. También se publica la Maintenance Wallet. Cada dirección, balance y función debe poder seguirse en exploradores cuando exista.
@@ -161,7 +161,7 @@ Los 4,000,000 SEON de Genesis se reparten entre 400 wallets independientes:
 No existe contrato Genesis, claim, firma server-side, conexión obligatoria a la web ni fee de distribución. La Genesis Distribution Wallet crea el ATA Token-2022 del destinatario cuando sea necesario y realiza una transferencia directa comprobable on-chain.
 
 **Selección verificable**
-Antes de Wave 1 se construye un conjunto de 10,000 candidatos procedentes de actividad reciente en Jupiter, Raydium, Orca, Meteora, Kamino, Marinade/Jito y Drift. Las reglas exigen historial Solana real, actividad en diferentes días y meses, interacción reciente con protocolos conocidos y un balance de snapshot entre 0.05 y 500 SOL. Se excluyen programas, PDAs, exchanges, bots evidentes, wallets controladas por Soleon, duplicados y direcciones de infraestructura identificables.
+Antes de la Ola 1 se construye un conjunto de 10,000 candidatos procedentes de actividad reciente en Jupiter, Raydium, Orca, Meteora, Kamino, Marinade/Jito y Drift. Las reglas exigen historial Solana real, actividad en diferentes días y meses, interacción reciente con protocolos conocidos y un balance de snapshot entre 0.05 y 500 SOL. Se excluyen programas, PDAs, exchanges, bots evidentes, wallets controladas por Soleon, duplicados y direcciones de infraestructura identificables.
 
 El slot del snapshot, la allowlist definitiva de programas, los hashes de entrada, la semilla pública derivada de un bloque futuro y el algoritmo de selección se publican para que la elección de las 400 wallets pueda reproducirse. La lista completa se fija antes de la primera ola y se divide determinísticamente en diez grupos de 40. Cada informe semanal muestra el resultado de cada transferencia y permite reintentos idempotentes sin duplicar pagos.
 
@@ -207,7 +207,7 @@ Esta fee va a una Maintenance Wallet pública y separada de la Developer Wallet 
   },
   staking: {
     title: 'Sistema de Staking',
-    content: `Staking se despliega y abre el **31 de agosto de 2026**, junto con Wave 1, siempre que el rehearsal final sea correcto. La upgrade authority se conserva durante las diez olas únicamente para corregir bugs confirmados, reproducibles y documentados públicamente. Después de Wave 10, de la verificación acumulada y de cualquier corrección necesaria, el objetivo es revocarla y dejar el programa inmutable.
+    content: `Staking se despliega y abre el **31 de agosto de 2026**, junto con la Ola 1, siempre que el rehearsal final sea correcto. La upgrade authority se conserva durante las diez olas únicamente para corregir bugs confirmados, reproducibles y documentados públicamente. Después de la Ola 10, de la verificación acumulada y de cualquier corrección necesaria, el objetivo es revocarla y dejar el programa inmutable.
 
 **Regla base**
 • Lock único obligatorio: 7 días.
@@ -285,7 +285,7 @@ Si nadie compra o vende, las órdenes pueden mantenerse sin cambios o retirarse 
 • Encaja mejor con un token que busca reglas públicas e inmutabilidad.
 
 **Evaluación de un pool futuro**
-Después de Wave 10 se evalúa si existe actividad independiente, un precio suficientemente observado y condiciones razonables para crear un pool SEON/USDC. El pool no está garantizado ni se crea solo para aparentar liquidez. La comunidad decide mediante una votación pública si debe abrirse y con qué propuesta exacta.
+Después de la Ola 10 se evalúa si existe actividad independiente, un precio suficientemente observado y condiciones razonables para crear un pool SEON/USDC. El pool no está garantizado ni se crea solo para aparentar liquidez. La comunidad decide mediante una votación pública si debe abrirse y con qué propuesta exacta.
 
 **Precio implícito y activos emparejados**
 En un pool de producto constante, el precio inicial implícito se obtiene dividiendo los USDC aportados entre los SEON aportados:
@@ -332,27 +332,30 @@ Vender SEON deliberadamente para preparar otra combinación de pool sí es una a
 Tras ese proceso se publica cada ejecución y un informe final; después se somete a voto una nueva propuesta de pool con las cantidades efectivamente disponibles. Por ejemplo, pasar de 300,000 SEON + 1,000 USDC a 200,000 SEON + 2,000 USDC exige vender 100,000 SEON a un precio medio real de 0.01 USDC, ignorando fees y slippage. Ese resultado solo es válido si existe demanda independiente suficiente; no puede imponerse mediante wallets propias ni operaciones ficticias.
 
 **Revisión comunitaria: pool o retirada de la wallet**
-• 2 de noviembre de 2026: publicar Wave 10, el informe acumulado, los balances de la Market / Liquidity Wallet y la evaluación reproducible del umbral.
+• 2 de noviembre de 2026: publicar la Ola 10, el informe acumulado, los balances de la Market / Liquidity Wallet y la evaluación reproducible del umbral.
 • Si los activos confirmados permiten aportar al menos 2,500 USDC netos y SEON netos valorados en al menos otros 2,500 USDC, se publica una propuesta exacta y se vota si crear el pool.
 • Si no se alcanza ese umbral, no puede abrirse una votación de pool. En su lugar se publica una propuesta para decidir si retirar definitivamente la Market / Liquidity Wallet o mantenerla operativa bajo las reglas públicas.
 • 3 de noviembre de 2026 a las 12:00 UTC: tomar el snapshot y abrir la votación.
 • 17 de noviembre de 2026 a las 12:00 UTC: cerrar la votación después de 14 días.
 • 17–20 de noviembre: publicar el recuento reproducible y admitir comprobaciones o impugnaciones técnicas.
 • Si se aprueba una propuesta de pool, ejecutarlo en un máximo de 7 días después de validar el resultado.
-• Si se rechaza el pool, se rechaza la retirada de la wallet o no se alcanza quorum, la wallet puede reanudar sus operaciones ordinarias. Una nueva revisión, con datos y snapshot nuevos, no puede abrirse antes de 30 días.
+• Si se rechaza el pool, se rechaza la retirada de la wallet o no se alcanza quorum, la wallet puede reanudar sus operaciones ordinarias solo hasta la siguiente revisión o hasta la fecha límite definitiva. La segunda revisión no puede abrirse antes del 3 de diciembre de 2026 y la tercera no puede abrirse antes del 3 de enero de 2027. Cada revisión usa datos y snapshot nuevos, mantiene la votación abierta durante 14 días y aplica las mismas reglas de quorum, mayoría y diversidad.
+• Las tres revisiones son el máximo total, con independencia de que en cada una se vote crear el pool o mantener/retirar la wallet. También cuentan las revisiones sin quorum y las secuencias mixtas entre ambos tipos de propuesta.
+• Un voto para mantener la wallet o un voto contrario al pool solo autoriza su continuidad temporal hasta la siguiente revisión; nunca amplía su vida más allá del 3 de febrero de 2027.
+• Si al 3 de febrero de 2027 a las 12:00 UTC no se ha ejecutado un pool aprobado ni ha comenzado una retirada aprobada, la Market / Liquidity Wallet queda congelada automáticamente y entra en retirada definitiva. Esta fecha límite se fija antes del lanzamiento y no requiere una cuarta votación.
 
 El snapshot usa el primer slot finalizado de Solana igual o posterior a la hora publicada. Cuenta el balance líquido elegible y el principal en staking atribuible a cada wallet. La Developer Wallet participa como una única wallet con su balance elegible real, pero no cuenta como receptora Genesis ni ayuda a cumplir el mínimo de wallets Genesis distintas. Dividir tokens entre otras wallets controladas por el desarrollador no crea votantes independientes válidos. Se excluyen Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults y cualquier otra cuenta oficial. El dataset, su hash y las reglas de cálculo se publican para reproducción independiente.
 
-El voto se registra con una transacción memo que identifica la propuesta y YES o NO. Votar no requiere transferir SEON ni entregar custodia; solo pagar la fee normal de red. Cuenta el último voto válido de cada wallet antes del cierre y 1 SEON elegible equivale a 1 voto. La aprobación requiere simultáneamente:
+El voto se registra con una transacción memo que identifica la propuesta y SÍ o NO. Votar no requiere transferir SEON ni entregar custodia; solo pagar la fee normal de red. Cuenta el último voto válido de cada wallet antes del cierre y 1 SEON elegible equivale a 1 voto. La aprobación requiere simultáneamente:
 • participación mínima de 1,000,000 SEON,
-• al menos 66.67% de YES entre YES + NO,
+• al menos 66.67% de SÍ entre SÍ + NO,
 • al menos 50 wallets votantes distintas,
 • al menos 25 wallets receptoras originales de Genesis con balance elegible.
 
-Solo cuentan votos YES o NO. Una wallet que no vota no participa en la decisión ni ayuda a alcanzar el quorum. El votante también puede declarar de forma opcional y no vinculante cuánta liquidez consideraría aportar. Esa declaración no bloquea fondos ni obliga a participar. La web debe explicar que aportar liquidez conlleva slippage, impermanent loss y riesgo de pérdida; no es un requisito para votar ni una promesa de rentabilidad.
+Solo cuentan votos SÍ o NO. Una wallet que no vota no participa en la decisión ni ayuda a alcanzar el quorum. El votante también puede declarar de forma opcional y no vinculante cuánta liquidez consideraría aportar. Esa declaración no bloquea fondos ni obliga a participar. La web debe explicar que aportar liquidez conlleva slippage, impermanent loss y riesgo de pérdida; no es un requisito para votar ni una promesa de rentabilidad.
 
-**Ejecución de una retirada aprobada**
-La retirada usa exactamente el mismo snapshot, quorum, mayoría y requisitos de diversidad de votantes que la votación del pool. Durante la votación y la comprobación del resultado la wallet permanece congelada. Si la retirada se aprueba, se publica antes de operar un plan final de conversión con saldo inicial, ventana temporal, precios límite, slippage máximo, condiciones de parada y ritmo máximo de participación, nunca superior al 10% del volumen independiente observado.
+**Ejecución de una retirada aprobada o automática**
+La retirada sometida a voto usa exactamente el mismo snapshot, quorum, mayoría y requisitos de diversidad de votantes que la votación del pool. Durante la votación y la comprobación del resultado la wallet permanece congelada. Si la retirada se aprueba, o si se activa automáticamente el límite definitivo del 3 de febrero de 2027, se publica antes de operar un plan final de conversión con saldo inicial, ventana temporal, precios límite, slippage máximo, condiciones de parada y ritmo máximo de participación, nunca superior al 10% del volumen independiente observado. La retirada automática aplica estas mismas restricciones y no concede nuevas facultades discrecionales al mantenedor.
 
 El USDC restante solo puede utilizarse para comprar SEON a vendedores independientes mediante órdenes límite reales. Se permiten como máximo dos ciclos de colocación o ajuste de órdenes por día UTC; este límite no promete dos ejecuciones diarias ni autoriza órdenes de mercado. No se cruza ninguna orden con wallets controladas por Soleon, no se persigue el precio y no se fuerza la conversión cuando no existe oferta independiente suficiente.
 
@@ -431,7 +434,7 @@ Durante agosto, septiembre y octubre de 2026 se mantiene abierta la revisión p�
 No existe reserva de revisión ni programa de pagos prometido por reportes. La revisión pública reduce riesgo, pero no garantiza ausencia total de errores.
 
 **Autoridades temporales**
-La upgrade authority del staking se conserva durante las diez olas para corregir únicamente problemas confirmados, reproducibles y documentados públicamente. No permite retirar principal de usuarios ni crear supply. Después de Wave 10, la verificación acumulada y las correcciones necesarias, debe revocarse para dejar el programa inmutable.
+La upgrade authority del staking se conserva durante las diez olas para corregir únicamente problemas confirmados, reproducibles y documentados públicamente. No permite retirar principal de usuarios ni crear supply. Después de la Ola 10, la verificación acumulada y las correcciones necesarias, debe revocarse para dejar el programa inmutable.
 
 La mint authority existe solo durante la creación y asignación inicial del supply completo; después se revoca. La freeze authority es nula. La autoridad de configuración de la transfer fee y la autoridad sobre fees retenidas quedan vinculadas a la PDA y a las reglas del programa según el diseño publicado.
 
@@ -469,7 +472,7 @@ La inmutabilidad del mint y del staking no convierte automáticamente en descent
 • Revocar mint authority después de verificar el supply completo y las asignaciones.
 • Confirmar freeze authority nula.
 
-**31 de agosto de 2026: staking, mercado y Wave 1**
+**31 de agosto de 2026: staking, mercado y Ola 1**
 • Desplegar y abrir staking si el rehearsal final es correcto.
 • Abrir staking_open y activar la primera transfer fee de 0.02% mediante acción permissionless.
 • Permitir stake, claim, renovación, unstake y cleanup.
@@ -477,26 +480,27 @@ La inmutabilidad del mint y del staking no convierte automáticamente en descent
 • Distribuir 10,000 SEON a cada una de las primeras 40 wallets.
 
 **Olas semanales 2–10**
-• Wave 2: 7 de septiembre de 2026.
-• Wave 3: 14 de septiembre de 2026.
-• Wave 4: 21 de septiembre de 2026.
-• Wave 5: 28 de septiembre de 2026.
-• Wave 6: 5 de octubre de 2026.
-• Wave 7: 12 de octubre de 2026.
-• Wave 8: 19 de octubre de 2026.
-• Wave 9: 26 de octubre de 2026.
-• Wave 10: 2 de noviembre de 2026.
+• Ola 2: 7 de septiembre de 2026.
+• Ola 3: 14 de septiembre de 2026.
+• Ola 4: 21 de septiembre de 2026.
+• Ola 5: 28 de septiembre de 2026.
+• Ola 6: 5 de octubre de 2026.
+• Ola 7: 12 de octubre de 2026.
+• Ola 8: 19 de octubre de 2026.
+• Ola 9: 26 de octubre de 2026.
+• Ola 10: 2 de noviembre de 2026.
 • Cada ola distribuye 400,000 SEON entre 40 wallets y publica su informe verificable.
 
-**Después de Wave 10**
+**Después de la Ola 10**
 • Publicar la verificación acumulada de las 400 distribuciones.
 • Cerrar las correcciones técnicas confirmadas durante la ventana de lanzamiento.
 • Revocar la program upgrade authority y dejar staking inmutable.
-• 2 de noviembre: publicar la primera propuesta de pool con cantidades, precio implícito, referencia Manifest, profundidad, slippage y mecanismo de bloqueo.
+• 2 de noviembre: publicar la primera revisión. Si se alcanza el umbral, presentar la propuesta exacta de pool; si no, presentar la propuesta de mantener o retirar la Market / Liquidity Wallet.
 • 3 de noviembre a las 12:00 UTC: fijar el snapshot y abrir la votación durante 14 días.
 • 17 de noviembre a las 12:00 UTC: cerrar la votación y publicar un recuento reproducible.
-• Si se cumplen quorum, mayoría y amplitud mínima, ejecutar la propuesta final en un máximo de 7 días tras la validación.
-• Si no se cumplen, no crear el pool y esperar al menos 30 días antes de una propuesta nueva.
+• Si se aprueba el pool, ejecutarlo en un máximo de 7 días tras la validación; si se aprueba la retirada, comenzar el plan público de conversión.
+• Si no existe una salida definitiva, celebrar como máximo una segunda revisión no antes del 3 de diciembre y una tercera no antes del 3 de enero, ambas con datos y snapshot nuevos.
+• Si al 3 de febrero de 2027 no se ha ejecutado un pool aprobado ni ha comenzado una retirada aprobada, congelar la wallet e iniciar automáticamente su retirada definitiva.
 
 **Operación continuada**
 • Mantener documentación y enlaces.
@@ -817,7 +821,10 @@ Every execution and a final report are published after that process; a new pool 
 • November 17, 2026 at 12:00 UTC: close voting after 14 days.
 • November 17–20: publish the reproducible count and accept technical checks or challenges.
 • If a pool proposal passes, execute it within 7 days after validating the result.
-• If the pool is rejected, wallet retirement is rejected or quorum is not reached, the wallet may resume ordinary operations. A new review with new data and snapshot cannot open for at least 30 days.
+• If the pool is rejected, wallet retirement is rejected or quorum is not reached, the wallet may resume ordinary operations only until the next review or the final deadline. The second review cannot open before December 3, 2026 and the third cannot open before January 3, 2027. Every review uses new data and a new snapshot, remains open for 14 days and applies the same quorum, majority and diversity requirements.
+• Three reviews are the total maximum, regardless of whether each review concerns pool creation or keeping/retiring the wallet. Reviews without quorum and mixed sequences of both proposal types also count.
+• A vote to keep the wallet or a vote against the pool authorizes temporary continuation only until the next review; it never extends the wallet beyond February 3, 2027.
+• If no approved pool has been executed and no approved retirement has begun by February 3, 2027 at 12:00 UTC, the Market / Liquidity Wallet is automatically frozen and enters permanent retirement. This deadline is fixed before launch and requires no fourth vote.
 
 The snapshot uses the first finalized Solana slot at or after the published time. It counts eligible liquid balance and staked principal attributable to each wallet. The Developer Wallet participates as one wallet with its actual eligible balance, but it is not a Genesis recipient and does not help satisfy the minimum number of distinct Genesis wallets. Splitting tokens among other developer-controlled wallets does not create valid independent voters. The Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults and every other official account are excluded. The dataset, its hash and calculation rules are published for independent reproduction.
 
@@ -829,8 +836,8 @@ The vote is recorded through a memo transaction identifying the proposal and YES
 
 Only YES or NO votes count. A wallet that does not vote neither participates in the decision nor helps satisfy quorum. A voter may also provide an optional, non-binding indication of how much liquidity they might contribute. This indication does not lock funds or create an obligation. The website must explain that providing liquidity involves slippage, impermanent loss and risk of loss; it is neither required to vote nor a promise of returns.
 
-**Executing an approved retirement**
-Retirement uses exactly the same snapshot, quorum, majority and voter-diversity requirements as the pool vote. The wallet remains frozen throughout voting and result verification. If retirement passes, a final conversion plan is published before any trade, including starting balances, execution window, limit prices, maximum slippage, halt conditions and a maximum participation rate never above 10% of observed independent volume.
+**Executing an approved or automatic retirement**
+A retirement submitted to a vote uses exactly the same snapshot, quorum, majority and voter-diversity requirements as the pool vote. The wallet remains frozen throughout voting and result verification. If retirement passes, or if the February 3, 2027 final deadline triggers automatic retirement, a final conversion plan is published before any trade, including starting balances, execution window, limit prices, maximum slippage, halt conditions and a maximum participation rate never above 10% of observed independent volume. Automatic retirement follows these same restrictions and grants no new discretionary powers to the maintainer.
 
 Remaining USDC may only buy SEON from independent sellers through genuine limit orders. At most two order-placement or adjustment cycles are allowed per UTC day; this limit neither promises two daily fills nor authorizes market orders. No order is crossed against a Soleon-controlled wallet, price is not chased and conversion is not forced when sufficient independent supply does not exist.
 
@@ -970,11 +977,12 @@ Mint and staking immutability do not automatically decentralize every project la
 • Publish cumulative verification of all 400 distributions.
 • Close confirmed technical fixes from the launch window.
 • Revoke program upgrade authority and make staking immutable.
-• November 2: publish the first pool proposal with amounts, implied price, Manifest reference, depth, slippage and lock mechanism.
+• November 2: publish the first review. If the threshold is met, present the exact pool proposal; otherwise present the proposal to keep or retire the Market / Liquidity Wallet.
 • November 3 at 12:00 UTC: fix the snapshot and open the 14-day vote.
 • November 17 at 12:00 UTC: close voting and publish a reproducible count.
-• If quorum, approval and breadth requirements pass, execute the final proposal within 7 days after validation.
-• Otherwise, do not create the pool and wait at least 30 days before a new proposal.
+• If the pool passes, execute it within 7 days after validation; if retirement passes, begin the public conversion plan.
+• If no final outcome exists, hold no more than a second review no earlier than December 3 and a third no earlier than January 3, both using new data and a new snapshot.
+• If no approved pool has been executed and no approved retirement has begun by February 3, 2027, freeze the wallet and automatically begin permanent retirement.
 
 **Continued operation**
 • Maintain documentation and links.
