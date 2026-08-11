@@ -86,8 +86,35 @@ function AddressRow({
 
 export function GenesisContent() {
   const isEn = useLocale() === 'en';
+  const summaryMetrics = [
+    {
+      icon: Coins,
+      label: isEn ? 'Total supply' : 'Supply total',
+      value: '444,444,444 SEON',
+      detail: isEn ? 'Fixed supply' : 'Supply fijo',
+      iconClassName: 'bg-primary/15 text-primary',
+      valueClassName: 'text-foreground',
+    },
+    {
+      icon: Gift,
+      label: isEn ? 'Genesis Airdrop' : 'Airdrop Genesis',
+      value: `${formatAmount(SEON_GENESIS_AIRDROP_ALLOCATION)} SEON`,
+      detail: isEn ? '400 wallets · 10,000 SEON each' : '400 wallets · 10,000 SEON cada una',
+      iconClassName: 'bg-muted text-muted-foreground',
+      valueClassName: 'text-foreground',
+    },
+    {
+      icon: ShieldCheck,
+      label: isEn ? 'No claim required' : 'No hace falta reclamar',
+      value: isEn ? 'Automatic receipt' : 'Recepción automática',
+      detail: isEn
+        ? 'No connection, signature, approval or fee.'
+        : 'Sin conectar, firmar, aprobar ni pagar.',
+      iconClassName: 'bg-emerald-500/15 text-emerald-400',
+      valueClassName: 'text-emerald-400',
+    },
+  ];
   const metrics: [LucideIcon, string, string][] = [
-    [Gift, `${formatAmount(SEON_GENESIS_AIRDROP_ALLOCATION)} SEON`, isEn ? 'Genesis Airdrop' : 'Airdrop Genesis'],
     [Users, formatAmount(GENESIS_RECIPIENT_COUNT), isEn ? 'selected wallets' : 'wallets seleccionadas'],
     [CalendarDays, String(GENESIS_WAVE_COUNT), isEn ? 'weekly waves' : 'olas semanales'],
     [WalletCards, `${formatAmount(SEON_GENESIS_WALLET_AMOUNT)} SEON`, isEn ? 'per wallet' : 'por wallet'],
@@ -184,23 +211,29 @@ export function GenesisContent() {
           </p>
         </motion.header>
 
-        <section className="mt-10 border-y border-primary/25 bg-primary/5 px-5 py-6">
-          <div className="flex items-start gap-4">
-            <ShieldCheck className="mt-0.5 h-6 w-6 shrink-0 text-primary" />
-            <div>
-              <h2 className="text-lg font-semibold">
-                {isEn ? 'No claim is required' : 'No hace falta reclamar'}
-              </h2>
-              <p className="mt-1 text-sm leading-6 text-muted-foreground">
-                {isEn
-                  ? 'Selected recipients receive SEON automatically. Soleon will never ask you to connect a wallet, sign a message, approve a transaction or pay a fee to receive a Genesis allocation.'
-                  : 'Los receptores seleccionados reciben SEON automáticamente. Soleon nunca pedirá conectar una wallet, firmar un mensaje, aprobar una transacción ni pagar una fee para recibir una asignación Genesis.'}
-              </p>
-            </div>
+        <section className="mt-10 overflow-hidden rounded-lg border border-primary/25 bg-card/40">
+          <div className="grid md:grid-cols-3">
+            {summaryMetrics.map(({ icon: Icon, label, value, detail, iconClassName, valueClassName }, index) => (
+              <div
+                key={label}
+                className={`flex min-h-40 items-center gap-5 px-6 py-7 ${
+                  index > 0 ? 'border-t border-primary/15 md:border-l md:border-t-0' : ''
+                }`}
+              >
+                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${iconClassName}`}>
+                  <Icon className="h-6 w-6" />
+                </div>
+                <div className="min-w-0">
+                  <p className="text-sm text-muted-foreground">{label}</p>
+                  <p className={`mt-1 text-xl font-bold sm:text-2xl ${valueClassName}`}>{value}</p>
+                  <p className="mt-1 text-xs leading-5 text-muted-foreground">{detail}</p>
+                </div>
+              </div>
+            ))}
           </div>
         </section>
 
-        <section className="mt-10 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <section className="mt-8 grid gap-4 sm:grid-cols-3">
           {metrics.map(([Icon, value, label]) => (
             <Card key={label} className="border-border/50 bg-card/50">
               <CardContent className="p-5">
