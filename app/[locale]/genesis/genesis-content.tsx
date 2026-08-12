@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useLocale } from 'next-intl';
 import {
+  BadgeDollarSign,
   CalendarDays,
   CheckCircle2,
   Coins,
@@ -105,11 +106,21 @@ export function GenesisContent() {
     },
     {
       icon: ShieldCheck,
-      label: isEn ? 'No claim required' : 'No hace falta reclamar',
-      value: isEn ? 'Automatic receipt' : 'Recepción automática',
+      label: isEn ? 'Genesis claim' : 'Reclamación Genesis',
+      value: isEn ? 'No claim' : 'No se reclama',
       detail: isEn
-        ? 'No connection, signature, approval or fee.'
-        : 'Sin conectar, firmar, aprobar ni pagar.',
+        ? 'No wallet connection, signature or payment.'
+        : 'Sin conectar una wallet, firmar ni pagar.',
+      iconClassName: 'bg-emerald-500/15 text-emerald-400',
+      valueClassName: 'text-emerald-400',
+    },
+    {
+      icon: BadgeDollarSign,
+      label: isEn ? 'Initial sale' : 'Venta inicial',
+      value: isEn ? 'No sale' : 'No se vende',
+      detail: isEn
+        ? 'No presale or Genesis purchase.'
+        : 'Sin preventa ni compra Genesis.',
       iconClassName: 'bg-emerald-500/15 text-emerald-400',
       valueClassName: 'text-emerald-400',
     },
@@ -212,20 +223,22 @@ export function GenesisContent() {
         </motion.header>
 
         <section className="mt-10 overflow-hidden rounded-lg border border-primary/25 bg-card/40">
-          <div className="grid md:grid-cols-3">
+          <div className="grid sm:grid-cols-2 xl:grid-cols-4">
             {summaryMetrics.map(({ icon: Icon, label, value, detail, iconClassName, valueClassName }, index) => (
               <div
                 key={label}
-                className={`flex min-h-40 items-center gap-5 px-6 py-7 ${
-                  index > 0 ? 'border-t border-primary/15 md:border-l md:border-t-0' : ''
+                className={`flex min-h-40 items-center gap-4 border-primary/15 px-5 py-7 ${
+                  index > 0 ? 'border-t' : ''
+                } ${index % 2 === 1 ? 'sm:border-l' : ''} ${index === 1 ? 'sm:border-t-0' : ''} ${
+                  index > 0 ? 'xl:border-l xl:border-t-0' : ''
                 }`}
               >
-                <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-full ${iconClassName}`}>
+                <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-full ${iconClassName}`}>
                   <Icon className="h-6 w-6" />
                 </div>
                 <div className="min-w-0">
                   <p className="text-sm text-muted-foreground">{label}</p>
-                  <p className={`mt-1 text-xl font-bold sm:text-2xl ${valueClassName}`}>{value}</p>
+                  <p className={`mt-1 text-xl font-bold ${valueClassName}`}>{value}</p>
                   <p className="mt-1 text-xs leading-5 text-muted-foreground">{detail}</p>
                 </div>
               </div>
