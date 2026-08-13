@@ -26,7 +26,6 @@ import {
   SEON_CREATOR_ALLOCATION,
   SEON_GENESIS_AIRDROP_ALLOCATION,
   SEON_GENESIS_WALLET_AMOUNT,
-  SEON_MARKET_LIQUIDITY_ALLOCATION,
   SEON_REWARD_VAULT_INITIAL,
   SOLEON_CONFIG,
 } from '@/lib/solana/config';
@@ -100,7 +99,7 @@ export function GenesisContent() {
       icon: Gift,
       label: isEn ? 'Genesis Airdrop' : 'Airdrop Genesis',
       value: `${formatAmount(SEON_GENESIS_AIRDROP_ALLOCATION)} SEON`,
-      detail: isEn ? '400 wallets · 10,000 SEON each' : '400 wallets · 10,000 SEON cada una',
+      detail: isEn ? '440 wallets · 10,000 SEON each' : '440 wallets · 10,000 SEON cada una',
       iconClassName: 'bg-muted text-muted-foreground',
       valueClassName: 'text-foreground',
     },
@@ -139,15 +138,9 @@ export function GenesisContent() {
     },
     {
       amount: SEON_GENESIS_AIRDROP_ALLOCATION,
-      percent: '0.900%',
+      percent: '0.990%',
       label: isEn ? 'Genesis Airdrop distribution wallet' : 'Wallet de distribución del Airdrop Genesis',
       icon: Gift,
-    },
-    {
-      amount: SEON_MARKET_LIQUIDITY_ALLOCATION,
-      percent: '0.090%',
-      label: isEn ? 'Temporary market and liquidity reserve' : 'Reserva temporal de mercado y liquidez',
-      icon: Landmark,
     },
     {
       amount: SEON_CREATOR_ALLOCATION,
@@ -161,14 +154,14 @@ export function GenesisContent() {
         'Candidate sources, snapshot slot, eligibility rules and exclusions are published before selection.',
         'Eligible wallets must show sustained Solana activity, recent ecosystem interaction and a snapshot SOL balance between 0.05 and 500 SOL.',
         'Protocol, exchange, bot, duplicate and Soleon-controlled addresses are excluded.',
-        'A public future seed selects 400 recipients deterministically; the result is split into ten fixed waves.',
+        'A public future seed selects 440 recipients deterministically; the result is split into ten fixed waves.',
         'Every completed wave publishes recipients, transaction signatures, failures and a cumulative verification report.',
       ]
     : [
         'Las fuentes de candidatos, el slot del snapshot, las reglas y las exclusiones se publican antes de la selección.',
         'Las wallets elegibles deben mostrar actividad sostenida en Solana, interacción reciente con el ecosistema y entre 0.05 y 500 SOL en el snapshot.',
         'Se excluyen protocolos, exchanges, bots, duplicados y direcciones controladas por Soleon.',
-        'Una seed pública futura selecciona 400 receptores de forma determinista; el resultado se divide en diez olas fijas.',
+        'Una seed pública futura selecciona 440 receptores de forma determinista; el resultado se divide en diez olas fijas.',
         'Cada ola completada publica receptores, firmas de transacción, errores e informe acumulado de verificación.',
       ];
   const publicAddresses: PublicAddress[] = [
@@ -179,14 +172,6 @@ export function GenesisContent() {
     {
       label: isEn ? 'Genesis Distribution token account' : 'Cuenta de token de Distribución Genesis',
       value: SOLEON_CONFIG.genesisDistributionTokenAccount,
-    },
-    {
-      label: isEn ? 'Market / Liquidity Wallet' : 'Wallet de Mercado / Liquidez',
-      value: SOLEON_CONFIG.marketLiquidityWallet,
-    },
-    {
-      label: isEn ? 'Market / Liquidity token account' : 'Cuenta de token de Mercado / Liquidez',
-      value: SOLEON_CONFIG.marketLiquidityTokenAccount,
     },
     {
       label: isEn ? 'Developer Wallet' : 'Wallet del desarrollador',
@@ -212,13 +197,13 @@ export function GenesisContent() {
           <p className="mt-5 text-sm font-semibold uppercase text-primary">
             {isEn ? 'Transparent initial distribution' : 'Distribución inicial transparente'}
           </p>
-          <h1 className="mt-3 font-serif text-4xl font-bold text-gradient-gold sm:text-5xl">
+          <h1 className="mt-3 max-w-full whitespace-normal break-words font-serif text-3xl font-bold leading-tight text-gradient-gold sm:text-5xl">
             {isEn ? 'Soleon Genesis Airdrop' : 'Airdrop Genesis de Soleon'}
           </h1>
           <p className="mt-5 text-lg text-muted-foreground">
             {isEn
-              ? '4,000,000 SEON are transferred directly on-chain to 400 independently selected Solana wallets through ten public weekly waves.'
-              : '4,000,000 SEON se transfieren directamente on-chain a 400 wallets de Solana seleccionadas de forma independiente mediante diez olas semanales públicas.'}
+              ? '4,400,000 SEON are transferred directly on-chain to 440 independently selected Solana wallets through ten public weekly waves.'
+              : '4,400,000 SEON se transfieren directamente on-chain a 440 wallets de Solana seleccionadas de forma independiente mediante diez olas semanales públicas.'}
           </p>
         </motion.header>
 
@@ -264,8 +249,8 @@ export function GenesisContent() {
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
             {isEn
-              ? 'The four allocations sum exactly to the fixed 444,444,444 SEON supply. There is no presale and no hidden review reserve.'
-              : 'Las cuatro asignaciones suman exactamente el supply fijo de 444,444,444 SEON. No hay preventa ni reserva oculta de revisión.'}
+              ? 'The three allocations sum exactly to the fixed 444,444,444 SEON supply. There is no presale and no hidden review or market reserve.'
+              : 'Las tres asignaciones suman exactamente el supply fijo de 444,444,444 SEON. No hay preventa ni reserva oculta de revisión o mercado.'}
           </p>
           <div className="mt-5 divide-y divide-border/50 border-y border-border/50">
             {allocations.map(({ amount, percent, label, icon: Icon }) => (
@@ -285,8 +270,8 @@ export function GenesisContent() {
           </h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
             {isEn
-              ? 'Each wave contains 40 preselected wallets and distributes 400,000 SEON. Failed transfers are retried idempotently and never replaced with discretionary recipients.'
-              : 'Cada ola contiene 40 wallets preseleccionadas y distribuye 400,000 SEON. Las transferencias fallidas se reintentan de forma idempotente y nunca se sustituyen por receptores discrecionales.'}
+              ? 'Each wave contains 44 preselected wallets and distributes 440,000 SEON. Failed transfers are retried idempotently and never replaced with discretionary recipients.'
+              : 'Cada ola contiene 44 wallets preseleccionadas y distribuye 440,000 SEON. Las transferencias fallidas se reintentan de forma idempotente y nunca se sustituyen por receptores discrecionales.'}
           </p>
           <div className="mt-6 grid gap-3 sm:grid-cols-2 lg:grid-cols-5">
             {waveDates.map((date, index) => (
@@ -368,12 +353,12 @@ export function GenesisContent() {
 
         <section className="mt-16 border-t border-border/60 pt-8">
           <h2 className="text-2xl font-semibold">
-            {isEn ? 'Temporary market reserve' : 'Reserva temporal de mercado'}
+            {isEn ? 'Open market formation' : 'Formación abierta del mercado'}
           </h2>
           <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
             {isEn
-              ? 'The 400,000 SEON market allocation is held in a separately published wallet. It may place genuine SEON/USDC bids and asks under public rules, but it never trades against another Soleon-controlled wallet and never fabricates volume. After two to three months, real activity determines whether the remaining assets can seed a permanently locked or burned-LP pool. If that condition is not met, no pool is forced.'
-              : 'La asignación de mercado de 400,000 SEON se mantiene en una wallet pública separada. Puede colocar bids y asks reales de SEON/USDC bajo reglas públicas, pero nunca opera contra otra wallet controlada por Soleon ni fabrica volumen. Tras dos o tres meses, la actividad real determina si los activos restantes pueden iniciar un pool con LP bloqueado o quemado permanentemente. Si no se cumple esa condición, no se fuerza ningún pool.'}
+              ? 'Soleon reserves no SEON for market operations, and no Soleon-controlled wallet places initial bids or asks. A verified permissionless SEON/USDC order book may begin empty. Orders, price, volume and liquidity can only emerge from independent participants. No official pool or liquidity commitment is planned.'
+              : 'Soleon no reserva SEON para operar el mercado y ninguna wallet controlada coloca bids o asks iniciales. Un order book permissionless y verificado de SEON/USDC puede comenzar vacío. Las órdenes, el precio, el volumen y la liquidez solo pueden surgir de participantes independientes. No se planifica un pool oficial ni un compromiso de liquidez.'}
           </p>
         </section>
 
@@ -383,8 +368,8 @@ export function GenesisContent() {
           </h2>
           <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
             {isEn
-              ? 'Soleon Maintainer operates the website, public reports and temporary launch wallets. This operational role is disclosed and is not presented as protocol decentralization. The staking upgrade authority remains only through the ten-wave monitoring window; after the final audit, critical authorities are revoked and the published staking rules become immutable.'
-              : 'Soleon Maintainer opera la web, los informes públicos y las wallets temporales de lanzamiento. Este papel operativo se declara y no se presenta como descentralización del protocolo. La upgrade authority del staking se mantiene solo durante la ventana de monitorización de diez olas; tras la auditoría final se revocan las autoridades críticas y las reglas publicadas de staking pasan a ser inmutables.'}
+              ? 'Soleon Maintainer operates the website, public reports and required launch wallets. This operational role is disclosed and is not presented as protocol decentralization. The staking upgrade authority remains only through the ten-wave monitoring window; after the final audit, critical authorities are revoked and the published staking rules become immutable.'
+              : 'Soleon Maintainer opera la web, los informes públicos y las wallets necesarias para el lanzamiento. Este papel operativo se declara y no se presenta como descentralización del protocolo. La upgrade authority del staking se mantiene solo durante la ventana de monitorización de diez olas; tras la auditoría final se revocan las autoridades críticas y las reglas publicadas de staking pasan a ser inmutables.'}
           </p>
         </section>
       </div>

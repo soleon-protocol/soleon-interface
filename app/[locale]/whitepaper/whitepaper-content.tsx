@@ -67,13 +67,13 @@ El diseño actual evita tres dependencias habituales:
 
 Soleon nace con una filosofía clara:
 • La transparencia es fundamental: los fondos relevantes deben ser públicos y verificables.
-• La distribución inicial no se compra: se envía directamente a 400 wallets independientes seleccionadas mediante reglas públicas, snapshot y aleatoriedad verificable.
+• La distribución inicial no se compra: se envía directamente a 440 wallets independientes seleccionadas mediante reglas públicas, snapshot y aleatoriedad verificable.
 • La descentralización es un objetivo técnico progresivo, no un eslogan ni una afirmación de descentralización total mientras existan autoridades temporales y tareas operativas.
 • La web ayuda a usar el protocolo, pero no debe ser la autoridad del protocolo.
 • Los mercados deben formarse de manera DEX-first, pública y verificable.
 • La revisión pública es parte del lanzamiento, no un adorno posterior.
 
-SEON se distribuye primero mediante un Genesis Airdrop directo: 4,000,000 SEON repartidos en diez olas semanales de 40 wallets, con 10,000 SEON por wallet. No hay claim, firma de elegibilidad, conexión obligatoria a la web ni fee de distribución. Después del ensayo final se abre staking con lock fijo de 7 días, rewards proporcionales y mantenimiento permissionless. La autoridad de actualización del programa se conserva únicamente durante las diez olas para corregir errores confirmados y documentados públicamente; después de la verificación final, el objetivo es revocarla y dejar el staking inmutable.`,
+SEON se distribuye primero mediante un Genesis Airdrop directo: 4,400,000 SEON repartidos en diez olas semanales de 44 wallets, con 10,000 SEON por wallet. No hay claim, firma de elegibilidad, conexión obligatoria a la web ni fee de distribución. Después del ensayo final se abre staking con lock fijo de 7 días, rewards proporcionales y mantenimiento permissionless. La autoridad de actualización del programa se conserva únicamente durante las diez olas para corregir errores confirmados y documentados públicamente; después de la verificación final, el objetivo es revocarla y dejar el staking inmutable.`,
   },
   problem: {
     title: 'El Problema',
@@ -111,19 +111,19 @@ Una interfaz puede ayudar al usuario, pero no debería ser la autoridad final. L
     content: `Soleon responde con un lanzamiento más pequeño, verificable y gradual. La idea central es que la confianza no dependa de una historia bonita, sino de direcciones públicas, reglas comprobables y límites claros a lo que puede hacer el mantenedor.
 
 **Distribución inicial gratuita y directa**
-El primer reparto no se compra ni se reclama. Los 4,000,000 SEON de Genesis se envían directamente a 400 wallets independientes en diez olas semanales. Cada wallet recibe 10,000 SEON sin conectar su wallet a la web, firmar un mensaje, pagar una fee de protocolo ni confiar en un servidor de elegibilidad.
+El primer reparto no se compra ni se reclama. Los 4,400,000 SEON de Genesis se envían directamente a 440 wallets independientes en diez olas semanales. Cada wallet recibe 10,000 SEON sin conectar su wallet a la web, firmar un mensaje, pagar una fee de protocolo ni confiar en un servidor de elegibilidad.
 
 **Selección pública y reproducible**
 Las wallets candidatas proceden de actividad verificable en protocolos conocidos del ecosistema Solana. Antes de la primera ola se publican las reglas, el slot del snapshot, las exclusiones, los hashes de los datos y el método de aleatoriedad. La lista final queda cerrada antes de la Ola 1 y cada ola publica wallets, ATAs, transacciones, errores y reintentos.
 
 **Transparencia de fondos y funciones**
-La asignación inicial separa claramente el fondo de recompensas, la Genesis Distribution Wallet, la Market / Liquidity Wallet temporal y la asignación del desarrollador. También se publica la Maintenance Wallet. Cada dirección, balance y función debe poder seguirse en exploradores cuando exista.
+La asignación inicial separa claramente el fondo de recompensas, la Genesis Distribution Wallet y la asignación del desarrollador. La Maintenance Wallet es una cuenta operativa financiada en SOL por las fees de determinadas acciones, no una asignación del supply de SEON. Cada dirección, balance y función debe poder seguirse en exploradores cuando exista.
 
 **Revisión pública antes y durante el lanzamiento**
 El código de la web, del staking y de los scripts de distribución se abre a revisión. No existe reserva de revisión ni pago prometido por reportes. Esto no garantiza ausencia total de errores, pero evita vender una falsa sensación de seguridad y obliga a publicar reglas, direcciones y riesgos.
 
-**Mercado DEX-first con liquidez inicial limitada y visible**
-El primer mercado previsto es un order book SEON/USDC verificable en Manifest. La Market / Liquidity Wallet puede aportar órdenes reales con hasta 400,000 SEON y 200 USDC. Sus órdenes, inventario y reglas se hacen públicos; no se usa para fabricar volumen, demanda o precio.
+**Mercado DEX-first sin liquidez oficial**
+El primer mercado que puede publicarse es un order book SEON/USDC verificable en Manifest. Puede comenzar completamente vacío: Soleon no reserva tokens para mercado, no coloca órdenes iniciales mediante wallets controladas y no promete precio, volumen, profundidad ni liquidez. Toda actividad debe proceder de participantes independientes.
 
 **Defensa frente a fakes**
 La web no debe enlazar cualquier mercado que aparezca. Debe diferenciar entre mercados verificados, comunitarios, alto riesgo y fake. Un pool no es oficial solo por existir, y un enlace no debe activarse hasta que la dirección sea verificable.
@@ -139,23 +139,22 @@ La web no debe enlazar cualquier mercado que aparezca. Debe diferenciar entre me
 El staking no promete APR fijo. Cada año libera un porcentaje máximo del fondo de recompensas no comprometido. Los usuarios comparten ese presupuesto proporcionalmente al principal activo.
 
 **Inmutabilidad sin ocultar la operación humana**
-Soleon distingue el protocolo de sus capas operativas. El staking puede quedar inmutable y las acciones críticas pueden ser permissionless, mientras que la web, la documentación, la Maintenance Wallet y la Market / Liquidity Wallet temporal requieren mantenimiento humano identificable públicamente como Soleon Maintainer. Por ello, durante esta fase se habla de descentralización progresiva y verificable, no de descentralización total.`,
+Soleon distingue el protocolo de sus capas operativas. El staking puede quedar inmutable y las acciones críticas pueden ser permissionless, mientras que la web, la documentación y la Maintenance Wallet requieren mantenimiento humano identificable públicamente como Soleon Maintainer. Por ello, durante esta fase se habla de descentralización progresiva y verificable, no de descentralización total.`,
   },
   distribution: {
     title: 'Distribución Inicial',
     content: `**Supply total: 444,444,444 SEON**
 
-El supply completo se crea una sola vez y se separa en cuatro asignaciones públicas:
+El supply completo se crea una sola vez y se separa en tres asignaciones públicas:
 • 440,000,000 SEON → fondo de recompensas de staking.
-• 4,000,000 SEON → Genesis Distribution Wallet.
-• 400,000 SEON → Market / Liquidity Wallet temporal.
+• 4,400,000 SEON → Genesis Distribution Wallet.
 • 44,444 SEON → Developer Wallet.
 
 **Genesis Airdrop**
-Los 4,000,000 SEON de Genesis se reparten entre 400 wallets independientes:
+Los 4,400,000 SEON de Genesis se reparten entre 440 wallets independientes:
 • 10,000 SEON por wallet.
-• 40 wallets por ola.
-• 400,000 SEON por ola.
+• 44 wallets por ola.
+• 440,000 SEON por ola.
 • Diez olas semanales desde el 31 de agosto hasta el 2 de noviembre de 2026.
 
 No existe contrato Genesis, claim, firma server-side, conexión obligatoria a la web ni fee de distribución. La Genesis Distribution Wallet crea el ATA Token-2022 del destinatario cuando sea necesario y realiza una transferencia directa comprobable on-chain.
@@ -163,12 +162,10 @@ No existe contrato Genesis, claim, firma server-side, conexión obligatoria a la
 **Selección verificable**
 Antes de la Ola 1 se construye un conjunto de 10,000 candidatos procedentes de actividad reciente en Jupiter, Raydium, Orca, Meteora, Kamino, Marinade/Jito y Drift. Las reglas exigen historial Solana real, actividad en diferentes días y meses, interacción reciente con protocolos conocidos y un balance de snapshot entre 0.05 y 500 SOL. Se excluyen programas, PDAs, exchanges, bots evidentes, wallets controladas por Soleon, duplicados y direcciones de infraestructura identificables.
 
-El slot del snapshot, la allowlist definitiva de programas, los hashes de entrada, la semilla pública derivada de un bloque futuro y el algoritmo de selección se publican para que la elección de las 400 wallets pueda reproducirse. La lista completa se fija antes de la primera ola y se divide determinísticamente en diez grupos de 40. Cada informe semanal muestra el resultado de cada transferencia y permite reintentos idempotentes sin duplicar pagos.
+El slot del snapshot, la allowlist definitiva de programas, los hashes de entrada, la semilla pública derivada de un bloque futuro y el algoritmo de selección se publican para que la elección de las 440 wallets pueda reproducirse. La lista completa se fija antes de la primera ola y se divide determinísticamente en diez grupos de 44. Cada informe semanal muestra el resultado de cada transferencia y permite reintentos idempotentes sin duplicar pagos.
 
-**Wallets operativas iniciales**
-La Developer Wallet recibe 44,444 SEON como asignación personal pública del desarrollador. Puede mantenerlos, transferirlos, venderlos o ponerlos en staking como tokens propios.
-
-La Market / Liquidity Wallet recibe 400,000 SEON y puede recibir hasta 200 USDC aportados por el mantenedor para formar un libro inicial pequeño y transparente. Es una wallet temporal, separada de Genesis y excluida de la selección de destinatarios. Su uso se limita a liquidez real y a una posible transición posterior hacia un pool SEON/USDC si la actividad independiente demuestra que es viable.`,
+**Developer Wallet**
+La Developer Wallet recibe 44,444 SEON como asignación personal pública del desarrollador. Puede mantenerlos, transferirlos, venderlos o ponerlos en staking como tokens propios. No se utiliza para colocar órdenes iniciales ni se presenta como fuente de liquidez del protocolo. Cualquier uso posterior será una actuación personal, pública y verificable on-chain, no una venta Genesis ni liquidez oficial de Soleon.`,
   },
   tokenomics: {
     title: 'Tokenomics',
@@ -203,7 +200,7 @@ Además de la transfer fee del token:
 • claim_rewards de staking.
 • unstake_expired de staking.
 
-Esta fee va a una Maintenance Wallet pública y separada de la Developer Wallet y de la Market / Liquidity Wallet. Puede cubrir dominio, RPC, web, informes y otros costes operativos verificables. No cambia supply, no cambia APR, no concede control sobre el protocolo y no se cobra en renovación.`,
+Esta fee va a una Maintenance Wallet pública y separada de la Developer Wallet y de la Genesis Distribution Wallet. Puede cubrir dominio, RPC, web, informes y otros costes operativos verificables. No cambia supply, no cambia APR, no concede control sobre el protocolo y no se cobra en renovación.`,
   },
   staking: {
     title: 'Sistema de Staking',
@@ -257,125 +254,65 @@ Si una posición supera 7 días + 3 días de gracia:
 • El principal y los rewards netos siempre vuelven al propietario.`,
   },
   markets: {
-    title: 'Mercados DEX-first y Liquidez Comunitaria',
-    content: `Soleon no nace con una preventa ni con capital recaudado para sostener una gran liquidez inicial. El mercado debe descubrir el precio mediante intercambios reales. Para facilitar ese arranque sin fingir adopción, existe una Market / Liquidity Wallet temporal, pública y separada del fondo Genesis, de la Developer Wallet y de la Maintenance Wallet.
+    title: 'Mercados DEX-first y Participación Independiente',
+    content: `Soleon no nace con una preventa ni con capital recaudado para sostener liquidez inicial. Tampoco reserva SEON para operar el mercado. El precio, el volumen y la profundidad solo pueden existir cuando participantes independientes deciden colocar órdenes y ejecutarlas bajo su propio riesgo.
 
-**Order book como primer mercado**
-El primer objetivo es un mercado SEON/USDC tipo order book en Manifest, si su dirección y configuración quedan publicadas y verificadas. Un order book funciona de forma parecida a un exchange tradicional: compradores y vendedores colocan órdenes con precio y cantidad. La ejecución es DEX, on-chain y sin custodia de Soleon sobre los fondos de terceros.
+**Order book como primer mercado verificable**
+El primer mercado que la web puede publicar es un order book SEON/USDC en Manifest, siempre que su dirección, mints y configuración hayan sido comprobados. Un order book permite que compradores y vendedores publiquen precio y cantidad. La ejecución se realiza mediante el DEX, on-chain y sin custodia de Soleon sobre los fondos de terceros.
 
-**Inventario inicial limitado**
-La Market / Liquidity Wallet recibe 400,000 SEON y puede recibir hasta 200 USDC aportados por el mantenedor. Estos activos no representan demanda comunitaria. Solo sirven para publicar pequeñas órdenes reales a ambos lados del libro y aceptar el riesgo económico de que terceros independientes las ejecuten.
+La publicación de una dirección verificada no significa que exista liquidez. El mercado puede empezar sin bids, asks, trades ni precio. Ese estado vacío es válido y se muestra como tal: crear técnicamente un mercado no crea demanda económica.
 
-**Reglas públicas de actuación**
-• Todas las órdenes deben ser reales y ejecutables por cualquier tercero.
-• Nunca se cruzan órdenes entre wallets controladas por Soleon.
-• No se fabrica volumen, demanda, profundidad, actividad ni precio.
-• Si no existe contraparte independiente, el volumen real es cero.
-• No se anuncia un precio oficial ni una capitalización derivada de operaciones mínimas.
-• Los balances, órdenes y operaciones de la wallet pueden revisarse públicamente.
-• Los cambios de cotización siguen reglas publicadas de inventario, spread, profundidad, frecuencia y exposición máxima; no persiguen sostener un precio concreto.
+**Formación independiente del precio**
+• Soleon no fija un precio inicial ni una capitalización.
+• Las wallets controladas por Soleon no colocan bids o asks iniciales.
+• No se fabrica volumen mediante self-trading, wallets relacionadas u operaciones circulares.
+• Una orden aislada o una operación mínima no demuestra profundidad ni una valoración sostenible.
+• Si no existe una contraparte independiente, la liquidez y el volumen reales son cero.
+• Cada participante decide sus límites, cantidades y riesgos desde una interfaz DEX externa.
 
-Si nadie compra o vende, las órdenes pueden mantenerse sin cambios o retirarse conforme a esas reglas públicas. Si aparecen operaciones independientes y el precio se mueve, la wallet puede recolocar órdenes alrededor del mercado observado dentro de sus límites, sin intentar revertir la dirección elegida por los participantes.
+Cuando dos participantes independientes aceptan intercambiar SEON y USDC aparece un precio negociado. Ese precio puede cambiar rápidamente, puede tener un spread amplio y puede no permitir vender cantidades relevantes. Soleon no interviene para sostenerlo, dirigirlo o prometer continuidad.
 
-**Por qué DEX-first**
-• No requiere que un CEX acepte listar SEON.
-• No obliga al protocolo a custodiar fondos de usuarios.
-• Permite que el precio se forme por órdenes visibles.
-• Distingue claramente la liquidez aportada por el mantenedor de la actividad orgánica.
-• Encaja mejor con un token que busca reglas públicas e inmutabilidad.
+**Developer Wallet y actividad posterior**
+La asignación pública del desarrollador es de 44,444 SEON. No se utiliza para sembrar órdenes en el lanzamiento ni se presenta como demanda, market making o liquidez del protocolo.
 
-**Evaluación de un pool futuro**
-Después de la Ola 10 se evalúa si existe actividad independiente, un precio suficientemente observado y condiciones razonables para crear un pool SEON/USDC. El pool no está garantizado ni se crea solo para aparentar liquidez. La comunidad decide mediante una votación pública si debe abrirse y con qué propuesta exacta.
+Como cualquier titular, el desarrollador puede más adelante mantener, poner en staking, transferir, comprar o vender sus tokens por decisión propia. Cualquier acción será visible on-chain y asumirá el riesgo económico normal de mercado. No forma parte del Genesis Airdrop, no altera sus reglas y no convierte una operación personal en una venta oficial de Soleon.
 
-**Precio implícito y activos emparejados**
-En un pool de producto constante, el precio inicial implícito se obtiene dividiendo los USDC aportados entre los SEON aportados:
+**Sin liquidez oficial prometida**
+Soleon no promete, financia, programa ni gobierna un pool oficial. Tampoco abre una votación de pool, solicita compromisos de liquidez o recoge fondos para crearlo. No existe una fecha en la que deba aparecer un pool ni un umbral que obligue al protocolo a organizarlo.
 
-precio inicial de SEON = USDC aportados / SEON aportados
+Esta decisión evita presentar activos controlados por el mantenedor como demanda comunitaria, reduce las funciones financieras centralizadas y mantiene separadas la distribución Genesis, la asignación del desarrollador y el mantenimiento técnico.
 
-Por ejemplo, 300,000 SEON y 300 USDC implican un precio inicial de 0.001 USDC por SEON. Esa proporción no demuestra que el mercado pueda absorber operaciones relevantes: el mismo pool tendría solo unos 600 USDC de valor nominal combinado al precio inicial y sería muy débil frente a órdenes grandes.
+**Pools creados por terceros**
+Cualquier usuario o grupo puede crear por su cuenta un pool en Raydium, Orca, Meteora u otro DEX compatible y aportar su propia liquidez. Esa acción es independiente:
+• no está dirigida ni garantizada por Soleon,
+• no recibe una designación oficial por usar el nombre SEON,
+• no obliga a otros holders a participar,
+• no promete rentabilidad ni protección frente a impermanent loss,
+• no concede control sobre el token o el staking.
 
-No se depositan automáticamente todos los activos disponibles. Si Manifest muestra un precio de referencia de 0.01 USDC y la Market / Liquidity Wallet tiene 400,000 SEON y 200 USDC, la combinación directa de todo el inventario implicaría 0.0005 USDC por SEON y abriría una diferencia inmediata frente al order book. Sin vender previamente, una combinación alineada con 0.01 sería como máximo 20,000 SEON y 200 USDC, dejando el resto fuera del pool. La propuesta debe mostrar esta limitación con claridad para que los usuarios puedan decidir si la liquidez es demasiado pequeña.
+La web puede mostrar un pool comunitario después de verificar su dirección y dejar clara su naturaleza independiente. Publicarlo como referencia no implica respaldo económico, auditoría del DEX ni garantía sobre su liquidez.
 
-**Umbral mínimo de liquidez**
-Una propuesta de pool oficial solo puede abrir su votación si la aportación confirmada contiene al menos 2,500 USDC netos y una cantidad neta de SEON valorada en al menos otros 2,500 USDC mediante la referencia de mercado publicada. El valor nominal combinado mínimo es, por tanto, 5,000 USDC. Las cantidades netas son las que recibirían realmente los vaults del pool después de transfer fees y otros ajustes aplicables.
+**Mercados falsos y comprobaciones**
+En Solana cualquiera puede crear un token, mercado o pool con un nombre parecido. Antes de publicar un enlace, la web comprueba:
+• que se usa el mint SEON correcto,
+• que los dos activos y la dirección del mercado coinciden,
+• que el DEX y el tipo de mercado se identifican con claridad,
+• que la liquidez y el volumen mostrados proceden de datos on-chain,
+• que cualquier control o posibilidad de retirar liquidez se explica cuando pueda verificarse,
+• que no hay señales evidentes de mint falso, ruta sospechosa o presentación engañosa.
 
-Solo cuentan balances on-chain confirmados y comprometidos en la propuesta exacta. Indicaciones no vinculantes, donaciones pendientes, operaciones futuras esperadas o fondos todavía controlados por terceros no permiten cumplir el umbral. Alcanzarlo no garantiza profundidad, estabilidad, volumen ni valor; solo evita crear como pool oficial una posición inicialmente demasiado pequeña.
+Los usuarios deben comprobar siempre el mint y las direcciones. Una etiqueta de mercado verificado solo confirma identidad y configuración observables; no elimina riesgo de precio, slippage, contratos externos o pérdida.
 
-Soleon no abre campañas de donaciones ni acepta aportaciones de terceros para alcanzar este umbral. Los activos de la aportación oficial deben proceder exclusivamente del inventario inicial publicado de la Market / Liquidity Wallet y de sus operaciones reales bajo las reglas públicas. Después de existir un pool, cualquier usuario puede aportar su propia liquidez directamente mediante el DEX y conservar los derechos asociados a su posición independiente.
-
-**Referencia de mercado y propuesta exacta**
-La propuesta del pool publica antes del voto:
-• slot y hora de referencia,
-• balances exactos de la Market / Liquidity Wallet,
-• SEON y USDC que se aportarían,
-• precio inicial implícito,
-• VWAP de 14 días de operaciones reales en Manifest, junto con volumen, spread y profundidad observados,
-• diferencia entre el precio propuesto y el precio de referencia,
-• estimación de slippage y activos que permanecerían fuera del pool,
-• destino exacto de los activos que permanecerían fuera del pool,
-• tipo de pool, configuración de fees y confirmación de que cualquier creator fee opcional queda desactivada,
-• mecanismo de bloqueo de la posición LP y tratamiento exacto de cualquier derecho a fees,
-• volumen y profundidad mínimos que deben seguir existiendo al ejecutar la propuesta.
-
-Las autooperaciones y transferencias entre wallets controladas por Soleon no cuentan para formar la referencia. Si no existe suficiente actividad para obtener una referencia defendible, la propuesta debe indicarlo expresamente y no puede presentar un precio aislado como precio de mercado.
-
-**Propuesta fija y wallet congelada**
-Desde que se publica la propuesta final, la Market / Liquidity Wallet cancela sus órdenes abiertas y queda inactiva durante la votación, la comprobación del resultado y la eventual ejecución. No puede comprar, vender, reequilibrar ni transferir inventario durante ese periodo. Los usuarios independientes pueden seguir operando normalmente en Manifest, pero las cantidades sometidas a voto no cambian mientras se votan.
-
-Antes de ejecutar una propuesta aprobada se recalcula la referencia mediante el mismo método publicado. Si difiere más de un 10% de la referencia sometida a voto, o dejan de cumplirse el volumen o la profundidad mínimos publicados, la autorización caduca sin ejecutar el pool. El cambio de mercado no permite modificar discretamente las cantidades aprobadas: requiere una propuesta y un snapshot nuevos.
-
-**Reequilibrio previo separado**
-Si una propuesta de pool no se aprueba, la wallet puede reanudar después del periodo de comprobación su market making ordinario bajo las reglas públicas anteriores. Que sus balances evolucionen como consecuencia de operaciones reales iniciadas por terceros no constituye por sí solo un reequilibrio dirigido.
-
-Vender SEON deliberadamente para preparar otra combinación de pool sí es una actuación distinta. No se permite una venta grande, discrecional ni ejecutada durante la votación. Requiere una propuesta de reequilibrio separada y aprobada, antes de ejecutarse, mediante las mismas reglas de snapshot, quorum y mayoría de la votación del pool. Esa propuesta publica cantidad máxima, ventana temporal, precios límite, slippage máximo, ritmo máximo de participación (nunca superior al 10% del volumen independiente observado), condiciones de parada y reglas de ejecución. No puede perseguir, sostener ni fabricar un precio. Solo se usan órdenes reales contra terceros independientes; nunca self-trading, órdenes engañosas ni volumen fabricado.
-
-Tras ese proceso se publica cada ejecución y un informe final; después se somete a voto una nueva propuesta de pool con las cantidades efectivamente disponibles. Por ejemplo, pasar de 300,000 SEON + 1,000 USDC a 200,000 SEON + 2,000 USDC exige vender 100,000 SEON a un precio medio real de 0.01 USDC, ignorando fees y slippage. Ese resultado solo es válido si existe demanda independiente suficiente; no puede imponerse mediante wallets propias ni operaciones ficticias.
-
-**Revisión comunitaria: pool o retirada de la wallet**
-• 2 de noviembre de 2026: publicar la Ola 10, el informe acumulado, los balances de la Market / Liquidity Wallet y la evaluación reproducible del umbral.
-• Si los activos confirmados permiten aportar al menos 2,500 USDC netos y SEON netos valorados en al menos otros 2,500 USDC, se publica una propuesta exacta y se vota si crear el pool.
-• Si no se alcanza ese umbral, no puede abrirse una votación de pool. En su lugar se publica una propuesta para decidir si retirar definitivamente la Market / Liquidity Wallet o mantenerla operativa bajo las reglas públicas.
-• 3 de noviembre de 2026 a las 12:00 UTC: tomar el snapshot y abrir la votación.
-• 17 de noviembre de 2026 a las 12:00 UTC: cerrar la votación después de 14 días.
-• 17–20 de noviembre: publicar el recuento reproducible y admitir comprobaciones o impugnaciones técnicas.
-• Si se aprueba una propuesta de pool, ejecutarlo en un máximo de 7 días después de validar el resultado.
-• Si se rechaza el pool, se rechaza la retirada de la wallet o no se alcanza quorum, la wallet puede reanudar sus operaciones ordinarias solo hasta la siguiente revisión o hasta la fecha límite definitiva. La segunda revisión no puede abrirse antes del 3 de diciembre de 2026 y la tercera no puede abrirse antes del 3 de enero de 2027. Cada revisión usa datos y snapshot nuevos, mantiene la votación abierta durante 14 días y aplica las mismas reglas de quorum, mayoría y diversidad.
-• Las tres revisiones son el máximo total, con independencia de que en cada una se vote crear el pool o mantener/retirar la wallet. También cuentan las revisiones sin quorum y las secuencias mixtas entre ambos tipos de propuesta.
-• Un voto para mantener la wallet o un voto contrario al pool solo autoriza su continuidad temporal hasta la siguiente revisión; nunca amplía su vida más allá del 3 de febrero de 2027.
-• Si al 3 de febrero de 2027 a las 12:00 UTC no se ha ejecutado un pool aprobado ni ha comenzado una retirada aprobada, la Market / Liquidity Wallet queda congelada automáticamente y entra en retirada definitiva. Esta fecha límite se fija antes del lanzamiento y no requiere una cuarta votación.
-
-El snapshot usa el primer slot finalizado de Solana igual o posterior a la hora publicada. Cuenta el balance líquido elegible y el principal en staking atribuible a cada wallet. La Developer Wallet participa como una única wallet con su balance elegible real, pero no cuenta como receptora Genesis ni ayuda a cumplir el mínimo de wallets Genesis distintas. Dividir tokens entre otras wallets controladas por el desarrollador no crea votantes independientes válidos. Se excluyen Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults y cualquier otra cuenta oficial. El dataset, su hash y las reglas de cálculo se publican para reproducción independiente.
-
-El voto se registra con una transacción memo que identifica la propuesta y SÍ o NO. Votar no requiere transferir SEON ni entregar custodia; solo pagar la fee normal de red. Cuenta el último voto válido de cada wallet antes del cierre y 1 SEON elegible equivale a 1 voto. La aprobación requiere simultáneamente:
-• participación mínima de 1,000,000 SEON,
-• al menos 66.67% de SÍ entre SÍ + NO,
-• al menos 50 wallets votantes distintas,
-• al menos 25 wallets receptoras originales de Genesis con balance elegible.
-
-Solo cuentan votos SÍ o NO. Una wallet que no vota no participa en la decisión ni ayuda a alcanzar el quorum. El votante también puede declarar de forma opcional y no vinculante cuánta liquidez consideraría aportar. Esa declaración no bloquea fondos ni obliga a participar. La web debe explicar que aportar liquidez conlleva slippage, impermanent loss y riesgo de pérdida; no es un requisito para votar ni una promesa de rentabilidad.
-
-**Ejecución de una retirada aprobada o automática**
-La retirada sometida a voto usa exactamente el mismo snapshot, quorum, mayoría y requisitos de diversidad de votantes que la votación del pool. Durante la votación y la comprobación del resultado la wallet permanece congelada. Si la retirada se aprueba, o si se activa automáticamente el límite definitivo del 3 de febrero de 2027, se publica antes de operar un plan final de conversión con saldo inicial, ventana temporal, precios límite, slippage máximo, condiciones de parada y ritmo máximo de participación, nunca superior al 10% del volumen independiente observado. La retirada automática aplica estas mismas restricciones y no concede nuevas facultades discrecionales al mantenedor.
-
-El USDC restante solo puede utilizarse para comprar SEON a vendedores independientes mediante órdenes límite reales. Se permiten como máximo dos ciclos de colocación o ajuste de órdenes por día UTC; este límite no promete dos ejecuciones diarias ni autoriza órdenes de mercado. No se cruza ninguna orden con wallets controladas por Soleon, no se persigue el precio y no se fuerza la conversión cuando no existe oferta independiente suficiente.
-
-Cada fill y cada cancelación se publican. Cuando el USDC se haya convertido completamente y no queden órdenes abiertas, todo el SEON de la wallet se transfiere al reward_vault, publicando cantidad bruta, transfer fee y cantidad neta. La dirección queda retirada permanentemente y no vuelve a operar, aunque su historial siga visible on-chain. Si no es posible convertir todo el USDC dentro de la ventana aprobada, el saldo no se oculta ni se transfiere discrecionalmente: se publica el resultado, la wallet queda congelada y cualquier continuación requiere una nueva votación después de al menos 30 días.
-
-**Bloqueo permanente y fees**
-Si se aprueba, el diseño previsto crea un pool Raydium CPMM estándar con la creator fee opcional desactivada, después de verificar públicamente la configuración vigente. La posición LP se bloquea permanentemente mediante Burn & Earn. Tras comprobar on-chain el bloqueo, la Fee Key NFT se quema para renunciar de forma irreversible a cualquier derecho de Soleon a reclamar las fees de esa posición.
-
-La parte estándar de las fees que corresponde al LP permanece en los vaults del pool y aumenta su liquidez interna. Las partes de protocolo y fondo pertenecen a Raydium conforme a su configuración vigente; Soleon no las controla. Los SEON de la Market / Liquidity Wallet que la propuesta aprobada no utilice se transfieren al reward_vault, publicando cantidad bruta, fee Token-2022 y cantidad neta. Esa aportación no recalcula retroactivamente el presupuesto anual ya abierto, pero aumenta los rewards disponibles para periodos futuros. El destino de cualquier USDC restante debe formar parte de la propuesta y no puede decidirse después de la votación.
-
-**Pools comunitarios y mercados falsos**
-La comunidad puede crear otros pools en Raydium, Orca, Meteora u otros DEX compatibles. No serán oficiales por defecto. La web podrá mostrarlos si se revisa:
-• que usan el mint SEON correcto,
-• que el DEX y el par son claros,
-• que la liquidez es visible,
-• que se indica si el LP está bloqueado, quemado, en multisig o libremente retirable,
-• que no hay señales de mint falso, ruta sospechosa o liquidez engañosa.
+**Por qué este modelo**
+• No depende de que un CEX acepte listar SEON.
+• No requiere custodiar fondos de usuarios.
+• No necesita una venta inicial para crear holders.
+• No confunde inventario del creador con liquidez comunitaria.
+• Permite que la actividad real sea visible, incluso cuando sea cero.
+• Reduce una función operativa y financiera que habría permanecido bajo control del mantenedor.
 
 **Rol de la web**
-La web no opera como exchange, no fija precio y no custodia fondos de usuarios. Su función es publicar direcciones, explicar riesgos, enlazar mercados verificados y ayudar a distinguir entre liquidez útil, liquidez débil y pools fake.`,
+La web no opera como exchange, no custodia fondos, no coloca órdenes y no fija precio. Su función es publicar el mint y las direcciones verificadas, explicar riesgos, enlazar interfaces externas y distinguir mercados correctos de rutas falsas o engañosas.`,
   },
   technical: {
     title: 'Especificaciones Técnicas',
@@ -387,8 +324,7 @@ La web no opera como exchange, no fija precio y no custodia fondos de usuarios. 
 • reward_vault: reserva finita para staking.
 • staking_vault: mantiene principal bloqueado.
 • soleon_fee_vault: cuenta técnica para distribución de fees.
-• genesis_distribution_wallet: mantiene los 4,000,000 SEON hasta completar las diez olas.
-• market_liquidity_wallet: inventario temporal de 400,000 SEON y hasta 200 USDC para mercado real.
+• genesis_distribution_wallet: mantiene los 4,400,000 SEON hasta completar las diez olas.
 • developer_wallet: asignación personal pública de 44,444 SEON.
 • maintenance_fee_receiver: Maintenance Wallet pública que recibe fees SOL de mantenimiento.
 
@@ -404,11 +340,11 @@ La web no opera como exchange, no fija precio y no custodia fondos de usuarios. 
 • cleanup_expired_positions: cierra por lotes posiciones fuera de gracia.
 
 **Mercados**
-• Objetivo inicial: Manifest order book SEON/USDC.
-• Market / Liquidity Wallet temporal: órdenes reales bajo reglas públicas y sin self-trading.
-• Pool futuro: opcional después de 2–3 meses, solo si la actividad y el precio observado lo hacen viable.
-• Otros pools AMM: comunitarios, no oficiales por defecto.
-• La web solo enlaza mercados/pools después de revisar que usan el mint SEON correcto.
+• Referencia inicial posible: Manifest order book SEON/USDC verificado, aunque comience vacío.
+• Ninguna wallet controlada por Soleon coloca órdenes iniciales.
+• No existe reserva de mercado, pool oficial, votación de pool ni compromiso de liquidez.
+• Los pools AMM pueden ser creados por terceros y son independientes, no oficiales por defecto.
+• La web solo enlaza mercados o pools después de comprobar que usan el mint SEON correcto.
 • No hay custodia: cada usuario firma desde su wallet en interfaces DEX externas.
 
 **Mantenimiento**
@@ -448,7 +384,7 @@ La mint authority existe solo durante la creación y asignación inicial del sup
 En el estado final, el usuario debe poder verificar mint, program IDs, vaults, autoridades y reglas desde exploradores y código público.
 
 **Alcance real de la descentralización**
-La inmutabilidad del mint y del staking no convierte automáticamente en descentralizadas todas las capas del proyecto. La web, la documentación, la Maintenance Wallet y la Market / Liquidity Wallet temporal siguen teniendo responsables operativos. Soleon publica estas dependencias, limita sus funciones y evita describir el sistema como totalmente descentralizado mientras existan. La meta es reducir el control discrecional sobre las reglas y los fondos del protocolo, no ocultar la existencia de mantenimiento humano.`,
+La inmutabilidad del mint y del staking no convierte automáticamente en descentralizadas todas las capas del proyecto. La web, la documentación y la Maintenance Wallet siguen teniendo responsables operativos. Soleon publica estas dependencias, limita sus funciones y evita describir el sistema como totalmente descentralizado mientras existan. No reservar fondos para operar mercados elimina una función financiera controlada por el mantenedor, pero no elimina el mantenimiento humano de la interfaz. La meta es reducir el control discrecional sobre las reglas y los fondos del protocolo, no ocultar esas dependencias.`,
   },
   timeline: {
     title: 'Timeline',
@@ -466,18 +402,18 @@ La inmutabilidad del mint y del staking no convierte automáticamente en descent
 • Crear el mint SEON Token-2022 y su metadata oficial.
 • Crear y publicar las wallets y cuentas principales.
 • Financiar reward_vault con 440,000,000 SEON.
-• Financiar Genesis Distribution Wallet con 4,000,000 SEON.
-• Financiar Market / Liquidity Wallet con 400,000 SEON.
+• Financiar Genesis Distribution Wallet con 4,400,000 SEON.
 • Transferir 44,444 SEON a Developer Wallet.
 • Revocar mint authority después de verificar el supply completo y las asignaciones.
 • Confirmar freeze authority nula.
 
-**31 de agosto de 2026: staking, mercado y Ola 1**
+**31 de agosto de 2026: staking, mercado verificable y Ola 1**
 • Desplegar y abrir staking si el rehearsal final es correcto.
 • Abrir staking_open y activar la primera transfer fee de 0.02% mediante acción permissionless.
 • Permitir stake, claim, renovación, unstake y cleanup.
-• Publicar el mercado Manifest SEON/USDC y la política de la Market / Liquidity Wallet.
-• Distribuir 10,000 SEON a cada una de las primeras 40 wallets.
+• Publicar la dirección verificada del mercado Manifest SEON/USDC si está disponible, indicando que puede comenzar vacío.
+• No colocar órdenes iniciales desde wallets controladas por Soleon.
+• Distribuir 10,000 SEON a cada una de las primeras 44 wallets.
 
 **Olas semanales 2–10**
 • Ola 2: 7 de septiembre de 2026.
@@ -489,28 +425,25 @@ La inmutabilidad del mint y del staking no convierte automáticamente en descent
 • Ola 8: 19 de octubre de 2026.
 • Ola 9: 26 de octubre de 2026.
 • Ola 10: 2 de noviembre de 2026.
-• Cada ola distribuye 400,000 SEON entre 40 wallets y publica su informe verificable.
+• Cada ola distribuye 440,000 SEON entre 44 wallets y publica su informe verificable.
 
 **Después de la Ola 10**
-• Publicar la verificación acumulada de las 400 distribuciones.
+• Publicar la verificación acumulada de las 440 distribuciones.
 • Cerrar las correcciones técnicas confirmadas durante la ventana de lanzamiento.
 • Revocar la program upgrade authority y dejar staking inmutable.
-• 2 de noviembre: publicar la primera revisión. Si se alcanza el umbral, presentar la propuesta exacta de pool; si no, presentar la propuesta de mantener o retirar la Market / Liquidity Wallet.
-• 3 de noviembre a las 12:00 UTC: fijar el snapshot y abrir la votación durante 14 días.
-• 17 de noviembre a las 12:00 UTC: cerrar la votación y publicar un recuento reproducible.
-• Si se aprueba el pool, ejecutarlo en un máximo de 7 días tras la validación; si se aprueba la retirada, comenzar el plan público de conversión.
-• Si no existe una salida definitiva, celebrar como máximo una segunda revisión no antes del 3 de diciembre y una tercera no antes del 3 de enero, ambas con datos y snapshot nuevos.
-• Si al 3 de febrero de 2027 no se ha ejecutado un pool aprobado ni ha comenzado una retirada aprobada, congelar la wallet e iniciar automáticamente su retirada definitiva.
+• Mantener publicada la dirección correcta del mercado Manifest y sus datos on-chain, sin presentar ausencia de órdenes como un fallo técnico.
+• Revisar y etiquetar de forma independiente cualquier pool comunitario que aparezca, sin convertirlo en oficial.
+• No abrir una votación de pool ni anunciar una fecha o umbral de liquidez oficial.
 
 **Operación continuada**
 • Mantener documentación y enlaces.
 • Seguir recolectando fees Token-2022 hacia fondo de recompensas y burn.
 • Publicar balances y movimientos de las wallets operativas.
-• No prometer liquidez, precio, volumen ni fecha de pool si las condiciones no son suficientes.`,
+• No prometer liquidez, precio, volumen ni creación de un pool oficial.`,
   },
   conclusion: {
     title: 'Conclusión',
-    content: `Soleon no intenta empezar con una gran venta ni con volumen artificial controlado por el creador. Empieza pequeño: un token fijo, una distribución directa y verificable, revisión pública, staking con presupuesto finito y un mercado DEX-first con inventario inicial limitado y visible.
+    content: `Soleon no intenta empezar con una gran venta ni con volumen artificial controlado por el creador. Empieza pequeño: un token fijo, una distribución directa y verificable, revisión pública, staking con presupuesto finito y un mercado DEX-first que puede comenzar vacío y solo adquirir actividad mediante participantes independientes.
 
 **Lo que Soleon sí intenta hacer**
 • Poner reglas claras on-chain.
@@ -518,7 +451,7 @@ La inmutabilidad del mint y del staking no convierte automáticamente en descent
 • Separar interfaz web de autoridad del protocolo.
 • Usar transfer fees para quemar parte del supply y rellenar rewards.
 • Revocar la autoridad de actualización del staking cuando termine la ventana pública de lanzamiento.
-• Identificar de forma clara las funciones temporales de Soleon Maintainer y de las wallets operativas.
+• Identificar de forma clara las funciones de Soleon Maintainer y de las wallets operativas necesarias.
 
 **Lo que Soleon no promete**
 • No promete precio.
@@ -527,9 +460,9 @@ La inmutabilidad del mint y del staking no convierte automáticamente en descent
 • No promete listing en CEX.
 • No promete que la revisión pública encuentre todos los errores.
 
-SEON puede no tener mercado o puede valer cero. La Market / Liquidity Wallet puede facilitar órdenes reales, pero no puede crear demanda orgánica ni garantizar que exista una contraparte. Un pool futuro solo se considerará si la actividad independiente y el precio observado lo hacen viable.
+SEON puede no tener mercado o puede valer cero. El order book verificado puede comenzar y permanecer vacío; Soleon no coloca órdenes iniciales, no crea demanda y no garantiza una contraparte. Los pools que puedan crear terceros son independientes y no constituyen liquidez oficial prometida.
 
-El proyecto solo puede ofrecer reglas públicas, documentación, código revisable y una estructura que reduzca dependencias centralizadas. La existencia de una web mantenida, una Maintenance Wallet y una wallet temporal de mercado impide afirmar una descentralización total durante el lanzamiento. La decisión económica final la toman el mercado y la comunidad; la meta técnica es que las reglas centrales del token y del staking dejen de depender del mantenedor.`,
+El proyecto solo puede ofrecer reglas públicas, documentación, código revisable y una estructura que reduzca dependencias centralizadas. La existencia de una web mantenida y una Maintenance Wallet impide afirmar una descentralización total de todas las capas. La decisión económica final pertenece a participantes independientes; la meta técnica es que las reglas centrales del token y del staking dejen de depender del mantenedor.`,
   },
 };
 
@@ -549,13 +482,13 @@ The current design avoids three common dependencies:
 
 Soleon starts with a clear philosophy:
 • Transparency is fundamental: relevant funds should be public and verifiable.
-• Initial distribution is not bought: it is sent directly to 400 independent wallets selected through public rules, a snapshot and verifiable randomness.
+• Initial distribution is not bought: it is sent directly to 440 independent wallets selected through public rules, a snapshot and verifiable randomness.
 • Decentralization is a progressive technical target, not a slogan or a claim of total decentralization while temporary authorities and operational duties remain.
 • The website helps use the protocol, but should not be the protocol authority.
 • Markets should form in a DEX-first, public and verifiable way.
 • Public review is part of launch, not a later decoration.
 
-SEON is first distributed through a direct Genesis Airdrop: 4,000,000 SEON allocated in ten weekly waves of 40 wallets, with 10,000 SEON per wallet. There is no claim, eligibility signature, mandatory website connection or distribution fee. After the final rehearsal, staking opens with a fixed 7-day lock, proportional rewards and permissionless maintenance. Program upgrade authority remains only during the ten waves so confirmed and publicly documented bugs can be fixed; after final verification, the target is to revoke it and make staking immutable.`,
+SEON is first distributed through a direct Genesis Airdrop: 4,400,000 SEON allocated in ten weekly waves of 44 wallets, with 10,000 SEON per wallet. There is no claim, eligibility signature, mandatory website connection or distribution fee. After the final rehearsal, staking opens with a fixed 7-day lock, proportional rewards and permissionless maintenance. Program upgrade authority remains only during the ten waves so confirmed and publicly documented bugs can be fixed; after final verification, the target is to revoke it and make staking immutable.`,
   },
   problem: {
     title: 'The Problem',
@@ -593,19 +526,19 @@ An interface can help users, but it should not be the final authority. Important
     content: `Soleon answers with a smaller, verifiable and gradual launch. The core idea is that trust should not depend on a good story, but on public addresses, checkable rules and clear limits on what the maintainer can do.
 
 **Free direct initial distribution**
-The first allocation is neither purchased nor claimed. The 4,000,000 Genesis SEON are sent directly to 400 independent wallets in ten weekly waves. Each wallet receives 10,000 SEON without connecting to the website, signing a message, paying a protocol fee or trusting an eligibility server.
+The first allocation is neither purchased nor claimed. The 4,400,000 Genesis SEON are sent directly to 440 independent wallets in ten weekly waves. Each wallet receives 10,000 SEON without connecting to the website, signing a message, paying a protocol fee or trusting an eligibility server.
 
 **Public and reproducible selection**
 Candidate wallets come from verifiable activity in known Solana ecosystem protocols. Before the first wave, the rules, snapshot slot, exclusions, data hashes and randomness method are published. The final list is closed before Wave 1, and every wave reports wallets, ATAs, transactions, errors and retries.
 
 **Transparent funds and roles**
-The initial allocation clearly separates the reward fund, Genesis Distribution Wallet, temporary Market / Liquidity Wallet and developer allocation. The Maintenance Wallet is also published. Every address, balance and role should be trackable through explorers once it exists.
+The initial allocation clearly separates the reward fund, Genesis Distribution Wallet and developer allocation. The Maintenance Wallet is an operational account funded in SOL by fees from specific actions, not an allocation of the SEON supply. Every address, balance and role should be trackable through explorers once it exists.
 
 **Public review before and during launch**
 The website, staking and distribution scripts are opened for review. There is no review reserve and no promised payout for reports. This does not guarantee that every issue is absent, but it avoids selling a false sense of security and requires rules, addresses and risks to be published.
 
-**DEX-first market with limited visible initial liquidity**
-The first market target is a verifiable SEON/USDC order book on Manifest. The Market / Liquidity Wallet may place real orders with up to 400,000 SEON and 200 USDC. Its orders, inventory and rules are public; it is not used to fabricate volume, demand or price.
+**DEX-first market without official liquidity**
+The first market that may be published is a verifiable SEON/USDC order book on Manifest. It may begin completely empty: Soleon reserves no tokens for market activity, places no initial orders through controlled wallets and promises no price, volume, depth or liquidity. All activity must come from independent participants.
 
 **Defense against fakes**
 The website should not link every market that appears. It should distinguish verified, community, high-risk and fake markets. A pool is not official just because it exists, and a link should not activate until the address is verifiable.
@@ -621,23 +554,22 @@ The website should not link every market that appears. It should distinguish ver
 Staking does not promise a fixed APR. Each year releases a maximum percentage of the uncommitted reward fund. Users share that budget proportionally to active principal.
 
 **Immutability without hiding human operations**
-Soleon distinguishes the protocol from its operational layers. Staking can become immutable and critical actions can be permissionless, while the website, documentation, Maintenance Wallet and temporary Market / Liquidity Wallet require human maintenance publicly identified as Soleon Maintainer. During this phase, Soleon therefore describes decentralization as progressive and verifiable, not total.`,
+Soleon distinguishes the protocol from its operational layers. Staking can become immutable and critical actions can be permissionless, while the website, documentation and Maintenance Wallet require human maintenance publicly identified as Soleon Maintainer. During this phase, Soleon therefore describes decentralization as progressive and verifiable, not total.`,
   },
   distribution: {
     title: 'Initial Distribution',
     content: `**Total supply: 444,444,444 SEON**
 
-The complete supply is created once and split across four public allocations:
+The complete supply is created once and split across three public allocations:
 • 440,000,000 SEON → staking reward vault.
-• 4,000,000 SEON → Genesis Distribution Wallet.
-• 400,000 SEON → temporary Market / Liquidity Wallet.
+• 4,400,000 SEON → Genesis Distribution Wallet.
 • 44,444 SEON → Developer Wallet.
 
 **Genesis Airdrop**
-The 4,000,000 Genesis SEON are distributed to 400 independent wallets:
+The 4,400,000 Genesis SEON are distributed to 440 independent wallets:
 • 10,000 SEON per wallet.
-• 40 wallets per wave.
-• 400,000 SEON per wave.
+• 44 wallets per wave.
+• 440,000 SEON per wave.
 • Ten weekly waves from August 31 through November 2, 2026.
 
 There is no Genesis contract, claim, server-side signature, mandatory website connection or distribution fee. The Genesis Distribution Wallet creates the recipient's Token-2022 ATA when required and executes a direct, on-chain verifiable transfer.
@@ -645,12 +577,10 @@ There is no Genesis contract, claim, server-side signature, mandatory website co
 **Verifiable selection**
 Before Wave 1, a set of 10,000 candidates is built from recent activity on Jupiter, Raydium, Orca, Meteora, Kamino, Marinade/Jito and Drift. Rules require real Solana history, activity across different days and months, recent interaction with known protocols and a snapshot balance between 0.05 and 500 SOL. Programs, PDAs, exchanges, obvious bots, Soleon-controlled wallets, duplicates and identifiable infrastructure addresses are excluded.
 
-The snapshot slot, final program allowlist, input hashes, public seed derived from a future block and selection algorithm are published so selection of the 400 wallets can be reproduced. The full list is fixed before the first wave and deterministically split into ten groups of 40. Each weekly report shows every transfer result and supports idempotent retries without duplicate payments.
+The snapshot slot, final program allowlist, input hashes, public seed derived from a future block and selection algorithm are published so selection of the 440 wallets can be reproduced. The full list is fixed before the first wave and deterministically split into ten groups of 44. Each weekly report shows every transfer result and supports idempotent retries without duplicate payments.
 
-**Initial operational wallets**
-The Developer Wallet receives 44,444 SEON as the developer's public personal allocation. These tokens may be held, transferred, sold or staked as personally owned tokens.
-
-The Market / Liquidity Wallet receives 400,000 SEON and may receive up to 200 USDC contributed by the maintainer to form a small, transparent initial order book. It is temporary, separate from Genesis and excluded from recipient selection. Its role is limited to real liquidity and a possible later transition to an SEON/USDC pool if independent activity demonstrates viability.`,
+**Developer Wallet**
+The Developer Wallet receives 44,444 SEON as the developer's public personal allocation. These tokens may be held, transferred, sold or staked as personally owned tokens. It is not used to place initial orders and is not presented as a source of protocol liquidity. Any later use is a personal action that remains public and verifiable on-chain, not a Genesis sale or official Soleon liquidity.`,
   },
   tokenomics: {
     title: 'Tokenomics',
@@ -685,7 +615,7 @@ Separate from the token transfer fee:
 • staking claim_rewards.
 • staking unstake_expired.
 
-This fee goes to a public Maintenance Wallet separate from the Developer Wallet and Market / Liquidity Wallet. It may cover domain, RPC, website, reporting and other verifiable operating costs. It does not change supply, does not change APR, does not grant protocol control and is not charged on renew.`,
+This fee goes to a public Maintenance Wallet separate from the Developer Wallet and Genesis Distribution Wallet. It may cover domain, RPC, website, reporting and other verifiable operating costs. It does not change supply, does not change APR, does not grant protocol control and is not charged on renew.`,
   },
   staking: {
     title: 'Staking System',
@@ -739,125 +669,65 @@ If a position passes 7 days + 3 days grace:
 • Principal and net rewards always return to the owner.`,
   },
   markets: {
-    title: 'DEX-first Markets and Community Liquidity',
-    content: `Soleon does not start with a presale or raised capital to sustain large initial liquidity. The market must discover price through real trades. To facilitate that start without pretending adoption, Soleon uses a temporary and public Market / Liquidity Wallet, separate from the Genesis fund, Developer Wallet and Maintenance Wallet.
+    title: 'DEX-first Markets and Independent Participation',
+    content: `Soleon does not start with a presale or raised capital intended to sustain initial liquidity. It also reserves no SEON for market operations. Price, volume and depth can only exist when independent participants choose to place and execute orders at their own risk.
 
-**Order book as the first market**
-The first target is an SEON/USDC order-book market on Manifest, provided its address and configuration are published and verified. An order book works similarly to a traditional exchange: buyers and sellers place orders with price and amount. Execution is DEX, on-chain and does not give Soleon custody over third-party funds.
+**Order book as the first verifiable market**
+The first market the website may publish is an SEON/USDC order book on Manifest, provided its address, mints and configuration have been checked. An order book lets buyers and sellers publish price and amount. Execution takes place through the DEX, on-chain, without Soleon taking custody of third-party funds.
 
-**Limited initial inventory**
-The Market / Liquidity Wallet receives 400,000 SEON and may receive up to 200 USDC contributed by the maintainer. These assets do not represent community demand. They only support small, real orders on both sides of the book while accepting the economic risk that independent third parties execute them.
+Publishing a verified address does not mean liquidity exists. The market may begin without bids, asks, trades or a price. That empty state is valid and is displayed as such: technically creating a market does not create economic demand.
 
-**Public operating rules**
-• Every order must be real and executable by any third party.
-• Orders are never crossed between Soleon-controlled wallets.
-• Volume, demand, depth, activity and price are never fabricated.
-• Without an independent counterparty, real volume is zero.
-• No official price or market capitalization is announced from minimal trades.
-• Wallet balances, orders and trades remain publicly reviewable.
-• Quote changes follow published inventory, spread, depth, frequency and maximum-exposure rules; they do not attempt to defend a specific price.
+**Independent price formation**
+• Soleon does not set an initial price or market capitalization.
+• Soleon-controlled wallets place no initial bids or asks.
+• Volume is not fabricated through self-trading, related wallets or circular transactions.
+• An isolated order or minimal trade does not demonstrate depth or sustainable valuation.
+• Without an independent counterparty, real liquidity and volume are zero.
+• Each participant chooses limits, amounts and risks through an external DEX interface.
 
-If nobody buys or sells, orders may remain unchanged or be withdrawn according to those public rules. If independent trades appear and price moves, the wallet may reposition orders around the observed market within its limits, without trying to reverse the direction chosen by participants.
+A traded price appears only when two independent participants agree to exchange SEON and USDC. That price may move quickly, have a wide spread and be unable to absorb meaningful sales. Soleon does not intervene to support, direct or promise continuity for it.
 
-**Why DEX-first**
-• It does not require a CEX to agree to list SEON.
-• It does not require the protocol to custody user funds.
-• It lets price form from visible orders.
-• It clearly distinguishes maintainer-provided liquidity from organic activity.
-• It better fits a token that seeks public rules and immutability.
+**Developer Wallet and later activity**
+The public developer allocation is 44,444 SEON. It is not used to seed launch orders and is not presented as protocol demand, market making or liquidity.
 
-**Future pool evaluation**
-After Wave 10, Soleon evaluates whether independent activity, a sufficiently observed price and reasonable conditions exist for an SEON/USDC pool. The pool is not guaranteed and is not created merely to imply liquidity. The community decides through a public vote whether it should open and under which exact proposal.
+Like any holder, the developer may later hold, stake, transfer, buy or sell tokens by personal choice. Any action remains visible on-chain and carries ordinary market risk. It is not part of the Genesis Airdrop, does not alter its rules and does not turn a personal trade into an official Soleon sale.
 
-**Implied price and matched assets**
-In a constant-product pool, the initial implied price is calculated by dividing contributed USDC by contributed SEON:
+**No promised official liquidity**
+Soleon does not promise, fund, schedule or govern an official pool. It does not open a pool vote, request liquidity commitments or collect funds to create one. There is no date by which a pool must appear and no threshold that requires the protocol to organize it.
 
-initial SEON price = contributed USDC / contributed SEON
+This avoids presenting maintainer-controlled assets as community demand, reduces centralized financial functions and keeps Genesis distribution, the developer allocation and technical maintenance separate.
 
-For example, 300,000 SEON and 300 USDC imply an initial price of 0.001 USDC per SEON. That ratio does not prove the market can absorb meaningful trades: the same pool would have only about 600 USDC in combined nominal value at its initial price and would be very weak against large orders.
+**Third-party pools**
+Any user or group may independently create a pool on Raydium, Orca, Meteora or another compatible DEX and provide personal liquidity. That action remains independent:
+• it is not directed or guaranteed by Soleon,
+• it does not become official merely by using the SEON name,
+• it does not require other holders to participate,
+• it promises no return or protection from impermanent loss,
+• it grants no control over the token or staking.
 
-Available assets are not deposited automatically in full. If Manifest shows a 0.01 USDC reference price while the Market / Liquidity Wallet holds 400,000 SEON and 200 USDC, contributing all inventory directly would imply 0.0005 USDC per SEON and create an immediate difference from the order book. Without a prior sale, a combination aligned with 0.01 would be at most 20,000 SEON and 200 USDC, leaving the remainder outside the pool. The proposal must make this limitation clear so users can decide whether the liquidity is too small.
+The website may display a community pool after verifying its address and clearly identifying its independent nature. Publishing it as a reference does not imply economic backing, an audit of the DEX or a guarantee of liquidity.
 
-**Minimum liquidity threshold**
-An official pool proposal may open voting only if its confirmed contribution contains at least 2,500 net USDC and a net amount of SEON valued at no less than another 2,500 USDC under the published market reference. The minimum combined nominal value is therefore 5,000 USDC. Net amounts are what the pool vaults would actually receive after transfer fees and other applicable adjustments.
+**Fake markets and checks**
+On Solana, anyone can create a token, market or pool with a similar name. Before publishing a link, the website checks:
+• that it uses the correct SEON mint,
+• that both assets and the market address match,
+• that the DEX and market type are clearly identified,
+• that displayed liquidity and volume come from on-chain data,
+• that any control or ability to withdraw liquidity is explained where verifiable,
+• that there are no evident signs of a fake mint, suspicious route or misleading presentation.
 
-Only confirmed on-chain balances committed by the exact proposal count toward this threshold. Non-binding indications, pending donations, expected future trades or funds still controlled by third parties cannot satisfy it. Meeting the threshold does not guarantee depth, stability, volume or value; it only prevents an initially undersized position from becoming the official pool.
+Users should always verify the mint and addresses. A verified-market label only confirms observable identity and configuration; it does not remove price, slippage, external-contract or loss risk.
 
-Soleon does not open donation campaigns or accept third-party contributions to reach this threshold. Assets in the official contribution must come exclusively from the published initial inventory of the Market / Liquidity Wallet and its genuine operations under the public rules. After a pool exists, any user may provide personal liquidity directly through the DEX and retain the rights attached to that independent position.
-
-**Market reference and exact proposal**
-Before voting, the pool proposal publishes:
-• reference slot and time,
-• exact Market / Liquidity Wallet balances,
-• SEON and USDC proposed for contribution,
-• initial implied price,
-• 14-day VWAP of genuine Manifest trades, together with observed volume, spread and depth,
-• difference between proposed and reference prices,
-• estimated slippage and assets that would remain outside the pool,
-• exact destination of assets that would remain outside the pool,
-• pool type, fee configuration and confirmation that any optional creator fee is disabled,
-• LP position lock mechanism and exact treatment of any fee rights,
-• minimum volume and depth that must still exist when the proposal is executed.
-
-Self-trades and transfers between Soleon-controlled wallets do not form part of the reference. If there is not enough activity to obtain a defensible reference, the proposal must say so explicitly and cannot present an isolated trade as a market price.
-
-**Fixed proposal and frozen wallet**
-From publication of the final proposal, the Market / Liquidity Wallet cancels its open orders and remains inactive throughout voting, result verification and any resulting execution. It cannot buy, sell, rebalance or transfer inventory during that period. Independent users may continue trading normally on Manifest, but the amounts under vote do not change while voting is open.
-
-Before executing an approved proposal, the reference is recalculated using the same published method. If it differs by more than 10% from the reference submitted to the vote, or the published minimum volume or depth is no longer met, the authorization expires without creating the pool. A market change does not authorize discretionary changes to approved amounts: a new proposal and snapshot are required.
-
-**Separate pre-pool rebalancing**
-If a pool proposal fails, the wallet may resume ordinary market making under the preceding public rules after the verification period. Balance changes caused by genuine trades initiated by independent parties do not by themselves constitute directed rebalancing.
-
-Deliberately selling SEON to prepare a different pool combination is a separate action. A large discretionary sale is not allowed and no such sale may occur while a pool vote is open. It requires a separate rebalancing proposal approved before execution under the same snapshot, quorum and majority rules as the pool vote. That proposal publishes the maximum amount, execution window, limit prices, maximum slippage, maximum participation rate (never above 10% of observed independent volume), halt conditions and execution rules. It cannot target, defend or fabricate a price. Only genuine orders against independent third parties are used; never self-trading, misleading orders or fabricated volume.
-
-Every execution and a final report are published after that process; a new pool proposal is then submitted with the assets actually available. For example, moving from 300,000 SEON + 1,000 USDC to 200,000 SEON + 2,000 USDC requires selling 100,000 SEON at a genuine average price of 0.01 USDC, ignoring fees and slippage. That outcome is valid only if enough independent demand exists; it cannot be imposed through controlled wallets or fictitious trades.
-
-**Community review: pool or wallet retirement**
-• November 2, 2026: publish Wave 10, the cumulative report, Market / Liquidity Wallet balances and the reproducible threshold assessment.
-• If confirmed assets can contribute at least 2,500 net USDC and a net amount of SEON valued at no less than another 2,500 USDC, an exact proposal is published and the community votes on creating the pool.
-• If that threshold is not met, no pool vote may open. Instead, a proposal asks whether to retire the Market / Liquidity Wallet permanently or keep it operating under the public rules.
-• November 3, 2026 at 12:00 UTC: take the snapshot and open voting.
-• November 17, 2026 at 12:00 UTC: close voting after 14 days.
-• November 17–20: publish the reproducible count and accept technical checks or challenges.
-• If a pool proposal passes, execute it within 7 days after validating the result.
-• If the pool is rejected, wallet retirement is rejected or quorum is not reached, the wallet may resume ordinary operations only until the next review or the final deadline. The second review cannot open before December 3, 2026 and the third cannot open before January 3, 2027. Every review uses new data and a new snapshot, remains open for 14 days and applies the same quorum, majority and diversity requirements.
-• Three reviews are the total maximum, regardless of whether each review concerns pool creation or keeping/retiring the wallet. Reviews without quorum and mixed sequences of both proposal types also count.
-• A vote to keep the wallet or a vote against the pool authorizes temporary continuation only until the next review; it never extends the wallet beyond February 3, 2027.
-• If no approved pool has been executed and no approved retirement has begun by February 3, 2027 at 12:00 UTC, the Market / Liquidity Wallet is automatically frozen and enters permanent retirement. This deadline is fixed before launch and requires no fourth vote.
-
-The snapshot uses the first finalized Solana slot at or after the published time. It counts eligible liquid balance and staked principal attributable to each wallet. The Developer Wallet participates as one wallet with its actual eligible balance, but it is not a Genesis recipient and does not help satisfy the minimum number of distinct Genesis wallets. Splitting tokens among other developer-controlled wallets does not create valid independent voters. The Market / Liquidity Wallet, Maintenance Wallet, Genesis Distribution Wallet, vaults and every other official account are excluded. The dataset, its hash and calculation rules are published for independent reproduction.
-
-The vote is recorded through a memo transaction identifying the proposal and YES or NO. Voting does not require transferring SEON or surrendering custody; only the normal network fee is paid. Each wallet's last valid vote before closing counts, and 1 eligible SEON equals 1 vote. Approval simultaneously requires:
-• at least 1,000,000 participating SEON,
-• at least 66.67% YES among YES + NO,
-• at least 50 distinct voting wallets,
-• at least 25 original Genesis recipient wallets with eligible balance.
-
-Only YES or NO votes count. A wallet that does not vote neither participates in the decision nor helps satisfy quorum. A voter may also provide an optional, non-binding indication of how much liquidity they might contribute. This indication does not lock funds or create an obligation. The website must explain that providing liquidity involves slippage, impermanent loss and risk of loss; it is neither required to vote nor a promise of returns.
-
-**Executing an approved or automatic retirement**
-A retirement submitted to a vote uses exactly the same snapshot, quorum, majority and voter-diversity requirements as the pool vote. The wallet remains frozen throughout voting and result verification. If retirement passes, or if the February 3, 2027 final deadline triggers automatic retirement, a final conversion plan is published before any trade, including starting balances, execution window, limit prices, maximum slippage, halt conditions and a maximum participation rate never above 10% of observed independent volume. Automatic retirement follows these same restrictions and grants no new discretionary powers to the maintainer.
-
-Remaining USDC may only buy SEON from independent sellers through genuine limit orders. At most two order-placement or adjustment cycles are allowed per UTC day; this limit neither promises two daily fills nor authorizes market orders. No order is crossed against a Soleon-controlled wallet, price is not chased and conversion is not forced when sufficient independent supply does not exist.
-
-Every fill and cancellation is published. Once USDC has been fully converted and no open orders remain, all SEON held by the wallet is transferred to the reward_vault, with gross amount, transfer fee and net amount published. The address is permanently retired and never trades again, although its history remains visible on-chain. If all USDC cannot be converted within the approved window, the balance is neither hidden nor transferred discretionarily: the result is published, the wallet remains frozen and any continuation requires a new vote after at least 30 days.
-
-**Permanent lock and fees**
-If approved, the intended design creates a standard Raydium CPMM pool with the optional creator fee disabled after publicly verifying the current configuration. The LP position is permanently locked through Burn & Earn. After verifying the lock on-chain, the Fee Key NFT is burned, irreversibly relinquishing every Soleon right to claim fees from that position.
-
-The standard LP share of trading fees remains in the pool vaults and increases its internal liquidity. Protocol and fund shares belong to Raydium under its current configuration; Soleon does not control them. SEON remaining in the Market / Liquidity Wallet after the approved contribution is transferred to the reward_vault, with gross amount, Token-2022 fee and net amount published. This top-up does not retroactively recalculate an annual budget already opened, but increases rewards available to future periods. The destination of any remaining USDC must form part of the proposal and cannot be decided after voting.
-
-**Community pools and fake markets**
-The community may create other pools on Raydium, Orca, Meteora or compatible DEXs. Those pools are not official by default. The website may display them if it reviews:
-• they use the correct SEON mint,
-• the DEX and pair are clear,
-• liquidity is visible,
-• it states whether LP is locked, burned, multisig-controlled or freely removable,
-• there are no signs of a fake mint, suspicious route or misleading liquidity.
+**Why this model**
+• It does not depend on a CEX agreeing to list SEON.
+• It does not require custody of user funds.
+• It does not need an initial sale to create holders.
+• It does not confuse creator inventory with community liquidity.
+• It lets real activity remain visible, including when it is zero.
+• It removes an operational and financial role that would otherwise remain under maintainer control.
 
 **Role of the website**
-The website does not operate as an exchange, set price or custody user funds. Its role is to publish addresses, explain risks, link verified markets and help distinguish useful liquidity, weak liquidity and fake pools.`,
+The website does not operate as an exchange, custody funds, place orders or set price. Its role is to publish the mint and verified addresses, explain risk, link external interfaces and distinguish correct markets from fake or misleading routes.`,
   },
   technical: {
     title: 'Technical Specifications',
@@ -869,8 +739,7 @@ The website does not operate as an exchange, set price or custody user funds. It
 • reward_vault: finite staking reserve.
 • staking_vault: holds locked principal.
 • soleon_fee_vault: technical account for fee distribution.
-• genesis_distribution_wallet: holds 4,000,000 SEON until all ten waves are complete.
-• market_liquidity_wallet: temporary 400,000 SEON inventory and up to 200 USDC for real market activity.
+• genesis_distribution_wallet: holds 4,400,000 SEON until all ten waves are complete.
 • developer_wallet: public personal allocation of 44,444 SEON.
 • maintenance_fee_receiver: public Maintenance Wallet receiving SOL maintenance fees.
 
@@ -886,11 +755,11 @@ The website does not operate as an exchange, set price or custody user funds. It
 • cleanup_expired_positions: batch-closes post-grace positions.
 
 **Markets**
-• Initial target: Manifest SEON/USDC order book.
-• Temporary Market / Liquidity Wallet: real orders under public rules and no self-trading.
-• Future pool: optional after 2–3 months, only if activity and observed price make it viable.
-• Other AMM pools: community-created, not official by default.
-• The website only links markets/pools after checking they use the correct SEON mint.
+• Possible initial reference: a verified Manifest SEON/USDC order book, even if it begins empty.
+• No Soleon-controlled wallet places initial orders.
+• There is no market reserve, official pool, pool vote or liquidity commitment.
+• AMM pools may be created by third parties and remain independent, not official by default.
+• The website only links markets or pools after checking they use the correct SEON mint.
 • No custody: each user signs from their own wallet using external DEX interfaces.
 
 **Maintenance**
@@ -930,7 +799,7 @@ Mint authority exists only while the complete supply is created and allocated, t
 In the final state, users should be able to verify mint, program IDs, vaults, authorities and rules from explorers and public code.
 
 **Actual scope of decentralization**
-Mint and staking immutability do not automatically decentralize every project layer. The website, documentation, Maintenance Wallet and temporary Market / Liquidity Wallet still have operational maintainers. Soleon publishes these dependencies, limits their roles and avoids describing the system as fully decentralized while they remain. The target is to reduce discretionary control over protocol rules and funds, not to hide the existence of human maintenance.`,
+Mint and staking immutability do not automatically decentralize every project layer. The website, documentation and Maintenance Wallet still have operational maintainers. Soleon publishes these dependencies, limits their roles and avoids describing the system as fully decentralized while they remain. Reserving no funds for market operations removes a maintainer-controlled financial role, but it does not remove human interface maintenance. The target is to reduce discretionary control over protocol rules and funds, not to hide those dependencies.`,
   },
   timeline: {
     title: 'Timeline',
@@ -948,18 +817,18 @@ Mint and staking immutability do not automatically decentralize every project la
 • Create the Token-2022 SEON mint and official metadata.
 • Create and publish main wallets and accounts.
 • Fund reward_vault with 440,000,000 SEON.
-• Fund Genesis Distribution Wallet with 4,000,000 SEON.
-• Fund Market / Liquidity Wallet with 400,000 SEON.
+• Fund Genesis Distribution Wallet with 4,400,000 SEON.
 • Transfer 44,444 SEON to Developer Wallet.
 • Revoke mint authority after verifying complete supply and allocations.
 • Confirm null freeze authority.
 
-**August 31, 2026: staking, market and Wave 1**
+**August 31, 2026: staking, verifiable market and Wave 1**
 • Deploy and open staking if the final rehearsal passes.
 • Open staking_open and activate the first 0.02% transfer fee through a permissionless action.
 • Enable stake, claim, renew, unstake and cleanup.
-• Publish the Manifest SEON/USDC market and Market / Liquidity Wallet policy.
-• Distribute 10,000 SEON to each of the first 40 wallets.
+• Publish the verified Manifest SEON/USDC market address if available, stating that it may begin empty.
+• Place no initial orders from Soleon-controlled wallets.
+• Distribute 10,000 SEON to each of the first 44 wallets.
 
 **Weekly Waves 2–10**
 • Wave 2: September 7, 2026.
@@ -971,28 +840,25 @@ Mint and staking immutability do not automatically decentralize every project la
 • Wave 8: October 19, 2026.
 • Wave 9: October 26, 2026.
 • Wave 10: November 2, 2026.
-• Each wave distributes 400,000 SEON across 40 wallets and publishes its verifiable report.
+• Each wave distributes 440,000 SEON across 44 wallets and publishes its verifiable report.
 
 **After Wave 10**
-• Publish cumulative verification of all 400 distributions.
+• Publish cumulative verification of all 440 distributions.
 • Close confirmed technical fixes from the launch window.
 • Revoke program upgrade authority and make staking immutable.
-• November 2: publish the first review. If the threshold is met, present the exact pool proposal; otherwise present the proposal to keep or retire the Market / Liquidity Wallet.
-• November 3 at 12:00 UTC: fix the snapshot and open the 14-day vote.
-• November 17 at 12:00 UTC: close voting and publish a reproducible count.
-• If the pool passes, execute it within 7 days after validation; if retirement passes, begin the public conversion plan.
-• If no final outcome exists, hold no more than a second review no earlier than December 3 and a third no earlier than January 3, both using new data and a new snapshot.
-• If no approved pool has been executed and no approved retirement has begun by February 3, 2027, freeze the wallet and automatically begin permanent retirement.
+• Keep the correct Manifest market address and its on-chain data published, without presenting absence of orders as a technical failure.
+• Independently review and label any community pool that appears, without making it official.
+• Do not open a pool vote or announce a date or threshold for official liquidity.
 
 **Continued operation**
 • Maintain documentation and links.
 • Continue collecting Token-2022 fees toward reward vault and burn.
 • Publish balances and movements of operational wallets.
-• Do not promise liquidity, price, volume or a pool date if conditions are insufficient.`,
+• Do not promise liquidity, price, volume or creation of an official pool.`,
   },
   conclusion: {
     title: 'Conclusion',
-    content: `Soleon does not try to start with a large sale or artificial volume controlled by the creator. It starts small: a fixed token, a direct and verifiable initial distribution, public review, staking with a finite budget and a DEX-first market with limited, visible initial inventory.
+    content: `Soleon does not try to start with a large sale or artificial volume controlled by the creator. It starts small: a fixed token, a direct and verifiable initial distribution, public review, staking with a finite budget and a DEX-first market that may begin empty and can only gain activity through independent participants.
 
 **What Soleon tries to do**
 • Put clear rules on-chain.
@@ -1000,7 +866,7 @@ Mint and staking immutability do not automatically decentralize every project la
 • Separate website interface from protocol authority.
 • Use transfer fees to burn part of supply and refill rewards.
 • Revoke staking upgrade authority when the public launch window ends.
-• Clearly identify the temporary roles of Soleon Maintainer and operational wallets.
+• Clearly identify the roles of Soleon Maintainer and required operational wallets.
 
 **What Soleon does not promise**
 • It does not promise price.
@@ -1009,9 +875,9 @@ Mint and staking immutability do not automatically decentralize every project la
 • It does not promise CEX listing.
 • It does not promise public review will find every issue.
 
-SEON may have no market or may be worth zero. The Market / Liquidity Wallet may facilitate real orders, but it cannot create organic demand or guarantee a counterparty. A future pool is only considered if independent activity and observed price make it viable.
+SEON may have no market or may be worth zero. The verified order book may begin and remain empty; Soleon places no initial orders, creates no demand and guarantees no counterparty. Pools that third parties may create are independent and do not constitute promised official liquidity.
 
-The project can only offer public rules, documentation, reviewable code and a structure that reduces centralized dependencies. A maintained website, Maintenance Wallet and temporary market wallet mean total decentralization cannot be claimed during launch. The final economic decision belongs to the market and community; the technical target is for the core token and staking rules to stop depending on the maintainer.`,
+The project can only offer public rules, documentation, reviewable code and a structure that reduces centralized dependencies. A maintained website and Maintenance Wallet mean total decentralization cannot be claimed across every layer. Final economic decisions belong to independent participants; the technical target is for the core token and staking rules to stop depending on the maintainer.`,
   },
 };
 

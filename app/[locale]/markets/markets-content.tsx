@@ -18,7 +18,6 @@ import {
   Layers,
   ListFilter,
   Shield,
-  Users,
 } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Button } from '@/components/ui/button';
@@ -186,7 +185,9 @@ export function MarketsContent() {
     <main className="min-h-screen bg-background pb-16 pt-24">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="mb-10 text-center">
-          <h1 className="font-serif text-4xl font-bold text-gradient-gold md:text-5xl">{t('title')}</h1>
+          <h1 className="max-w-full whitespace-normal break-words font-serif text-3xl font-bold leading-tight text-gradient-gold sm:text-4xl md:text-5xl">
+            {t('title')}
+          </h1>
           <p className="mx-auto mt-4 max-w-3xl text-lg text-muted-foreground">{t('subtitle')}</p>
         </motion.div>
 
@@ -195,54 +196,19 @@ export function MarketsContent() {
             <CardHeader>
               <CardTitle className="flex items-center gap-2">
                 <Landmark className="h-5 w-5 text-secondary" />
-                {isEn ? 'Temporary Market / Liquidity Wallet' : 'Wallet temporal de Mercado / Liquidez'}
+                {isEn ? 'Permissionless market formation' : 'Formación permissionless del mercado'}
               </CardTitle>
               <CardDescription>
                 {isEn
-                  ? 'Public reserve: 400,000 SEON and up to 200 USDC. Its orders are genuine but are always identified as Soleon-controlled liquidity.'
-                  : 'Reserva pública: 400,000 SEON y hasta 200 USDC. Sus órdenes son reales, pero siempre se identifican como liquidez controlada por Soleon.'}
+                  ? 'Soleon reserves no SEON for market operations, places no controlled initial bids or asks and promises no official liquidity.'
+                  : 'Soleon no reserva SEON para operar el mercado, no coloca bids o asks iniciales controlados ni promete liquidez oficial.'}
               </CardDescription>
             </CardHeader>
             <CardContent>
-              {SOLEON_CONFIG.marketLiquidityWallet ? (
-                <div className="flex flex-col gap-3 sm:flex-row sm:items-center">
-                  <p className="min-w-0 flex-1 break-all font-mono text-sm">
-                    {SOLEON_CONFIG.marketLiquidityWallet}
-                  </p>
-                  <div className="flex gap-2">
-                    <Button
-                      variant="outline"
-                      size="sm"
-                      onClick={() => handleCopy(SOLEON_CONFIG.marketLiquidityWallet!)}
-                    >
-                      {copiedValue === SOLEON_CONFIG.marketLiquidityWallet
-                        ? <Check className="h-4 w-4 text-green-500" />
-                        : <Copy className="h-4 w-4" />}
-                      <span className="ml-2">
-                        {copiedValue === SOLEON_CONFIG.marketLiquidityWallet ? t('copied') : t('copy')}
-                      </span>
-                    </Button>
-                    <Button variant="outline" size="sm" asChild>
-                      <a
-                        href={getSolscanAccountUrl(SOLEON_CONFIG.marketLiquidityWallet)}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <ExternalLink className="mr-2 h-4 w-4" />
-                        Solscan
-                      </a>
-                    </Button>
-                  </div>
-                </div>
-              ) : (
-                <p className="text-sm font-semibold text-amber-500">
-                  {isEn ? 'Published after mainnet creation' : 'Se publicará tras su creación en mainnet'}
-                </p>
-              )}
-              <div className="mt-4 border-t border-border/50 pt-4 text-sm leading-6 text-muted-foreground">
+              <div className="text-sm leading-6 text-muted-foreground">
                 {isEn
-                  ? 'No self-trading, no fabricated volume and no promised price. If no independent counterparty trades, reported volume is zero. Quote changes follow published inventory and spread rules.'
-                  : 'Sin autooperaciones, volumen fabricado ni precio prometido. Si no opera ninguna contraparte independiente, el volumen publicado es cero. Los cambios de quotes siguen reglas públicas de inventario y spread.'}
+                  ? 'The verified SEON/USDC order book on Manifest may begin with no orders. Any orders, price, volume or depth come from independent participants. Community-created pools may be listed after address and mint verification, but they remain independent and carry no Soleon guarantee.'
+                  : 'El order book verificado SEON/USDC en Manifest puede comenzar sin órdenes. Cualquier orden, precio, volumen o profundidad procede de participantes independientes. Los pools creados por la comunidad podrán mostrarse tras verificar su dirección y mint, pero seguirán siendo independientes y sin garantía de Soleon.'}
               </div>
             </CardContent>
           </Card>
@@ -573,25 +539,7 @@ export function MarketsContent() {
           </Card>
         </motion.div>
 
-        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="grid gap-6 lg:grid-cols-2">
-          <Card className="border-secondary/20 bg-secondary/5">
-            <CardHeader>
-              <div className="flex items-start justify-between gap-3">
-                <div>
-                  <CardTitle className="flex items-center gap-2">
-                    <Users className="h-5 w-5 text-secondary" />
-                    {t('liquidityInterestTitle')}
-                  </CardTitle>
-                  <CardDescription className="mt-2">{t('liquidityInterestDesc')}</CardDescription>
-                </div>
-                <Badge variant="secondary">{t('planned')}</Badge>
-              </div>
-            </CardHeader>
-            <CardContent className="text-sm text-muted-foreground">
-              <p>{t('liquidityInterestWarning')}</p>
-            </CardContent>
-          </Card>
-
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }}>
           <Card className="border-primary/20 bg-card/40">
             <CardHeader>
               <CardTitle>{t('liquidityGuideCtaTitle')}</CardTitle>

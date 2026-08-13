@@ -36,8 +36,6 @@ export interface SoleonConfig {
   creatorAllocationWallet: string | null;
   genesisDistributionWallet: string | null;
   genesisDistributionTokenAccount: string | null;
-  marketLiquidityWallet: string | null;
-  marketLiquidityTokenAccount: string | null;
   genesisSelectionRulesUrl: string | null;
   genesisReportsUrl: string | null;
   securityReportUrl: string | null;
@@ -79,8 +77,6 @@ const PUBLIC_ENV: Record<string, string | undefined> = {
   NEXT_PUBLIC_CREATOR_ALLOCATION_WALLET: process.env.NEXT_PUBLIC_CREATOR_ALLOCATION_WALLET,
   NEXT_PUBLIC_GENESIS_DISTRIBUTION_WALLET: process.env.NEXT_PUBLIC_GENESIS_DISTRIBUTION_WALLET,
   NEXT_PUBLIC_GENESIS_DISTRIBUTION_TOKEN_ACCOUNT: process.env.NEXT_PUBLIC_GENESIS_DISTRIBUTION_TOKEN_ACCOUNT,
-  NEXT_PUBLIC_MARKET_LIQUIDITY_WALLET: process.env.NEXT_PUBLIC_MARKET_LIQUIDITY_WALLET,
-  NEXT_PUBLIC_MARKET_LIQUIDITY_TOKEN_ACCOUNT: process.env.NEXT_PUBLIC_MARKET_LIQUIDITY_TOKEN_ACCOUNT,
   NEXT_PUBLIC_GENESIS_SELECTION_RULES_URL: process.env.NEXT_PUBLIC_GENESIS_SELECTION_RULES_URL,
   NEXT_PUBLIC_GENESIS_REPORTS_URL: process.env.NEXT_PUBLIC_GENESIS_REPORTS_URL,
   NEXT_PUBLIC_STAKING_REPOSITORY_URL: process.env.NEXT_PUBLIC_STAKING_REPOSITORY_URL,
@@ -152,8 +148,6 @@ export const SOLEON_CONFIG: SoleonConfig = {
   creatorAllocationWallet: optionalEnv('NEXT_PUBLIC_CREATOR_ALLOCATION_WALLET'),
   genesisDistributionWallet: optionalEnv('NEXT_PUBLIC_GENESIS_DISTRIBUTION_WALLET'),
   genesisDistributionTokenAccount: optionalEnv('NEXT_PUBLIC_GENESIS_DISTRIBUTION_TOKEN_ACCOUNT'),
-  marketLiquidityWallet: optionalEnv('NEXT_PUBLIC_MARKET_LIQUIDITY_WALLET'),
-  marketLiquidityTokenAccount: optionalEnv('NEXT_PUBLIC_MARKET_LIQUIDITY_TOKEN_ACCOUNT'),
   genesisSelectionRulesUrl: optionalEnv('NEXT_PUBLIC_GENESIS_SELECTION_RULES_URL'),
   genesisReportsUrl: optionalEnv('NEXT_PUBLIC_GENESIS_REPORTS_URL'),
   securityReportUrl: null,
@@ -189,11 +183,10 @@ export const SEON_DECIMALS = 9;
 export const SEON_TOTAL_SUPPLY = 444_444_444; // Exactly 444,444,444 SEON
 export const SEON_REWARD_VAULT_INITIAL = 440_000_000; // 440M to reward vault
 export const SEON_CREATOR_ALLOCATION = 44_444; // 44,444 transparent initial developer allocation
-export const SEON_GENESIS_AIRDROP_ALLOCATION = 4_000_000;
-export const SEON_MARKET_LIQUIDITY_ALLOCATION = 400_000;
+export const SEON_GENESIS_AIRDROP_ALLOCATION = 4_400_000;
 export const SEON_GENESIS_WALLET_AMOUNT = 10_000;
 export const GENESIS_WAVE_COUNT = 10;
-export const GENESIS_WALLETS_PER_WAVE = 40;
+export const GENESIS_WALLETS_PER_WAVE = 44;
 export const GENESIS_RECIPIENT_COUNT = GENESIS_WAVE_COUNT * GENESIS_WALLETS_PER_WAVE;
 
 // Dynamic Transfer Fee constants

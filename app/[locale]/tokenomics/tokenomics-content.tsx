@@ -11,8 +11,7 @@ export function TokenomicsContent() {
   const isEn = useLocale() === 'en';
   const allocations = [
     ['440,000,000 SEON', isEn ? 'Finite staking reward vault' : 'Reward vault finita de staking', '99.000%'],
-    ['4,000,000 SEON', isEn ? 'Genesis Airdrop: 400 wallets x 10,000 SEON' : 'Airdrop Genesis: 400 wallets x 10,000 SEON', '0.900%'],
-    ['400,000 SEON', isEn ? 'Temporary market and liquidity reserve' : 'Reserva temporal de mercado y liquidez', '0.090%'],
+    ['4,400,000 SEON', isEn ? 'Genesis Airdrop: 440 wallets x 10,000 SEON' : 'Airdrop Genesis: 440 wallets x 10,000 SEON', '0.990%'],
     ['44,444 SEON', isEn ? 'Initial developer allocation' : 'Asignación inicial del desarrollador', '0.010%'],
   ];
   const feeRules = isEn
@@ -47,8 +46,8 @@ export function TokenomicsContent() {
           <h2 className="text-2xl font-semibold">{isEn ? 'Initial allocation' : 'Asignación inicial'}</h2>
           <p className="mt-2 max-w-3xl text-sm leading-6 text-muted-foreground">
             {isEn
-              ? 'The four public allocations sum exactly to the fixed supply. There is no presale, private round or discretionary review reserve.'
-              : 'Las cuatro asignaciones públicas suman exactamente el supply fijo. No existe preventa, ronda privada ni reserva discrecional de revisión.'}
+              ? 'The three public allocations sum exactly to the fixed supply. There is no presale, private round or discretionary review or market reserve.'
+              : 'Las tres asignaciones públicas suman exactamente el supply fijo. No existe preventa, ronda privada ni reserva discrecional de revisión o mercado.'}
           </p>
           <div className="mt-5 divide-y divide-border/50 border-y border-border/50">
             {allocations.map(([amount, label, percent]) => <div key={amount} className="grid gap-2 py-4 sm:grid-cols-[180px_1fr_90px]"><strong>{amount}</strong><span className="text-muted-foreground">{label}</span><span className="text-right text-primary">{percent}</span></div>)}
@@ -56,11 +55,11 @@ export function TokenomicsContent() {
         </section>
 
         <section className="mt-14 border-t border-border/50 pt-7">
-          <h2 className="text-2xl font-semibold">{isEn ? 'Launch reserve rules' : 'Reglas de la reserva de lanzamiento'}</h2>
+          <h2 className="text-2xl font-semibold">{isEn ? 'Open market rules' : 'Reglas de mercado abierto'}</h2>
           <p className="mt-3 max-w-4xl text-sm leading-6 text-muted-foreground">
             {isEn
-              ? 'The Genesis allocation is transferred directly in ten public weekly waves. The separate 400,000 SEON reserve may provide genuine SEON/USDC bids and asks under published rules, never self-trades, and cannot be presented as organic demand. After two to three months, any pool decision depends on observed third-party activity and requires permanently locked or burned LP.'
-              : 'La asignación Genesis se transfiere directamente en diez olas semanales públicas. La reserva separada de 400,000 SEON puede aportar bids y asks reales de SEON/USDC bajo reglas publicadas, nunca realiza autooperaciones ni puede presentarse como demanda orgánica. Tras dos o tres meses, cualquier decisión sobre un pool depende de la actividad real de terceros y exige LP bloqueado o quemado permanentemente.'}
+              ? 'The Genesis allocation is transferred directly in ten public weekly waves. Soleon creates no market reserve and no controlled wallet places initial SEON/USDC orders. Any price, volume or liquidity must emerge from independent participants in permissionless markets. No official pool or liquidity commitment is planned.'
+              : 'La asignación Genesis se transfiere directamente en diez olas semanales públicas. Soleon no crea una reserva de mercado y ninguna wallet controlada coloca órdenes iniciales SEON/USDC. Cualquier precio, volumen o liquidez debe surgir de participantes independientes en mercados permissionless. No se planifica un pool oficial ni un compromiso de liquidez.'}
           </p>
         </section>
 
